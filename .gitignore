@@ -35,3 +35,12 @@ react_tui_smoke.txt
 .DS_Store
 Thumbs.db
 uv.lock
+
+# --- SLM-harness research: never commit secrets, results, checkpoints, big data ---
+research/slm_harness/infra/config.env
+research/slm_harness/infra/secrets.env
+research/slm_harness/results/real/
+research/slm_harness/training/checkpoints/
+research/slm_harness/tasks/realbench/run_train.json
+research/slm_harness/tasks/realbench/run_test.json
+*.lora

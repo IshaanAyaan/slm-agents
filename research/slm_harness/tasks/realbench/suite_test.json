@@ -1,0 +1,1926 @@
+{
+  "suite_id": "realbench-test",
+  "description": "Deterministic file/code navigation tasks over real repos (unique-symbol ground truth, no labeling, no API).",
+  "tasks": [
+    {
+      "task_id": "ohmo-cla-0000",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class GatewayState` is defined and report its path.",
+      "expected_files": [
+        "gateway/models.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "GatewayState",
+        "kind": "class",
+        "def_line": 24
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0001",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `group_record_path` and report which file contains it.",
+      "expected_files": [
+        "group_registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "group_record_path",
+        "kind": "function",
+        "def_line": 40
+      }
+    },
+    {
+      "task_id": "ohmo-con-0002",
+      "workspace": "../../../../ohmo",
+      "prompt": "Which file declares the module-level constant `BOOTSTRAP_TEMPLATE`?",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "BOOTSTRAP_TEMPLATE",
+        "kind": "constant",
+        "def_line": 118
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0003",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoNotificationError` is defined and report its path.",
+      "expected_files": [
+        "gateway/notify.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoNotificationError",
+        "kind": "class",
+        "def_line": 16
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0004",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_user_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_user_path",
+        "kind": "function",
+        "def_line": 182
+      }
+    },
+    {
+      "task_id": "ohmo-con-0005",
+      "workspace": "../../../../ohmo",
+      "prompt": "Which file declares the module-level constant `MEMORY_INDEX_TEMPLATE`?",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "MEMORY_INDEX_TEMPLATE",
+        "kind": "constant",
+        "def_line": 156
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0006",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoCreateFeishuGroupInput` is defined and report its path.",
+      "expected_files": [
+        "gateway/group_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoCreateFeishuGroupInput",
+        "kind": "class",
+        "def_line": 20
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0007",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `stop_gateway_process` and report which file contains it.",
+      "expected_files": [
+        "gateway/service.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "stop_gateway_process",
+        "kind": "function",
+        "def_line": 382
+      }
+    },
+    {
+      "task_id": "ohmo-con-0008",
+      "workspace": "../../../../ohmo",
+      "prompt": "Which file declares the module-level constant `WORKSPACE_DIRNAME`?",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "WORKSPACE_DIRNAME",
+        "kind": "constant",
+        "def_line": 9
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0009",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class GatewayStreamUpdate` is defined and report its path.",
+      "expected_files": [
+        "gateway/runtime.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "GatewayStreamUpdate",
+        "kind": "class",
+        "def_line": 88
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0010",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `load_memory_prompt` and report which file contains it.",
+      "expected_files": [
+        "memory.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "load_memory_prompt",
+        "kind": "function",
+        "def_line": 156
+      }
+    },
+    {
+      "task_id": "ohmo-con-0011",
+      "workspace": "../../../../ohmo",
+      "prompt": "Which file declares the module-level constant `USER_TEMPLATE`?",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "USER_TEMPLATE",
+        "kind": "constant",
+        "def_line": 60
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0012",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class ManagedGroupRecord` is defined and report its path.",
+      "expected_files": [
+        "group_registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "ManagedGroupRecord",
+        "kind": "class",
+        "def_line": 16
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0013",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_groups_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_groups_dir",
+        "kind": "function",
+        "def_line": 206
+      }
+    },
+    {
+      "task_id": "ohmo-con-0014",
+      "workspace": "../../../../ohmo",
+      "prompt": "Which file declares the module-level constant `IDENTITY_TEMPLATE`?",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "IDENTITY_TEMPLATE",
+        "kind": "constant",
+        "def_line": 107
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0015",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoSessionBackend` is defined and report its path.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoSessionBackend",
+        "kind": "class",
+        "def_line": 151
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0016",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_memory_index_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_memory_index_path",
+        "kind": "function",
+        "def_line": 210
+      }
+    },
+    {
+      "task_id": "ohmo-con-0017",
+      "workspace": "../../../../ohmo",
+      "prompt": "Which file declares the module-level constant `SOUL_TEMPLATE`?",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "SOUL_TEMPLATE",
+        "kind": "constant",
+        "def_line": 11
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0018",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoGatewayBridge` is defined and report its path.",
+      "expected_files": [
+        "gateway/bridge.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoGatewayBridge",
+        "kind": "class",
+        "def_line": 56
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0019",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `launch_ohmo_react_tui` and report which file contains it.",
+      "expected_files": [
+        "runtime.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "launch_ohmo_react_tui",
+        "kind": "function",
+        "def_line": 92
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0020",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoCreateFeishuGroupTool` is defined and report its path.",
+      "expected_files": [
+        "gateway/group_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoCreateFeishuGroupTool",
+        "kind": "class",
+        "def_line": 38
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0021",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `gateway_status_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "gateway_status_cmd",
+        "kind": "function",
+        "def_line": 705
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0022",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoSessionRuntimePool` is defined and report its path.",
+      "expected_files": [
+        "gateway/runtime.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoSessionRuntimePool",
+        "kind": "class",
+        "def_line": 97
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0023",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `soul_edit_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "soul_edit_cmd",
+        "kind": "function",
+        "def_line": 641
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0024",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class GatewayConfig` is defined and report its path.",
+      "expected_files": [
+        "gateway/models.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "GatewayConfig",
+        "kind": "class",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0025",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `user_show_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "user_show_cmd",
+        "kind": "function",
+        "def_line": 649
+      }
+    },
+    {
+      "task_id": "ohmo-cla-0026",
+      "workspace": "../../../../ohmo",
+      "prompt": "Find the file in this repository where `class OhmoGatewayService` is defined and report its path.",
+      "expected_files": [
+        "gateway/service.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "OhmoGatewayService",
+        "kind": "class",
+        "def_line": 39
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0027",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `user_edit_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "user_edit_cmd",
+        "kind": "function",
+        "def_line": 654
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0028",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `gateway_stop_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "gateway_stop_cmd",
+        "kind": "function",
+        "def_line": 684
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0029",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `create_memory_command_backend` and report which file contains it.",
+      "expected_files": [
+        "memory.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "create_memory_command_backend",
+        "kind": "function",
+        "def_line": 179
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0030",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `run_ohmo_backend` and report which file contains it.",
+      "expected_files": [
+        "runtime.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "run_ohmo_backend",
+        "kind": "function",
+        "def_line": 28
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0031",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `config_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "config_cmd",
+        "kind": "function",
+        "def_line": 556
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0032",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `list_snapshots` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "list_snapshots",
+        "kind": "function",
+        "def_line": 102
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0033",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `memory_add_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "memory_add_cmd",
+        "kind": "function",
+        "def_line": 602
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0034",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `load_gateway_config` and report which file contains it.",
+      "expected_files": [
+        "gateway/config.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "load_gateway_config",
+        "kind": "function",
+        "def_line": 13
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0035",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `build_channel_manager_config` and report which file contains it.",
+      "expected_files": [
+        "gateway/config.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "build_channel_manager_config",
+        "kind": "function",
+        "def_line": 29
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0036",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `load_by_id` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "load_by_id",
+        "kind": "function",
+        "def_line": 124
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0037",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `handle_gateway_model_command` and report which file contains it.",
+      "expected_files": [
+        "gateway/provider_commands.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "handle_gateway_model_command",
+        "kind": "function",
+        "def_line": 55
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0038",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `start_gateway_process` and report which file contains it.",
+      "expected_files": [
+        "gateway/service.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "start_gateway_process",
+        "kind": "function",
+        "def_line": 256
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0039",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `list_memory_files` and report which file contains it.",
+      "expected_files": [
+        "memory.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "list_memory_files",
+        "kind": "function",
+        "def_line": 28
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0040",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `load_latest_for_session_key` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "load_latest_for_session_key",
+        "kind": "function",
+        "def_line": 95
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0041",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `export_session_markdown` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "export_session_markdown",
+        "kind": "function",
+        "def_line": 134
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0042",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `gateway_status` and report which file contains it.",
+      "expected_files": [
+        "gateway/service.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "gateway_status",
+        "kind": "function",
+        "def_line": 416
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0043",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `ensure_workspace` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "ensure_workspace",
+        "kind": "function",
+        "def_line": 238
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0044",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `gateway_start_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "gateway_start_cmd",
+        "kind": "function",
+        "def_line": 675
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0045",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `build_ohmo_system_prompt` and report which file contains it.",
+      "expected_files": [
+        "prompts.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "build_ohmo_system_prompt",
+        "kind": "function",
+        "def_line": 27
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0046",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_session_dir` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_session_dir",
+        "kind": "function",
+        "def_line": 24
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0047",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `remove_memory_entry` and report which file contains it.",
+      "expected_files": [
+        "memory.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "remove_memory_entry",
+        "kind": "function",
+        "def_line": 110
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0048",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `memory_remove_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "memory_remove_cmd",
+        "kind": "function",
+        "def_line": 612
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0049",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_plugins_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_plugins_dir",
+        "kind": "function",
+        "def_line": 202
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0050",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `normalize_cwd` and report which file contains it.",
+      "expected_files": [
+        "group_registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "normalize_cwd",
+        "kind": "function",
+        "def_line": 93
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0051",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `session_key_for_message` and report which file contains it.",
+      "expected_files": [
+        "gateway/router.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "session_key_for_message",
+        "kind": "function",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0052",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_soul_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_soul_path",
+        "kind": "function",
+        "def_line": 178
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0053",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_logs_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_logs_dir",
+        "kind": "function",
+        "def_line": 218
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0054",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_identity_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_identity_path",
+        "kind": "function",
+        "def_line": 186
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0055",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `save_managed_group_record` and report which file contains it.",
+      "expected_files": [
+        "group_registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "save_managed_group_record",
+        "kind": "function",
+        "def_line": 50
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0056",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_attachments_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_attachments_dir",
+        "kind": "function",
+        "def_line": 222
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0057",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `save_gateway_config` and report which file contains it.",
+      "expected_files": [
+        "gateway/config.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "save_gateway_config",
+        "kind": "function",
+        "def_line": 21
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0058",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `doctor_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "doctor_cmd",
+        "kind": "function",
+        "def_line": 570
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0059",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `load_latest` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "load_latest",
+        "kind": "function",
+        "def_line": 88
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0060",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `send_feishu_dm` and report which file contains it.",
+      "expected_files": [
+        "gateway/notify.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "send_feishu_dm",
+        "kind": "function",
+        "def_line": 75
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0061",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `memory_list_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "memory_list_cmd",
+        "kind": "function",
+        "def_line": 596
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0062",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `build_ohmo_backend_command` and report which file contains it.",
+      "expected_files": [
+        "runtime.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "build_ohmo_backend_command",
+        "kind": "function",
+        "def_line": 69
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0063",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_skills_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_skills_dir",
+        "kind": "function",
+        "def_line": 198
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0064",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_memory_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_memory_dir",
+        "kind": "function",
+        "def_line": 194
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0065",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `soul_show_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "soul_show_cmd",
+        "kind": "function",
+        "def_line": 636
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0066",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `normalize_group_name` and report which file contains it.",
+      "expected_files": [
+        "group_registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "normalize_group_name",
+        "kind": "function",
+        "def_line": 30
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0067",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `gateway_restart_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "gateway_restart_cmd",
+        "kind": "function",
+        "def_line": 695
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0068",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_gateway_config_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_gateway_config_path",
+        "kind": "function",
+        "def_line": 230
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0069",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `workspace_health` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "workspace_health",
+        "kind": "function",
+        "def_line": 304
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0070",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `init_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "init_cmd",
+        "kind": "function",
+        "def_line": 527
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0071",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_sessions_dir` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_sessions_dir",
+        "kind": "function",
+        "def_line": 214
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0072",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `load_managed_group_record` and report which file contains it.",
+      "expected_files": [
+        "group_registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "load_managed_group_record",
+        "kind": "function",
+        "def_line": 80
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0073",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `initialize_workspace` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "initialize_workspace",
+        "kind": "function",
+        "def_line": 252
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0074",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_bootstrap_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_bootstrap_path",
+        "kind": "function",
+        "def_line": 190
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0075",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `handle_gateway_provider_command` and report which file contains it.",
+      "expected_files": [
+        "gateway/provider_commands.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "handle_gateway_provider_command",
+        "kind": "function",
+        "def_line": 13
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0076",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `gateway_run_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "gateway_run_cmd",
+        "kind": "function",
+        "def_line": 662
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0077",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `save_session_snapshot` and report which file contains it.",
+      "expected_files": [
+        "session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "save_session_snapshot",
+        "kind": "function",
+        "def_line": 41
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0078",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_workspace_root` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_workspace_root",
+        "kind": "function",
+        "def_line": 163
+      }
+    },
+    {
+      "task_id": "ohmo-fun-0079",
+      "workspace": "../../../../ohmo",
+      "prompt": "Locate the definition of the function `get_gateway_restart_notice_path` and report which file contains it.",
+      "expected_files": [
+        "workspace.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "test",
+      "metadata": {
+        "repo_id": "ohmo",
+        "symbol": "get_gateway_restart_notice_path",
+        "kind": "function",
+        "def_line": 234
+      }
+    }
+  ]
+}

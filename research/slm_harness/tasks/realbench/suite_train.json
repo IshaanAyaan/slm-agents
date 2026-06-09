@@ -1,0 +1,6006 @@
+{
+  "suite_id": "realbench-train",
+  "description": "Deterministic file/code navigation tasks over real repos (unique-symbol ground truth, no labeling, no API).",
+  "tasks": [
+    {
+      "task_id": "openharness-cla-0000",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class LayoutConfig` is defined and report its path.",
+      "expected_files": [
+        "themes/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "LayoutConfig",
+        "kind": "class",
+        "def_line": 39
+      }
+    },
+    {
+      "task_id": "openharness-fun-0001",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `create_permission_request` and report which file contains it.",
+      "expected_files": [
+        "swarm/permission_sync.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "create_permission_request",
+        "kind": "function",
+        "def_line": 335
+      }
+    },
+    {
+      "task_id": "openharness-con-0002",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_SESSION_TIMEOUT_MS`?",
+      "expected_files": [
+        "bridge/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_SESSION_TIMEOUT_MS",
+        "kind": "constant",
+        "def_line": 9
+      }
+    },
+    {
+      "task_id": "openharness-cla-0003",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class McpWebSocketServerConfig` is defined and report its path.",
+      "expected_files": [
+        "mcp/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "McpWebSocketServerConfig",
+        "kind": "class",
+        "def_line": 29
+      }
+    },
+    {
+      "task_id": "openharness-fun-0004",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `estimate_tokens` and report which file contains it.",
+      "expected_files": [
+        "services/token_estimation.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "estimate_tokens",
+        "kind": "function",
+        "def_line": 6
+      }
+    },
+    {
+      "task_id": "openharness-con-0005",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_TRACKED_VERIFIED_WORK`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_TRACKED_VERIFIED_WORK",
+        "kind": "constant",
+        "def_line": 63
+      }
+    },
+    {
+      "task_id": "openharness-cla-0006",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TeammateContext` is defined and report its path.",
+      "expected_files": [
+        "swarm/in_process.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TeammateContext",
+        "kind": "class",
+        "def_line": 114
+      }
+    },
+    {
+      "task_id": "openharness-fun-0007",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `cron_status_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "cron_status_cmd",
+        "kind": "function",
+        "def_line": 910
+      }
+    },
+    {
+      "task_id": "openharness-con-0008",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_KEEP_RECENT`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_KEEP_RECENT",
+        "kind": "constant",
+        "def_line": 71
+      }
+    },
+    {
+      "task_id": "openharness-cla-0009",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SessionHandle` is defined and report its path.",
+      "expected_files": [
+        "bridge/session_runner.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SessionHandle",
+        "kind": "class",
+        "def_line": 14
+      }
+    },
+    {
+      "task_id": "openharness-fun-0010",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `run_print_mode` and report which file contains it.",
+      "expected_files": [
+        "ui/app.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "run_print_mode",
+        "kind": "function",
+        "def_line": 177
+      }
+    },
+    {
+      "task_id": "openharness-con-0011",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `AUTO_COMPACT_STATUS_MESSAGE`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AUTO_COMPACT_STATUS_MESSAGE",
+        "kind": "constant",
+        "def_line": 46
+      }
+    },
+    {
+      "task_id": "openharness-cla-0012",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class PermissionResponse` is defined and report its path.",
+      "expected_files": [
+        "swarm/permission_sync.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "PermissionResponse",
+        "kind": "class",
+        "def_line": 230
+      }
+    },
+    {
+      "task_id": "openharness-fun-0013",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_tasks_dir` and report which file contains it.",
+      "expected_files": [
+        "config/paths.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_tasks_dir",
+        "kind": "function",
+        "def_line": 78
+      }
+    },
+    {
+      "task_id": "openharness-con-0014",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_PROVIDER`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_PROVIDER",
+        "kind": "constant",
+        "def_line": 23
+      }
+    },
+    {
+      "task_id": "openharness-cla-0015",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class BaseChannelConfig` is defined and report its path.",
+      "expected_files": [
+        "config/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "BaseChannelConfig",
+        "kind": "class",
+        "def_line": 26
+      }
+    },
+    {
+      "task_id": "openharness-fun-0016",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `format_relevant_memories` and report which file contains it.",
+      "expected_files": [
+        "memory/relevance.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "format_relevant_memories",
+        "kind": "function",
+        "def_line": 88
+      }
+    },
+    {
+      "task_id": "openharness-con-0017",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `BASE_COMPACT_PROMPT`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "BASE_COMPACT_PROMPT",
+        "kind": "constant",
+        "def_line": 974
+      }
+    },
+    {
+      "task_id": "openharness-cla-0018",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class BriefTool` is defined and report its path.",
+      "expected_files": [
+        "tools/brief_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "BriefTool",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0019",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `create_shell_subprocess` and report which file contains it.",
+      "expected_files": [
+        "utils/shell.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "create_shell_subprocess",
+        "kind": "function",
+        "def_line": 51
+      }
+    },
+    {
+      "task_id": "openharness-con-0020",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TEAM_DIR_NAME`?",
+      "expected_files": [
+        "memory/team.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TEAM_DIR_NAME",
+        "kind": "constant",
+        "def_line": 12
+      }
+    },
+    {
+      "task_id": "openharness-cla-0021",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class InputSession` is defined and report its path.",
+      "expected_files": [
+        "ui/input.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "InputSession",
+        "kind": "class",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "openharness-fun-0022",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `split_memory_file` and report which file contains it.",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "split_memory_file",
+        "kind": "function",
+        "def_line": 234
+      }
+    },
+    {
+      "task_id": "openharness-con-0023",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MATRIX_ALLOWED_HTML_TAGS`?",
+      "expected_files": [
+        "channels/impl/matrix.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MATRIX_ALLOWED_HTML_TAGS",
+        "kind": "constant",
+        "def_line": 64
+      }
+    },
+    {
+      "task_id": "openharness-cla-0024",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AppConfig` is defined and report its path.",
+      "expected_files": [
+        "ui/textual_app.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AppConfig",
+        "kind": "class",
+        "def_line": 36
+      }
+    },
+    {
+      "task_id": "openharness-fun-0025",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `lookup_skill_slash_command` and report which file contains it.",
+      "expected_files": [
+        "commands/registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "lookup_skill_slash_command",
+        "kind": "function",
+        "def_line": 398
+      }
+    },
+    {
+      "task_id": "openharness-con-0026",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `NO_TOOLS_TRAILER`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "NO_TOOLS_TRAILER",
+        "kind": "constant",
+        "def_line": 997
+      }
+    },
+    {
+      "task_id": "openharness-cla-0027",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SupportsStreamingMessages` is defined and report its path.",
+      "expected_files": [
+        "api/client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SupportsStreamingMessages",
+        "kind": "class",
+        "def_line": 80
+      }
+    },
+    {
+      "task_id": "openharness-fun-0028",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `execute_auto_dream` and report which file contains it.",
+      "expected_files": [
+        "services/autodream/service.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "execute_auto_dream",
+        "kind": "function",
+        "def_line": 248
+      }
+    },
+    {
+      "task_id": "openharness-con-0029",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_GAP_THRESHOLD_MINUTES`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_GAP_THRESHOLD_MINUTES",
+        "kind": "constant",
+        "def_line": 72
+      }
+    },
+    {
+      "task_id": "openharness-cla-0030",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ToolRegistry` is defined and report its path.",
+      "expected_files": [
+        "tools/base.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ToolRegistry",
+        "kind": "class",
+        "def_line": 60
+      }
+    },
+    {
+      "task_id": "openharness-fun-0031",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_agents_dir` and report which file contains it.",
+      "expected_files": [
+        "coordinator/agent_definitions.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_agents_dir",
+        "kind": "function",
+        "def_line": 695
+      }
+    },
+    {
+      "task_id": "openharness-con-0032",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `STALE_UNUSED_DAYS`?",
+      "expected_files": [
+        "memory/usage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "STALE_UNUSED_DAYS",
+        "kind": "constant",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-cla-0033",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class FrontendImageAttachment` is defined and report its path.",
+      "expected_files": [
+        "ui/protocol.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "FrontendImageAttachment",
+        "kind": "class",
+        "def_line": 15
+      }
+    },
+    {
+      "task_id": "openharness-fun-0034",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `is_team_leader` and report which file contains it.",
+      "expected_files": [
+        "swarm/permission_sync.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "is_team_leader",
+        "kind": "function",
+        "def_line": 708
+      }
+    },
+    {
+      "task_id": "openharness-con-0035",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `SNAPSHOT_DIR_NAME`?",
+      "expected_files": [
+        "memory/agent.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SNAPSHOT_DIR_NAME",
+        "kind": "constant",
+        "def_line": 16
+      }
+    },
+    {
+      "task_id": "openharness-cla-0036",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class McpClientManager` is defined and report its path.",
+      "expected_files": [
+        "mcp/client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "McpClientManager",
+        "kind": "class",
+        "def_line": 29
+      }
+    },
+    {
+      "task_id": "openharness-fun-0037",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `memory_freshness_text` and report which file contains it.",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "memory_freshness_text",
+        "kind": "function",
+        "def_line": 192
+      }
+    },
+    {
+      "task_id": "openharness-con-0038",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `REACTIVE_COMPACT_STATUS_MESSAGE`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "REACTIVE_COMPACT_STATUS_MESSAGE",
+        "kind": "constant",
+        "def_line": 47
+      }
+    },
+    {
+      "task_id": "openharness-cla-0039",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class WorktreeInfo` is defined and report its path.",
+      "expected_files": [
+        "swarm/worktree.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "WorktreeInfo",
+        "kind": "class",
+        "def_line": 63
+      }
+    },
+    {
+      "task_id": "openharness-fun-0040",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `ask_permission` and report which file contains it.",
+      "expected_files": [
+        "ui/permission_dialog.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ask_permission",
+        "kind": "function",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "openharness-con-0041",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CURSOR_SAVE_DEBOUNCE_S`?",
+      "expected_files": [
+        "channels/impl/mochat.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CURSOR_SAVE_DEBOUNCE_S",
+        "kind": "constant",
+        "def_line": 37
+      }
+    },
+    {
+      "task_id": "openharness-cla-0042",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TeamRecord` is defined and report its path.",
+      "expected_files": [
+        "coordinator/coordinator_mode.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TeamRecord",
+        "kind": "class",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-fun-0043",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `store_external_binding` and report which file contains it.",
+      "expected_files": [
+        "auth/storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "store_external_binding",
+        "kind": "function",
+        "def_line": 198
+      }
+    },
+    {
+      "task_id": "openharness-con-0044",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CONTEXT_COLLAPSE_TAIL_CHARS`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CONTEXT_COLLAPSE_TAIL_CHARS",
+        "kind": "constant",
+        "def_line": 66
+      }
+    },
+    {
+      "task_id": "openharness-cla-0045",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TaskCreateToolInput` is defined and report its path.",
+      "expected_files": [
+        "tools/task_create_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TaskCreateToolInput",
+        "kind": "class",
+        "def_line": 13
+      }
+    },
+    {
+      "task_id": "openharness-fun-0046",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `mcp_remove` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "mcp_remove",
+        "kind": "function",
+        "def_line": 826
+      }
+    },
+    {
+      "task_id": "openharness-con-0047",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TEAMMATE_COMMAND_ENV_VAR`?",
+      "expected_files": [
+        "swarm/spawn_utils.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TEAMMATE_COMMAND_ENV_VAR",
+        "kind": "constant",
+        "def_line": 12
+      }
+    },
+    {
+      "task_id": "openharness-cla-0048",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class QuestionScreen` is defined and report its path.",
+      "expected_files": [
+        "ui/textual_app.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "QuestionScreen",
+        "kind": "class",
+        "def_line": 88
+      }
+    },
+    {
+      "task_id": "openharness-fun-0049",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `autopilot_list_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "autopilot_list_cmd",
+        "kind": "function",
+        "def_line": 1046
+      }
+    },
+    {
+      "task_id": "openharness-con-0050",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `FRONTMATTER_FIELDS`?",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "FRONTMATTER_FIELDS",
+        "kind": "constant",
+        "def_line": 32
+      }
+    },
+    {
+      "task_id": "openharness-cla-0051",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ChannelManager` is defined and report its path.",
+      "expected_files": [
+        "channels/impl/manager.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ChannelManager",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0052",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `list_session_snapshots` and report which file contains it.",
+      "expected_files": [
+        "services/session_storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "list_session_snapshots",
+        "kind": "function",
+        "def_line": 131
+      }
+    },
+    {
+      "task_id": "openharness-con-0053",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES",
+        "kind": "constant",
+        "def_line": 57
+      }
+    },
+    {
+      "task_id": "openharness-cla-0054",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TaskSnapshot` is defined and report its path.",
+      "expected_files": [
+        "ui/protocol.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TaskSnapshot",
+        "kind": "class",
+        "def_line": 70
+      }
+    },
+    {
+      "task_id": "openharness-fun-0055",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_project_plugins_dir` and report which file contains it.",
+      "expected_files": [
+        "plugins/loader.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_project_plugins_dir",
+        "kind": "function",
+        "def_line": 43
+      }
+    },
+    {
+      "task_id": "openharness-con-0056",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MATRIX_HTML_FORMAT`?",
+      "expected_files": [
+        "channels/impl/matrix.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MATRIX_HTML_FORMAT",
+        "kind": "constant",
+        "def_line": 48
+      }
+    },
+    {
+      "task_id": "openharness-cla-0057",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class RequestFailure` is defined and report its path.",
+      "expected_files": [
+        "api/errors.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "RequestFailure",
+        "kind": "class",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-fun-0058",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `start_docker_sandbox` and report which file contains it.",
+      "expected_files": [
+        "sandbox/session.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "start_docker_sandbox",
+        "kind": "function",
+        "def_line": 29
+      }
+    },
+    {
+      "task_id": "openharness-con-0059",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_TRACKED_SKILLS`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_TRACKED_SKILLS",
+        "kind": "constant",
+        "def_line": 57
+      }
+    },
+    {
+      "task_id": "openharness-cla-0060",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ExternalAuthBinding` is defined and report its path.",
+      "expected_files": [
+        "auth/storage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ExternalAuthBinding",
+        "kind": "class",
+        "def_line": 39
+      }
+    },
+    {
+      "task_id": "openharness-fun-0061",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_agent_mailbox_dir` and report which file contains it.",
+      "expected_files": [
+        "swarm/mailbox.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_agent_mailbox_dir",
+        "kind": "function",
+        "def_line": 90
+      }
+    },
+    {
+      "task_id": "openharness-con-0062",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `USER_AGENT`?",
+      "expected_files": [
+        "tools/web_fetch_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "USER_AGENT",
+        "kind": "constant",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-cla-0063",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SkillTool` is defined and report its path.",
+      "expected_files": [
+        "tools/skill_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SkillTool",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0064",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_usage_index` and report which file contains it.",
+      "expected_files": [
+        "memory/usage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_usage_index",
+        "kind": "function",
+        "def_line": 30
+      }
+    },
+    {
+      "task_id": "openharness-con-0065",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `EXTRACTION_SYSTEM_PROMPT`?",
+      "expected_files": [
+        "services/memory_extract/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "EXTRACTION_SYSTEM_PROMPT",
+        "kind": "constant",
+        "def_line": 136
+      }
+    },
+    {
+      "task_id": "openharness-cla-0066",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TeammateMailbox` is defined and report its path.",
+      "expected_files": [
+        "swarm/mailbox.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TeammateMailbox",
+        "kind": "class",
+        "def_line": 102
+      }
+    },
+    {
+      "task_id": "openharness-fun-0067",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_cron_jobs` and report which file contains it.",
+      "expected_files": [
+        "services/cron.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_cron_jobs",
+        "kind": "function",
+        "def_line": 23
+      }
+    },
+    {
+      "task_id": "openharness-con-0068",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `COMPACT_TIMEOUT_SECONDS`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "COMPACT_TIMEOUT_SECONDS",
+        "kind": "constant",
+        "def_line": 58
+      }
+    },
+    {
+      "task_id": "openharness-cla-0069",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AssistantTurnComplete` is defined and report its path.",
+      "expected_files": [
+        "engine/stream_events.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AssistantTurnComplete",
+        "kind": "class",
+        "def_line": 20
+      }
+    },
+    {
+      "task_id": "openharness-fun-0070",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_theme` and report which file contains it.",
+      "expected_files": [
+        "themes/loader.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_theme",
+        "kind": "function",
+        "def_line": 44
+      }
+    },
+    {
+      "task_id": "openharness-con-0071",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MSG_TYPE_MAP`?",
+      "expected_files": [
+        "channels/impl/feishu.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MSG_TYPE_MAP",
+        "kind": "constant",
+        "def_line": 28
+      }
+    },
+    {
+      "task_id": "openharness-cla-0072",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class FileReadTool` is defined and report its path.",
+      "expected_files": [
+        "tools/file_read_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "FileReadTool",
+        "kind": "class",
+        "def_line": 20
+      }
+    },
+    {
+      "task_id": "openharness-fun-0073",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_external_credential` and report which file contains it.",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_external_credential",
+        "kind": "function",
+        "def_line": 116
+      }
+    },
+    {
+      "task_id": "openharness-con-0074",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TIME_BASED_MC_CLEARED_MESSAGE`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TIME_BASED_MC_CLEARED_MESSAGE",
+        "kind": "constant",
+        "def_line": 52
+      }
+    },
+    {
+      "task_id": "openharness-cla-0075",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ReadMcpResourceTool` is defined and report its path.",
+      "expected_files": [
+        "tools/read_mcp_resource_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ReadMcpResourceTool",
+        "kind": "class",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-fun-0076",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `refresh_claude_oauth_credential` and report which file contains it.",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "refresh_claude_oauth_credential",
+        "kind": "function",
+        "def_line": 413
+      }
+    },
+    {
+      "task_id": "openharness-con-0077",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_TRACKED_ACTIVE_ARTIFACTS`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_TRACKED_ACTIVE_ARTIFACTS",
+        "kind": "constant",
+        "def_line": 62
+      }
+    },
+    {
+      "task_id": "openharness-cla-0078",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class DeviceCodeResponse` is defined and report its path.",
+      "expected_files": [
+        "api/copilot_auth.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DeviceCodeResponse",
+        "kind": "class",
+        "def_line": 66
+      }
+    },
+    {
+      "task_id": "openharness-fun-0079",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `unregister_team_for_session_cleanup` and report which file contains it.",
+      "expected_files": [
+        "swarm/team_lifecycle.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "unregister_team_for_session_cleanup",
+        "kind": "function",
+        "def_line": 622
+      }
+    },
+    {
+      "task_id": "openharness-con-0080",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_MICROCOMPACT_TOOL_RESULT_CHARS`?",
+      "expected_files": [
+        "services/tool_outputs.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_MICROCOMPACT_TOOL_RESULT_CHARS",
+        "kind": "constant",
+        "def_line": 12
+      }
+    },
+    {
+      "task_id": "openharness-cla-0081",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ApiKeyFlow` is defined and report its path.",
+      "expected_files": [
+        "auth/flows.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ApiKeyFlow",
+        "kind": "class",
+        "def_line": 34
+      }
+    },
+    {
+      "task_id": "openharness-fun-0082",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_memory_usage` and report which file contains it.",
+      "expected_files": [
+        "memory/usage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_memory_usage",
+        "kind": "function",
+        "def_line": 67
+      }
+    },
+    {
+      "task_id": "openharness-con-0083",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_KEYCHAIN_SERVICE`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_KEYCHAIN_SERVICE",
+        "kind": "constant",
+        "def_line": 45
+      }
+    },
+    {
+      "task_id": "openharness-cla-0084",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class RelevantMemory` is defined and report its path.",
+      "expected_files": [
+        "memory/relevance.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "RelevantMemory",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0085",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `run_scheduler_loop` and report which file contains it.",
+      "expected_files": [
+        "services/cron_scheduler.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "run_scheduler_loop",
+        "kind": "function",
+        "def_line": 443
+      }
+    },
+    {
+      "task_id": "openharness-con-0086",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `USAGE_INDEX_NAME`?",
+      "expected_files": [
+        "memory/usage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "USAGE_INDEX_NAME",
+        "kind": "constant",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-cla-0087",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class QueryEngine` is defined and report its path.",
+      "expected_files": [
+        "engine/query_engine.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "QueryEngine",
+        "kind": "class",
+        "def_line": 21
+      }
+    },
+    {
+      "task_id": "openharness-fun-0088",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `default_auth_source_for_provider` and report which file contains it.",
+      "expected_files": [
+        "config/settings.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "default_auth_source_for_provider",
+        "kind": "function",
+        "def_line": 417
+      }
+    },
+    {
+      "task_id": "openharness-con-0089",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_TOOL_OUTPUT_INLINE_CHARS`?",
+      "expected_files": [
+        "services/tool_outputs.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_TOOL_OUTPUT_INLINE_CHARS",
+        "kind": "constant",
+        "def_line": 10
+      }
+    },
+    {
+      "task_id": "openharness-cla-0090",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class PermissionDecision` is defined and report its path.",
+      "expected_files": [
+        "permissions/checker.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "PermissionDecision",
+        "kind": "class",
+        "def_line": 41
+      }
+    },
+    {
+      "task_id": "openharness-fun-0091",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `summarize_messages` and report which file contains it.",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "summarize_messages",
+        "kind": "function",
+        "def_line": 1667
+      }
+    },
+    {
+      "task_id": "openharness-con-0092",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TOKEN_ESTIMATION_PADDING`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TOKEN_ESTIMATION_PADDING",
+        "kind": "constant",
+        "def_line": 75
+      }
+    },
+    {
+      "task_id": "openharness-cla-0093",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SleepTool` is defined and report its path.",
+      "expected_files": [
+        "tools/sleep_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SleepTool",
+        "kind": "class",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-fun-0094",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_custom_themes` and report which file contains it.",
+      "expected_files": [
+        "themes/loader.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_custom_themes",
+        "kind": "function",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-con-0095",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_MESSAGE_LEN`?",
+      "expected_files": [
+        "channels/impl/discord.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_MESSAGE_LEN",
+        "kind": "constant",
+        "def_line": 21
+      }
+    },
+    {
+      "task_id": "openharness-cla-0096",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SwarmLockUnavailableError` is defined and report its path.",
+      "expected_files": [
+        "utils/file_lock.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SwarmLockUnavailableError",
+        "kind": "class",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-fun-0097",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_project_issue_file` and report which file contains it.",
+      "expected_files": [
+        "config/paths.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_project_issue_file",
+        "kind": "function",
+        "def_line": 109
+      }
+    },
+    {
+      "task_id": "openharness-con-0098",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `PTL_RETRY_MARKER`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "PTL_RETRY_MARKER",
+        "kind": "constant",
+        "def_line": 80
+      }
+    },
+    {
+      "task_id": "openharness-cla-0099",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TaskStopTool` is defined and report its path.",
+      "expected_files": [
+        "tools/task_stop_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TaskStopTool",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0100",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `create_invoked_skills_attachment_if_needed` and report which file contains it.",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "create_invoked_skills_attachment_if_needed",
+        "kind": "function",
+        "def_line": 654
+      }
+    },
+    {
+      "task_id": "openharness-con-0101",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `AUTOCOMPACT_BUFFER_TOKENS`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AUTOCOMPACT_BUFFER_TOKENS",
+        "kind": "constant",
+        "def_line": 55
+      }
+    },
+    {
+      "task_id": "openharness-cla-0102",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SwarmPermissionRequest` is defined and report its path.",
+      "expected_files": [
+        "swarm/permission_sync.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SwarmPermissionRequest",
+        "kind": "class",
+        "def_line": 102
+      }
+    },
+    {
+      "task_id": "openharness-fun-0103",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `mcp_list` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "mcp_list",
+        "kind": "function",
+        "def_line": 787
+      }
+    },
+    {
+      "task_id": "openharness-con-0104",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `UNTRUSTED_BANNER`?",
+      "expected_files": [
+        "tools/web_fetch_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "UNTRUSTED_BANNER",
+        "kind": "constant",
+        "def_line": 23
+      }
+    },
+    {
+      "task_id": "openharness-cla-0105",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TextBlock` is defined and report its path.",
+      "expected_files": [
+        "engine/messages.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TextBlock",
+        "kind": "class",
+        "def_line": 14
+      }
+    },
+    {
+      "task_id": "openharness-fun-0106",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `is_microcompactable_tool_result` and report which file contains it.",
+      "expected_files": [
+        "services/tool_outputs.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "is_microcompactable_tool_result",
+        "kind": "function",
+        "def_line": 50
+      }
+    },
+    {
+      "task_id": "openharness-con-0107",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `FEISHU_AVAILABLE`?",
+      "expected_files": [
+        "channels/impl/feishu.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "FEISHU_AVAILABLE",
+        "kind": "constant",
+        "def_line": 25
+      }
+    },
+    {
+      "task_id": "openharness-cla-0108",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AuthenticationFailure` is defined and report its path.",
+      "expected_files": [
+        "api/errors.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AuthenticationFailure",
+        "kind": "class",
+        "def_line": 10
+      }
+    },
+    {
+      "task_id": "openharness-fun-0109",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `parse_keybindings` and report which file contains it.",
+      "expected_files": [
+        "keybindings/parser.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "parse_keybindings",
+        "kind": "function",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "openharness-con-0110",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `JWT_CLAIM_PATH`?",
+      "expected_files": [
+        "api/codex_client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "JWT_CLAIM_PATH",
+        "kind": "constant",
+        "def_line": 24
+      }
+    },
+    {
+      "task_id": "openharness-cla-0111",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class PermissionChecker` is defined and report its path.",
+      "expected_files": [
+        "permissions/checker.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "PermissionChecker",
+        "kind": "class",
+        "def_line": 57
+      }
+    },
+    {
+      "task_id": "openharness-fun-0112",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `clear_github_token` and report which file contains it.",
+      "expected_files": [
+        "api/copilot_auth.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "clear_github_token",
+        "kind": "function",
+        "def_line": 140
+      }
+    },
+    {
+      "task_id": "openharness-con-0113",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_SEEN_MESSAGE_IDS`?",
+      "expected_files": [
+        "channels/impl/mochat.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_SEEN_MESSAGE_IDS",
+        "kind": "constant",
+        "def_line": 36
+      }
+    },
+    {
+      "task_id": "openharness-cla-0114",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SkillDefinition` is defined and report its path.",
+      "expected_files": [
+        "skills/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SkillDefinition",
+        "kind": "class",
+        "def_line": 9
+      }
+    },
+    {
+      "task_id": "openharness-fun-0115",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `atomic_write_text` and report which file contains it.",
+      "expected_files": [
+        "utils/fs.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "atomic_write_text",
+        "kind": "function",
+        "def_line": 69
+      }
+    },
+    {
+      "task_id": "openharness-con-0116",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_MANIFEST_FILES`?",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_MANIFEST_FILES",
+        "kind": "constant",
+        "def_line": 30
+      }
+    },
+    {
+      "task_id": "openharness-cla-0117",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class CommandHookDefinition` is defined and report its path.",
+      "expected_files": [
+        "hooks/schemas.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CommandHookDefinition",
+        "kind": "class",
+        "def_line": 10
+      }
+    },
+    {
+      "task_id": "openharness-fun-0118",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `auth_login` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "auth_login",
+        "kind": "function",
+        "def_line": 1811
+      }
+    },
+    {
+      "task_id": "openharness-con-0119",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TICK_INTERVAL_SECONDS`?",
+      "expected_files": [
+        "services/cron_scheduler.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TICK_INTERVAL_SECONDS",
+        "kind": "constant",
+        "def_line": 46
+      }
+    },
+    {
+      "task_id": "openharness-cla-0120",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class InProcessBackend` is defined and report its path.",
+      "expected_files": [
+        "swarm/in_process.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "InProcessBackend",
+        "kind": "class",
+        "def_line": 413
+      }
+    },
+    {
+      "task_id": "openharness-fun-0121",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_environment_info` and report which file contains it.",
+      "expected_files": [
+        "prompts/environment.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_environment_info",
+        "kind": "function",
+        "def_line": 104
+      }
+    },
+    {
+      "task_id": "openharness-con-0122",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_CODE_VERSION_FALLBACK`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_CODE_VERSION_FALLBACK",
+        "kind": "constant",
+        "def_line": 24
+      }
+    },
+    {
+      "task_id": "openharness-cla-0123",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class WhatsAppConfig` is defined and report its path.",
+      "expected_files": [
+        "config/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "WhatsAppConfig",
+        "kind": "class",
+        "def_line": 91
+      }
+    },
+    {
+      "task_id": "openharness-fun-0124",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `auth_status_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "auth_status_cmd",
+        "kind": "function",
+        "def_line": 1840
+      }
+    },
+    {
+      "task_id": "openharness-con-0125",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TYPING_KEEPALIVE_INTERVAL_MS`?",
+      "expected_files": [
+        "channels/impl/matrix.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TYPING_KEEPALIVE_INTERVAL_MS",
+        "kind": "constant",
+        "def_line": 47
+      }
+    },
+    {
+      "task_id": "openharness-cla-0126",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AgentTool` is defined and report its path.",
+      "expected_files": [
+        "tools/agent_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AgentTool",
+        "kind": "class",
+        "def_line": 38
+      }
+    },
+    {
+      "task_id": "openharness-fun-0127",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `safe_filename` and report which file contains it.",
+      "expected_files": [
+        "utils/helpers.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "safe_filename",
+        "kind": "function",
+        "def_line": 63
+      }
+    },
+    {
+      "task_id": "openharness-con-0128",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_PTL_RETRIES`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_PTL_RETRIES",
+        "kind": "constant",
+        "def_line": 60
+      }
+    },
+    {
+      "task_id": "openharness-cla-0129",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ReadMcpResourceToolInput` is defined and report its path.",
+      "expected_files": [
+        "tools/read_mcp_resource_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ReadMcpResourceToolInput",
+        "kind": "class",
+        "def_line": 11
+      }
+    },
+    {
+      "task_id": "openharness-fun-0130",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `run_task_worker` and report which file contains it.",
+      "expected_files": [
+        "ui/app.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "run_task_worker",
+        "kind": "function",
+        "def_line": 92
+      }
+    },
+    {
+      "task_id": "openharness-con-0131",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_OAUTH_TOKEN_ENDPOINTS`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_OAUTH_TOKEN_ENDPOINTS",
+        "kind": "constant",
+        "def_line": 26
+      }
+    },
+    {
+      "task_id": "openharness-cla-0132",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SubprocessBackend` is defined and report its path.",
+      "expected_files": [
+        "swarm/subprocess_backend.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SubprocessBackend",
+        "kind": "class",
+        "def_line": 28
+      }
+    },
+    {
+      "task_id": "openharness-fun-0133",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_memory_prompt` and report which file contains it.",
+      "expected_files": [
+        "memory/memdir.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_memory_prompt",
+        "kind": "function",
+        "def_line": 15
+      }
+    },
+    {
+      "task_id": "openharness-con-0134",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MATRIX_MEDIA_EVENT_FILTER`?",
+      "expected_files": [
+        "channels/impl/matrix.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MATRIX_MEDIA_EVENT_FILTER",
+        "kind": "constant",
+        "def_line": 56
+      }
+    },
+    {
+      "task_id": "openharness-cla-0135",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class CronListToolInput` is defined and report its path.",
+      "expected_files": [
+        "tools/cron_list_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CronListToolInput",
+        "kind": "class",
+        "def_line": 12
+      }
+    },
+    {
+      "task_id": "openharness-fun-0136",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `render_memory_file` and report which file contains it.",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "render_memory_file",
+        "kind": "function",
+        "def_line": 254
+      }
+    },
+    {
+      "task_id": "openharness-con-0137",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_TOOL_OUTPUT_PREVIEW_CHARS`?",
+      "expected_files": [
+        "services/tool_outputs.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_TOOL_OUTPUT_PREVIEW_CHARS",
+        "kind": "constant",
+        "def_line": 11
+      }
+    },
+    {
+      "task_id": "openharness-cla-0138",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class RepoVerificationStep` is defined and report its path.",
+      "expected_files": [
+        "autopilot/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "RepoVerificationStep",
+        "kind": "class",
+        "def_line": 69
+      }
+    },
+    {
+      "task_id": "openharness-fun-0139",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `inspect_voice_capabilities` and report which file contains it.",
+      "expected_files": [
+        "voice/voice_mode.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "inspect_voice_capabilities",
+        "kind": "function",
+        "def_line": 25
+      }
+    },
+    {
+      "task_id": "openharness-con-0140",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `STALE_MAX_IMPORTANCE`?",
+      "expected_files": [
+        "memory/usage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "STALE_MAX_IMPORTANCE",
+        "kind": "constant",
+        "def_line": 19
+      }
+    },
+    {
+      "task_id": "openharness-cla-0141",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class DiscordChannel` is defined and report its path.",
+      "expected_files": [
+        "channels/impl/discord.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DiscordChannel",
+        "kind": "class",
+        "def_line": 24
+      }
+    },
+    {
+      "task_id": "openharness-fun-0142",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `start_runtime` and report which file contains it.",
+      "expected_files": [
+        "ui/runtime.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "start_runtime",
+        "kind": "function",
+        "def_line": 474
+      }
+    },
+    {
+      "task_id": "openharness-con-0143",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_OAUTH_ONLY_BETAS`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_OAUTH_ONLY_BETAS",
+        "kind": "constant",
+        "def_line": 41
+      }
+    },
+    {
+      "task_id": "openharness-cla-0144",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class RemoteTriggerToolInput` is defined and report its path.",
+      "expected_files": [
+        "tools/remote_trigger_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "RemoteTriggerToolInput",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0145",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `resolve_shell_command` and report which file contains it.",
+      "expected_files": [
+        "utils/shell.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "resolve_shell_command",
+        "kind": "function",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-con-0146",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `COPILOT_DEFAULT_MODEL`?",
+      "expected_files": [
+        "api/copilot_client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "COPILOT_DEFAULT_MODEL",
+        "kind": "constant",
+        "def_line": 40
+      }
+    },
+    {
+      "task_id": "openharness-cla-0147",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class MessageBus` is defined and report its path.",
+      "expected_files": [
+        "channels/bus/queue.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MessageBus",
+        "kind": "class",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "openharness-fun-0148",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `parse_task_notification` and report which file contains it.",
+      "expected_files": [
+        "coordinator/coordinator_mode.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "parse_task_notification",
+        "kind": "function",
+        "def_line": 129
+      }
+    },
+    {
+      "task_id": "openharness-con-0149",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_SESSION_MEMORY_CHARS`?",
+      "expected_files": [
+        "services/session_memory/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_SESSION_MEMORY_CHARS",
+        "kind": "constant",
+        "def_line": 13
+      }
+    },
+    {
+      "task_id": "openharness-cla-0150",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SlackChannel` is defined and report its path.",
+      "expected_files": [
+        "channels/impl/slack.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SlackChannel",
+        "kind": "class",
+        "def_line": 21
+      }
+    },
+    {
+      "task_id": "openharness-fun-0151",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `is_sandbox_permission_response` and report which file contains it.",
+      "expected_files": [
+        "swarm/mailbox.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "is_sandbox_permission_response",
+        "kind": "function",
+        "def_line": 449
+      }
+    },
+    {
+      "task_id": "openharness-con-0152",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_RECENT_LINES`?",
+      "expected_files": [
+        "services/session_memory/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_RECENT_LINES",
+        "kind": "constant",
+        "def_line": 14
+      }
+    },
+    {
+      "task_id": "openharness-cla-0153",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ToolExecutionCompleted` is defined and report its path.",
+      "expected_files": [
+        "engine/stream_events.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ToolExecutionCompleted",
+        "kind": "class",
+        "def_line": 36
+      }
+    },
+    {
+      "task_id": "openharness-fun-0154",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `autopilot_scan_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "autopilot_scan_cmd",
+        "kind": "function",
+        "def_line": 1127
+      }
+    },
+    {
+      "task_id": "openharness-con-0155",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `DEFAULT_CODEX_BASE_URL`?",
+      "expected_files": [
+        "api/codex_client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DEFAULT_CODEX_BASE_URL",
+        "kind": "constant",
+        "def_line": 23
+      }
+    },
+    {
+      "task_id": "openharness-cla-0156",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AppStateStore` is defined and report its path.",
+      "expected_files": [
+        "state/store.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AppStateStore",
+        "kind": "class",
+        "def_line": 14
+      }
+    },
+    {
+      "task_id": "openharness-fun-0157",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_project_autopilot_runs_dir` and report which file contains it.",
+      "expected_files": [
+        "config/paths.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_project_autopilot_runs_dir",
+        "kind": "function",
+        "def_line": 156
+      }
+    },
+    {
+      "task_id": "openharness-con-0158",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `ENTRYPOINT_NAME`?",
+      "expected_files": [
+        "services/autodream/prompt.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ENTRYPOINT_NAME",
+        "kind": "constant",
+        "def_line": 9
+      }
+    },
+    {
+      "task_id": "openharness-cla-0159",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ToolResult` is defined and report its path.",
+      "expected_files": [
+        "tools/base.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ToolResult",
+        "kind": "class",
+        "def_line": 27
+      }
+    },
+    {
+      "task_id": "openharness-fun-0160",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `upsert_cron_job` and report which file contains it.",
+      "expected_files": [
+        "services/cron.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "upsert_cron_job",
+        "kind": "function",
+        "def_line": 73
+      }
+    },
+    {
+      "task_id": "openharness-con-0161",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_TRACKED_WORK_LOG`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_TRACKED_WORK_LOG",
+        "kind": "constant",
+        "def_line": 60
+      }
+    },
+    {
+      "task_id": "openharness-cla-0162",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class HookExecutionContext` is defined and report its path.",
+      "expected_files": [
+        "hooks/executor.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "HookExecutionContext",
+        "kind": "class",
+        "def_line": 33
+      }
+    },
+    {
+      "task_id": "openharness-fun-0163",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `auth_copilot_login` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "auth_copilot_login",
+        "kind": "function",
+        "def_line": 1946
+      }
+    },
+    {
+      "task_id": "openharness-con-0164",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `COPILOT_DEFAULT_API_BASE`?",
+      "expected_files": [
+        "api/copilot_auth.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "COPILOT_DEFAULT_API_BASE",
+        "kind": "constant",
+        "def_line": 40
+      }
+    },
+    {
+      "task_id": "openharness-cla-0165",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class McpResourceInfo` is defined and report its path.",
+      "expected_files": [
+        "mcp/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "McpResourceInfo",
+        "kind": "class",
+        "def_line": 57
+      }
+    },
+    {
+      "task_id": "openharness-fun-0166",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `autopilot_tick_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "autopilot_tick_cmd",
+        "kind": "function",
+        "def_line": 1180
+      }
+    },
+    {
+      "task_id": "openharness-con-0167",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_ENTRYPOINT_BYTES`?",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_ENTRYPOINT_BYTES",
+        "kind": "constant",
+        "def_line": 29
+      }
+    },
+    {
+      "task_id": "openharness-cla-0168",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class CronListTool` is defined and report its path.",
+      "expected_files": [
+        "tools/cron_list_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CronListTool",
+        "kind": "class",
+        "def_line": 16
+      }
+    },
+    {
+      "task_id": "openharness-fun-0169",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `select_manifest_memories` and report which file contains it.",
+      "expected_files": [
+        "memory/relevance.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "select_manifest_memories",
+        "kind": "function",
+        "def_line": 71
+      }
+    },
+    {
+      "task_id": "openharness-con-0170",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `SCHEMA_VERSION`?",
+      "expected_files": [
+        "memory/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SCHEMA_VERSION",
+        "kind": "constant",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-cla-0171",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TeamDeleteTool` is defined and report its path.",
+      "expected_files": [
+        "tools/team_delete_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TeamDeleteTool",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0172",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `append_history` and report which file contains it.",
+      "expected_files": [
+        "services/cron_scheduler.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "append_history",
+        "kind": "function",
+        "def_line": 59
+      }
+    },
+    {
+      "task_id": "openharness-con-0173",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CONTEXT_COLLAPSE_HEAD_CHARS`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CONTEXT_COLLAPSE_HEAD_CHARS",
+        "kind": "constant",
+        "def_line": 65
+      }
+    },
+    {
+      "task_id": "openharness-cla-0174",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class EnterPlanModeTool` is defined and report its path.",
+      "expected_files": [
+        "tools/enter_plan_mode_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "EnterPlanModeTool",
+        "kind": "class",
+        "def_line": 16
+      }
+    },
+    {
+      "task_id": "openharness-fun-0175",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `cron_toggle_cmd` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "cron_toggle_cmd",
+        "kind": "function",
+        "def_line": 955
+      }
+    },
+    {
+      "task_id": "openharness-con-0176",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `RETRYABLE_STATUS_CODES`?",
+      "expected_files": [
+        "api/client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "RETRYABLE_STATUS_CODES",
+        "kind": "constant",
+        "def_line": 35
+      }
+    },
+    {
+      "task_id": "openharness-cla-0177",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class RepoAutopilotRegistry` is defined and report its path.",
+      "expected_files": [
+        "autopilot/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "RepoAutopilotRegistry",
+        "kind": "class",
+        "def_line": 61
+      }
+    },
+    {
+      "task_id": "openharness-fun-0178",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_project_active_repo_context_path` and report which file contains it.",
+      "expected_files": [
+        "config/paths.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_project_active_repo_context_path",
+        "kind": "function",
+        "def_line": 136
+      }
+    },
+    {
+      "task_id": "openharness-con-0179",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_DISCOVERED_TOOLS`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_DISCOVERED_TOOLS",
+        "kind": "constant",
+        "def_line": 68
+      }
+    },
+    {
+      "task_id": "openharness-cla-0180",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class CommandRegistry` is defined and report its path.",
+      "expected_files": [
+        "commands/registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CommandRegistry",
+        "kind": "class",
+        "def_line": 165
+      }
+    },
+    {
+      "task_id": "openharness-fun-0181",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `default_provider_profiles` and report which file contains it.",
+      "expected_files": [
+        "config/settings.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "default_provider_profiles",
+        "kind": "function",
+        "def_line": 196
+      }
+    },
+    {
+      "task_id": "openharness-con-0182",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `NO_TOOLS_PREAMBLE`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "NO_TOOLS_PREAMBLE",
+        "kind": "constant",
+        "def_line": 964
+      }
+    },
+    {
+      "task_id": "openharness-cla-0183",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ToolExecutionStarted` is defined and report its path.",
+      "expected_files": [
+        "engine/stream_events.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ToolExecutionStarted",
+        "kind": "class",
+        "def_line": 28
+      }
+    },
+    {
+      "task_id": "openharness-fun-0184",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `filter_agents_by_mcp_requirements` and report which file contains it.",
+      "expected_files": [
+        "coordinator/agent_definitions.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "filter_agents_by_mcp_requirements",
+        "kind": "function",
+        "def_line": 970
+      }
+    },
+    {
+      "task_id": "openharness-con-0185",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_TRACKED_READ_FILES`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_TRACKED_READ_FILES",
+        "kind": "constant",
+        "def_line": 56
+      }
+    },
+    {
+      "task_id": "openharness-cla-0186",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ColorsConfig` is defined and report its path.",
+      "expected_files": [
+        "themes/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ColorsConfig",
+        "kind": "class",
+        "def_line": 10
+      }
+    },
+    {
+      "task_id": "openharness-fun-0187",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `auth_switch` and report which file contains it.",
+      "expected_files": [
+        "cli.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "auth_switch",
+        "kind": "function",
+        "def_line": 1886
+      }
+    },
+    {
+      "task_id": "openharness-con-0188",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MEMORY_WRITE_TOOLS`?",
+      "expected_files": [
+        "services/memory_extract/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MEMORY_WRITE_TOOLS",
+        "kind": "constant",
+        "def_line": 29
+      }
+    },
+    {
+      "task_id": "openharness-cla-0189",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ToolUseBlock` is defined and report its path.",
+      "expected_files": [
+        "engine/messages.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ToolUseBlock",
+        "kind": "class",
+        "def_line": 40
+      }
+    },
+    {
+      "task_id": "openharness-fun-0190",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `build_sandbox_runtime_config` and report which file contains it.",
+      "expected_files": [
+        "sandbox/adapter.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "build_sandbox_runtime_config",
+        "kind": "function",
+        "def_line": 36
+      }
+    },
+    {
+      "task_id": "openharness-con-0191",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `ERROR_MESSAGE_INCOMPLETE_RESPONSE`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ERROR_MESSAGE_INCOMPLETE_RESPONSE",
+        "kind": "constant",
+        "def_line": 81
+      }
+    },
+    {
+      "task_id": "openharness-cla-0192",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class HookRegistry` is defined and report its path.",
+      "expected_files": [
+        "hooks/loader.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "HookRegistry",
+        "kind": "class",
+        "def_line": 10
+      }
+    },
+    {
+      "task_id": "openharness-fun-0193",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `poll_permission_response` and report which file contains it.",
+      "expected_files": [
+        "swarm/permission_sync.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "poll_permission_response",
+        "kind": "function",
+        "def_line": 1035
+      }
+    },
+    {
+      "task_id": "openharness-con-0194",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_COMMON_BETAS`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_COMMON_BETAS",
+        "kind": "constant",
+        "def_line": 30
+      }
+    },
+    {
+      "task_id": "openharness-cla-0195",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class GlobToolInput` is defined and report its path.",
+      "expected_files": [
+        "tools/glob_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "GlobToolInput",
+        "kind": "class",
+        "def_line": 14
+      }
+    },
+    {
+      "task_id": "openharness-fun-0196",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_project_release_policy_path` and report which file contains it.",
+      "expected_files": [
+        "config/paths.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_project_release_policy_path",
+        "kind": "function",
+        "def_line": 151
+      }
+    },
+    {
+      "task_id": "openharness-con-0197",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TYPING_NOTICE_TIMEOUT_MS`?",
+      "expected_files": [
+        "channels/impl/matrix.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TYPING_NOTICE_TIMEOUT_MS",
+        "kind": "constant",
+        "def_line": 45
+      }
+    },
+    {
+      "task_id": "openharness-cla-0198",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class WhatsAppChannel` is defined and report its path.",
+      "expected_files": [
+        "channels/impl/whatsapp.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "WhatsAppChannel",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0199",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_local_rules` and report which file contains it.",
+      "expected_files": [
+        "personalization/rules.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_local_rules",
+        "kind": "function",
+        "def_line": 18
+      }
+    },
+    {
+      "task_id": "openharness-con-0200",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `SESSION_MEMORY_MAX_CHARS`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SESSION_MEMORY_MAX_CHARS",
+        "kind": "constant",
+        "def_line": 63
+      }
+    },
+    {
+      "task_id": "openharness-cla-0201",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AutoCompactState` is defined and report its path.",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AutoCompactState",
+        "kind": "class",
+        "def_line": 1052
+      }
+    },
+    {
+      "task_id": "openharness-fun-0202",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `stop_scheduler` and report which file contains it.",
+      "expected_files": [
+        "services/cron_scheduler.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "stop_scheduler",
+        "kind": "function",
+        "def_line": 129
+      }
+    },
+    {
+      "task_id": "openharness-con-0203",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_TRACKED_USER_GOALS`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_TRACKED_USER_GOALS",
+        "kind": "constant",
+        "def_line": 61
+      }
+    },
+    {
+      "task_id": "openharness-cla-0204",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class PermissionMode` is defined and report its path.",
+      "expected_files": [
+        "permissions/modes.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "PermissionMode",
+        "kind": "class",
+        "def_line": 8
+      }
+    },
+    {
+      "task_id": "openharness-fun-0205",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `ensure_image_available` and report which file contains it.",
+      "expected_files": [
+        "sandbox/docker_image.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ensure_image_available",
+        "kind": "function",
+        "def_line": 93
+      }
+    },
+    {
+      "task_id": "openharness-con-0206",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_SAFE_COMPLETION_TOKENS`?",
+      "expected_files": [
+        "engine/query.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_SAFE_COMPLETION_TOKENS",
+        "kind": "constant",
+        "def_line": 48
+      }
+    },
+    {
+      "task_id": "openharness-cla-0207",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class AllowedPath` is defined and report its path.",
+      "expected_files": [
+        "swarm/team_lifecycle.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "AllowedPath",
+        "kind": "class",
+        "def_line": 58
+      }
+    },
+    {
+      "task_id": "openharness-fun-0208",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `build_default_image` and report which file contains it.",
+      "expected_files": [
+        "sandbox/docker_image.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "build_default_image",
+        "kind": "function",
+        "def_line": 44
+      }
+    },
+    {
+      "task_id": "openharness-con-0209",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_ATTACHMENT_BYTES`?",
+      "expected_files": [
+        "channels/impl/discord.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_ATTACHMENT_BYTES",
+        "kind": "constant",
+        "def_line": 20
+      }
+    },
+    {
+      "task_id": "openharness-cla-0210",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class NotebookEditTool` is defined and report its path.",
+      "expected_files": [
+        "tools/notebook_edit_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "NotebookEditTool",
+        "kind": "class",
+        "def_line": 25
+      }
+    },
+    {
+      "task_id": "openharness-fun-0211",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `stop_docker_sandbox` and report which file contains it.",
+      "expected_files": [
+        "sandbox/session.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "stop_docker_sandbox",
+        "kind": "function",
+        "def_line": 58
+      }
+    },
+    {
+      "task_id": "openharness-con-0212",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `TELEGRAM_MAX_MESSAGE_LEN`?",
+      "expected_files": [
+        "channels/impl/telegram.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TELEGRAM_MAX_MESSAGE_LEN",
+        "kind": "constant",
+        "def_line": 21
+      }
+    },
+    {
+      "task_id": "openharness-cla-0213",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ImageToTextTool` is defined and report its path.",
+      "expected_files": [
+        "tools/image_to_text_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ImageToTextTool",
+        "kind": "class",
+        "def_line": 62
+      }
+    },
+    {
+      "task_id": "openharness-fun-0214",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `load_history` and report which file contains it.",
+      "expected_files": [
+        "services/cron_scheduler.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "load_history",
+        "kind": "function",
+        "def_line": 67
+      }
+    },
+    {
+      "task_id": "openharness-con-0215",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `HOLDER_STALE_SECONDS`?",
+      "expected_files": [
+        "services/autodream/lock.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "HOLDER_STALE_SECONDS",
+        "kind": "constant",
+        "def_line": 15
+      }
+    },
+    {
+      "task_id": "openharness-cla-0216",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class SlashCommand` is defined and report its path.",
+      "expected_files": [
+        "commands/registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SlashCommand",
+        "kind": "class",
+        "def_line": 154
+      }
+    },
+    {
+      "task_id": "openharness-fun-0217",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `write_claude_credentials` and report which file contains it.",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "write_claude_credentials",
+        "kind": "function",
+        "def_line": 478
+      }
+    },
+    {
+      "task_id": "openharness-con-0218",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `OAUTH_BETA_HEADER`?",
+      "expected_files": [
+        "api/client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "OAUTH_BETA_HEADER",
+        "kind": "constant",
+        "def_line": 36
+      }
+    },
+    {
+      "task_id": "openharness-cla-0219",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class HookResult` is defined and report its path.",
+      "expected_files": [
+        "hooks/types.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "HookResult",
+        "kind": "class",
+        "def_line": 10
+      }
+    },
+    {
+      "task_id": "openharness-fun-0220",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `record_consolidation` and report which file contains it.",
+      "expected_files": [
+        "services/autodream/lock.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "record_consolidation",
+        "kind": "function",
+        "def_line": 97
+      }
+    },
+    {
+      "task_id": "openharness-con-0221",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `BASE_DELAY_SECONDS`?",
+      "expected_files": [
+        "api/codex_client.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "BASE_DELAY_SECONDS",
+        "kind": "constant",
+        "def_line": 26
+      }
+    },
+    {
+      "task_id": "openharness-cla-0222",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class CronDeleteTool` is defined and report its path.",
+      "expected_files": [
+        "tools/cron_delete_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CronDeleteTool",
+        "kind": "class",
+        "def_line": 17
+      }
+    },
+    {
+      "task_id": "openharness-fun-0223",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `update_rules_from_session` and report which file contains it.",
+      "expected_files": [
+        "personalization/session_hook.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "update_rules_from_session",
+        "kind": "function",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-con-0224",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `LOCK_FILE`?",
+      "expected_files": [
+        "services/autodream/lock.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "LOCK_FILE",
+        "kind": "constant",
+        "def_line": 14
+      }
+    },
+    {
+      "task_id": "openharness-cla-0225",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class PromptHookDefinition` is defined and report its path.",
+      "expected_files": [
+        "hooks/schemas.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "PromptHookDefinition",
+        "kind": "class",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-fun-0226",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `select_relevant_memories` and report which file contains it.",
+      "expected_files": [
+        "memory/relevance.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "select_relevant_memories",
+        "kind": "function",
+        "def_line": 44
+      }
+    },
+    {
+      "task_id": "openharness-con-0227",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `SESSION_MEMORY_MAX_LINES`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SESSION_MEMORY_MAX_LINES",
+        "kind": "constant",
+        "def_line": 62
+      }
+    },
+    {
+      "task_id": "openharness-cla-0228",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class CommandContext` is defined and report its path.",
+      "expected_files": [
+        "commands/registry.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CommandContext",
+        "kind": "class",
+        "def_line": 132
+      }
+    },
+    {
+      "task_id": "openharness-fun-0229",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `split_message` and report which file contains it.",
+      "expected_files": [
+        "utils/helpers.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "split_message",
+        "kind": "function",
+        "def_line": 28
+      }
+    },
+    {
+      "task_id": "openharness-con-0230",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CODEX_PROVIDER`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CODEX_PROVIDER",
+        "kind": "constant",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-cla-0231",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class FrontendRequest` is defined and report its path.",
+      "expected_files": [
+        "ui/protocol.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "FrontendRequest",
+        "kind": "class",
+        "def_line": 37
+      }
+    },
+    {
+      "task_id": "openharness-fun-0232",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `build_runtime_system_prompt` and report which file contains it.",
+      "expected_files": [
+        "prompts/context.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "build_runtime_system_prompt",
+        "kind": "function",
+        "def_line": 102
+      }
+    },
+    {
+      "task_id": "openharness-con-0233",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MAX_REDIRECTS`?",
+      "expected_files": [
+        "tools/web_fetch_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MAX_REDIRECTS",
+        "kind": "constant",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-cla-0234",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class ImageGenerationTool` is defined and report its path.",
+      "expected_files": [
+        "tools/image_generation_tool.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "ImageGenerationTool",
+        "kind": "class",
+        "def_line": 74
+      }
+    },
+    {
+      "task_id": "openharness-fun-0235",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `register_team_for_session_cleanup` and report which file contains it.",
+      "expected_files": [
+        "swarm/team_lifecycle.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "register_team_for_session_cleanup",
+        "kind": "function",
+        "def_line": 612
+      }
+    },
+    {
+      "task_id": "openharness-con-0236",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_OAUTH_CLIENT_ID`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_OAUTH_CLIENT_ID",
+        "kind": "constant",
+        "def_line": 25
+      }
+    },
+    {
+      "task_id": "openharness-cla-0237",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class NanobotDingTalkHandler` is defined and report its path.",
+      "expected_files": [
+        "channels/impl/dingtalk.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "NanobotDingTalkHandler",
+        "kind": "class",
+        "def_line": 42
+      }
+    },
+    {
+      "task_id": "openharness-fun-0238",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_usage_index_path` and report which file contains it.",
+      "expected_files": [
+        "memory/usage.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_usage_index_path",
+        "kind": "function",
+        "def_line": 22
+      }
+    },
+    {
+      "task_id": "openharness-con-0239",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `SESSION_MEMORY_KEEP_RECENT`?",
+      "expected_files": [
+        "services/compact/__init__.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "SESSION_MEMORY_KEEP_RECENT",
+        "kind": "constant",
+        "def_line": 61
+      }
+    },
+    {
+      "task_id": "openharness-cla-0240",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class MemorySettings` is defined and report its path.",
+      "expected_files": [
+        "config/settings.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MemorySettings",
+        "kind": "class",
+        "def_line": 60
+      }
+    },
+    {
+      "task_id": "openharness-fun-0241",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_project_config_dir` and report which file contains it.",
+      "expected_files": [
+        "config/paths.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_project_config_dir",
+        "kind": "function",
+        "def_line": 102
+      }
+    },
+    {
+      "task_id": "openharness-con-0242",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `NOTIFICATION_OUTPUT_LIMIT`?",
+      "expected_files": [
+        "services/cron_scheduler.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "NOTIFICATION_OUTPUT_LIMIT",
+        "kind": "constant",
+        "def_line": 42
+      }
+    },
+    {
+      "task_id": "openharness-cla-0243",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class MailboxMessage` is defined and report its path.",
+      "expected_files": [
+        "swarm/mailbox.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MailboxMessage",
+        "kind": "class",
+        "def_line": 39
+      }
+    },
+    {
+      "task_id": "openharness-fun-0244",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_cron_job` and report which file contains it.",
+      "expected_files": [
+        "services/cron.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_cron_job",
+        "kind": "function",
+        "def_line": 104
+      }
+    },
+    {
+      "task_id": "openharness-con-0245",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `CLAUDE_AI_OAUTH_SCOPES`?",
+      "expected_files": [
+        "auth/external.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "CLAUDE_AI_OAUTH_SCOPES",
+        "kind": "constant",
+        "def_line": 34
+      }
+    },
+    {
+      "task_id": "openharness-cla-0246",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class DeviceCodeFlow` is defined and report its path.",
+      "expected_files": [
+        "auth/flows.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "DeviceCodeFlow",
+        "kind": "class",
+        "def_line": 55
+      }
+    },
+    {
+      "task_id": "openharness-fun-0247",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Locate the definition of the function `get_docker_sandbox` and report which file contains it.",
+      "expected_files": [
+        "sandbox/session.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "get_docker_sandbox",
+        "kind": "function",
+        "def_line": 19
+      }
+    },
+    {
+      "task_id": "openharness-con-0248",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Which file declares the module-level constant `MATRIX_ALLOWED_URL_SCHEMES`?",
+      "expected_files": [
+        "channels/impl/matrix.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "MATRIX_ALLOWED_URL_SCHEMES",
+        "kind": "constant",
+        "def_line": 74
+      }
+    },
+    {
+      "task_id": "openharness-cla-0249",
+      "workspace": "../../../../src/openharness",
+      "prompt": "Find the file in this repository where `class TelegramConfig` is defined and report its path.",
+      "expected_files": [
+        "config/schema.py"
+      ],
+      "verification": {
+        "method": "expected_files",
+        "require_all_files": true
+      },
+      "allowed_tools": [
+        "read_file",
+        "grep",
+        "glob"
+      ],
+      "split": "train",
+      "metadata": {
+        "repo_id": "openharness",
+        "symbol": "TelegramConfig",
+        "kind": "class",
+        "def_line": 34
+      }
+    }
+  ]
+}
