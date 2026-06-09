@@ -1,0 +1,87 @@
+{
+  "suite_id": "smoke-nav-v1",
+  "description": "Local smoke benchmark: 10 file/code navigation tasks over the synthetic 'orderflow' fixture repo. Fast, offline, deterministic environment. Splits: 6 train / 2 val / 2 test (train split feeds the distillation pipeline).",
+  "tasks": [
+    {
+      "task_id": "nav-001",
+      "workspace": "fixture_repo",
+      "prompt": "Find the file where `class RateLimiter` is defined and report its path.",
+      "expected_files": ["app/core/rate_limiter.py"],
+      "split": "train",
+      "metadata": {"difficulty": "easy", "kind": "class_definition"}
+    },
+    {
+      "task_id": "nav-002",
+      "workspace": "fixture_repo",
+      "prompt": "Locate the definition of the function `validate_token` and report which file contains it.",
+      "expected_files": ["app/auth/token.py"],
+      "split": "train",
+      "metadata": {"difficulty": "easy", "kind": "function_definition"}
+    },
+    {
+      "task_id": "nav-003",
+      "workspace": "fixture_repo",
+      "prompt": "Which file declares the constant `SESSION_TIMEOUT_SECONDS`?",
+      "expected_files": ["app/auth/session.py"],
+      "split": "train",
+      "metadata": {"difficulty": "easy", "kind": "constant"}
+    },
+    {
+      "task_id": "nav-004",
+      "workspace": "fixture_repo",
+      "prompt": "Find where the query helper `fetch_orders_by_user` is implemented.",
+      "expected_files": ["app/db/queries.py"],
+      "verification": {"method": "expected_files", "require_all_files": true},
+      "split": "train",
+      "metadata": {"difficulty": "medium", "kind": "function_definition"}
+    },
+    {
+      "task_id": "nav-005",
+      "workspace": "fixture_repo",
+      "prompt": "Identify the file that implements `configure_logging` for the service.",
+      "expected_files": ["app/utils/logging.py"],
+      "split": "train",
+      "metadata": {"difficulty": "easy", "kind": "function_definition"}
+    },
+    {
+      "task_id": "nav-006",
+      "workspace": "fixture_repo",
+      "prompt": "Where is `register_routes` defined? Report the file path.",
+      "expected_files": ["app/api/routes.py"],
+      "split": "train",
+      "metadata": {"difficulty": "easy", "kind": "function_definition"}
+    },
+    {
+      "task_id": "nav-007",
+      "workspace": "fixture_repo",
+      "prompt": "Find the file containing the dataclass declaration `class UserRecord`.",
+      "expected_files": ["app/db/models.py"],
+      "split": "val",
+      "metadata": {"difficulty": "medium", "kind": "class_definition"}
+    },
+    {
+      "task_id": "nav-008",
+      "workspace": "fixture_repo",
+      "prompt": "Which module defines the constant `DEFAULT_RETRY_COUNT`?",
+      "expected_files": ["app/core/config.py"],
+      "split": "val",
+      "metadata": {"difficulty": "easy", "kind": "constant"}
+    },
+    {
+      "task_id": "nav-009",
+      "workspace": "fixture_repo",
+      "prompt": "Locate the declaration of `RATE_LIMIT_BURST` and report the file that declares it.",
+      "expected_files": ["app/core/rate_limiter.py"],
+      "split": "test",
+      "metadata": {"difficulty": "easy", "kind": "constant"}
+    },
+    {
+      "task_id": "nav-010",
+      "workspace": "fixture_repo",
+      "prompt": "Find the file containing the declaration `class OrderRecord`.",
+      "expected_files": ["app/db/models.py"],
+      "split": "test",
+      "metadata": {"difficulty": "medium", "kind": "class_definition"}
+    }
+  ]
+}

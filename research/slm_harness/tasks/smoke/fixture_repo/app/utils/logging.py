@@ -1,0 +1,10 @@
+"""Logging setup."""
+
+import logging
+
+LOG_FORMAT = "%(asctime)s %(levelname)s %(name)s :: %(message)s"
+
+
+def configure_logging(level: int = logging.INFO) -> None:
+    """Install the standard orderflow logging configuration."""
+    logging.basicConfig(level=level, format=LOG_FORMAT)
