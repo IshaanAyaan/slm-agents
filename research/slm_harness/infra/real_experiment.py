@@ -99,10 +99,14 @@ def build_real_config(
             max_tokens=1024,
         ),
     }
+    # Bound generic-harness tool outputs so multi-turn transcripts stay within the
+    # serving context window (MAX_MODEL_LEN) on memory-constrained GPUs.
+    harnesses = default_harness_profiles()
+    harnesses["generic"].tool_output_char_budget = 6000
     return ExperimentConfig(
         experiment_id=experiment_id,
         models=models,
-        harnesses=default_harness_profiles(),
+        harnesses=harnesses,
         conditions=default_conditions(models),
         tasks_path=tasks_path,
         run=RunSettings(seeds=seeds, output_dir=output_dir, max_concurrency=8),

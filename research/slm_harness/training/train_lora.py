@@ -95,6 +95,8 @@ def train(config: TrainConfig) -> None:
         task_type="CAUSAL_LM",
         target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
     )
+    # bf16 needs Ampere (sm80+); fall back to fp16 on older GPUs like V100 (sm70).
+    use_bf16 = torch.cuda.is_available() and torch.cuda.get_device_capability(0) >= (8, 0)
     sft_config = SFTConfig(
         output_dir=config.out_dir,
         num_train_epochs=config.epochs,
@@ -106,7 +108,8 @@ def train(config: TrainConfig) -> None:
         logging_steps=10,
         save_strategy="epoch",
         eval_strategy="epoch" if val_ds is not None else "no",
-        bf16=True,
+        bf16=use_bf16,
+        fp16=not use_bf16,
         report_to=[],
     )
     trainer = SFTTrainer(

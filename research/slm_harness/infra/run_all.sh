@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 # Turnkey, GPU-frugal, resumable orchestration for the self-hosted (zero-API) run.
+# V100/Volta-safe: fp16 serving, pinned vLLM, LoRA merged offline (no live multi-LoRA).
 #
 #   bash research/slm_harness/infra/run_all.sh [stage]
 #
-# Stages (run in order; pass one to resume): preflight setup genbench teacher train
-#   students_4b students_17b report  (default: all)
-#
-# Only one model family is resident at a time, so this works even on a modest GPU count.
-# Edit research/slm_harness/infra/config.env first (copy from config.env.example).
+# Stages: preflight setup genbench teacher train students_a students_b report
+# (default: all, in order; pass one stage name to resume)
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -27,146 +25,202 @@ PY="python"
 
 log(){ echo "[$(date +%H:%M:%S)] $*"; }
 
-wait_health(){ # url, timeout_s
-  local url="$1" t="${2:-1800}" i=0
-  until curl -fsS "${url%/v1}/health" >/dev/null 2>&1 || curl -fsS "$url/models" >/dev/null 2>&1; do
-    sleep 5; i=$((i+5)); [[ $i -ge $t ]] && { echo "timeout waiting for $url"; return 1; }
+gpu_cc(){ # compute capability of GPU0, e.g. "7.0"
+  nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null | head -1 | tr -d ' '
+}
+
+wait_health(){ # url timeout_s
+  local url="$1" t="${2:-3600}" i=0
+  until curl -fsS "${url%/v1}/health" >/dev/null 2>&1; do
+    sleep 10; i=$((i+10))
+    if [[ $i -ge $t ]]; then echo "timeout waiting for $url"; return 1; fi
+    if (( i % 120 == 0 )); then log "still waiting for $url (${i}s; model may be downloading)"; fi
   done; log "endpoint healthy: $url"
 }
 
-serve_bg(){ # role logfile -> echoes PID
-  bash "$HERE/serve_vllm.sh" "$1" >"$2" 2>&1 & echo $!
-}
-stop(){ [[ -n "${1:-}" ]] && kill "$1" 2>/dev/null || true; wait "${1:-}" 2>/dev/null || true; }
+serve_bg(){ bash "$HERE/serve_vllm.sh" "$1" >"$2" 2>&1 & echo $!; }
+stop_pid(){ [[ -n "${1:-}" ]] && kill "$1" 2>/dev/null || true; sleep 8; }
 
 # ----------------------------------------------------------------------------
 stage_preflight(){
-  log "preflight: GPUs=$NUM_GPUS"
+  log "preflight: GPUs=$NUM_GPUS compute_cap=$(gpu_cc)"
   nvidia-smi -L || { echo "no GPUs"; exit 1; }
-  command -v vllm >/dev/null || echo "WARN: vllm not on PATH yet (setup stage installs it)"
   df -h "$REPO" | tail -1
-  [[ "$NUM_GPUS" -ge 1 ]] || { echo "need >=1 GPU"; exit 1; }
+  local free_gb; free_gb=$(df -BG --output=avail "$REPO" | tail -1 | tr -dc '0-9')
+  [[ "$free_gb" -ge 60 ]] || log "WARN: <60GB free; clear ~/.cache/huggingface if downloads fail"
 }
 
 stage_setup(){
-  log "setup: installing deps"
+  log "setup: installing deps (compute_cap=$(gpu_cc))"
   $PY -m pip install -q -U pip
   $PY -m pip install -q -e ".[dev]"
-  $PY -m pip install -q "vllm>=0.6.3" "transformers>=4.51" "peft>=0.11" "trl>=0.9" \
-      "datasets>=2.19" "accelerate>=0.30" matplotlib
+  local cc; cc=$(gpu_cc)
+  if [[ "${cc%%.*}" -lt 8 ]]; then
+    # Volta lane: last vLLM line with solid sm70 support + matching HF stack.
+    $PY -m pip install -q "vllm==0.6.6.post1" "transformers==4.46.3" \
+        "peft==0.13.2" "trl==0.12.2" "datasets>=2.19" "accelerate>=0.30" matplotlib
+    export VLLM_USE_V1=0
+  else
+    $PY -m pip install -q "vllm>=0.6.6" "transformers>=4.46" "peft>=0.13" "trl>=0.12" \
+        "datasets>=2.19" "accelerate>=0.30" matplotlib
+  fi
   $PY -m pytest research/slm_harness/tests/ -q
 }
 
 stage_genbench(){
-  log "genbench: generating real tasks over $BENCH_REPOS"
+  log "genbench: $BENCH_REPOS"
   rm -f "$BENCH/run_train.json" "$BENCH/run_test.json"
   for spec in $BENCH_REPOS; do
+    local id rest path split
     id="${spec%%:*}"; rest="${spec#*:}"; path="${rest%:*}"; split="${rest##*:}"
-    [[ -d "$path" ]] || { log "skip $id (missing $path)"; continue; }
+    if [[ "$path" == auto ]]; then  # id:auto:module:split form
+      :
+    fi
+    # support 'auto:<module>' -> installed package dir
+    if [[ "$path" == auto:* || "$path" == auto ]]; then
+      local mod="${path#auto:}"; [[ "$mod" == auto ]] && mod="$id"
+      path=$($PY - "$mod" <<'P' 2>/dev/null || true
+import importlib,os,sys
+m=importlib.import_module(sys.argv[1]); print(os.path.dirname(m.__file__))
+P
+)
+    fi
+    [[ "$path" = /* ]] || path="$REPO/$path"
+    [[ -d "$path" ]] || { log "skip $id (missing: $path)"; continue; }
+    local out n
     if [[ "$split" == "train" ]]; then out="$BENCH/run_train.json"; n="${TRAIN_MAX_TASKS:-250}"
     else out="$BENCH/run_test.json"; n="${TEST_MAX_TASKS:-120}"; fi
     $PY "$BENCH/generate_tasks.py" --repo "$path" --repo-id "$id" --split "$split" \
-        --max-tasks "$n" --out "$out" --workspace-rel --append
+        --max-tasks "$n" --out "$out" --append
   done
-  log "genbench done: $(grep -c task_id "$BENCH/run_train.json" 2>/dev/null || echo 0) train tokens"
+  for f in run_train run_test; do
+    [[ -f "$BENCH/$f.json" ]] || { echo "ERROR: $BENCH/$f.json missing (no repos found for that split)"; exit 1; }
+    log "$f: $($PY -c "import json;print(len(json.load(open('$BENCH/$f.json'))['tasks']))") tasks"
+  done
 }
 
-measure_price(){ # base_url model num_gpus out.json
+measure_price(){ # base_url served_name num_gpus out.json
   $PY -m research.slm_harness.infra.cost_model --base-url "$1" --model "$2" \
-      --num-gpus "$3" --gpu-hourly-usd "${GPU_HOURLY_USD:-2.5}" --out "$4" || true
+      --num-gpus "$3" --gpu-hourly-usd "${GPU_HOURLY_USD:-2.5}" --out "$4" \
+      || log "WARN: price measurement failed for $2 (will use fallback pricing)"
 }
 
 stage_teacher(){
-  log "teacher stage: serve $TEACHER_MODEL"
-  PID=$(serve_bg teacher "$LOGS/teacher.log"); trap "stop $PID" RETURN
-  wait_health "$TEACHER_URL" 3600
-  measure_price "$TEACHER_URL" teacher "$NUM_GPUS" "$RES/price_teacher.json"
-  log "teacher: generating distillation data (C1,C6 on train)"
+  log "teacher: serve $TEACHER_MODEL (tp=${TEACHER_TP:-auto})"
+  local PID; PID=$(serve_bg teacher "$LOGS/teacher.log")
+  trap "stop_pid $PID" RETURN
+  wait_health "$TEACHER_URL" 5400 || { tail -20 "$LOGS/teacher.log"; exit 1; }
+  measure_price "$TEACHER_URL" teacher "${TEACHER_TP:-$NUM_GPUS}" "$RES/price_teacher.json"
+  log "teacher: distillation data-gen (C1,C6 on train, ${TRAIN_SEEDS:-2} seeds)"
   $PY -m research.slm_harness.infra.gen_teacher_data \
       --tasks "$BENCH/run_train.json" --teacher-url "$TEACHER_URL" \
       --teacher-pricing "$RES/price_teacher.json" \
-      --seeds "${TRAIN_SEEDS:-3}" --out "$RES/teacher" --distill-out "$RES/distillation"
-  log "teacher: evaluating C1,C6 on test"
+      --seeds "${TRAIN_SEEDS:-2}" --out "$RES/teacher" --distill-out "$RES/distillation"
+  log "teacher: eval C1,C6 on test (${SEEDS:-3} seeds)"
   $PY -m research.slm_harness.infra.run_conditions \
       --tasks "$BENCH/run_test.json" --split test --conditions C1 C6 \
       --teacher-url "$TEACHER_URL" --teacher-pricing "$RES/price_teacher.json" \
-      --seeds "${SEEDS:-5}" --out "$RES/eval_teacher"
+      --seeds "${SEEDS:-3}" --out "$RES/eval_teacher"
 }
 
-train_one(){ # base_model train.jsonl val.jsonl out_dir
-  local t0=$SECONDS
-  $PY research/slm_harness/training/train_lora.py --base-model "$1" \
-      --train "$2" --val "$3" --out "$4" --lora-rank 64 --lora-alpha 128 --epochs 3
-  echo $(( SECONDS - t0 )) > "$4/.train_seconds"
+slug(){ basename "$1" | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9.\n' '-'; }
+
+train_one(){ # base_model out_dir
+  local base="$1" out="$2" t0=$SECONDS
+  local D="$RES/distillation"
+  [[ -s "$D/train.jsonl" ]] || { echo "ERROR: no distillation data at $D/train.jsonl"; exit 1; }
+  CUDA_VISIBLE_DEVICES=$(seq -s, 0 $(( ${TRAIN_GPUS:-1} - 1 ))) \
+    $PY research/slm_harness/training/train_lora.py --base-model "$base" \
+      --train "$D/train.jsonl" --val "$D/val.jsonl" --out "$out" \
+      --lora-rank 64 --lora-alpha 128 --epochs 3
+  echo $(( SECONDS - t0 )) > "$out/.train_seconds"
+  $PY research/slm_harness/training/merge_lora.py --base "$base" \
+      --adapter "$out" --out "${out%-lora}-merged" --dtype float16
 }
 
 stage_train(){
-  log "train stage: LoRA on distillation data"
-  D="$RES/distillation"
-  train_one "$STUDENT4B_MODEL" "$D/train.jsonl" "$D/val.jsonl" "$CK/qwen3-4b-navsearch-lora"
-  if [[ "${RUN_17B_ABLATION:-1}" == "1" ]]; then
-    train_one "$STUDENT17B_MODEL" "$D/train.jsonl" "$D/val.jsonl" "$CK/qwen3-1.7b-navsearch-lora"
+  log "train: LoRA on distillation data (fp16-aware), then merge for Volta serving"
+  train_one "$STUDENT_A_MODEL" "$CK/$(slug "$STUDENT_A_MODEL")-navsearch-lora"
+  if [[ "${RUN_ABLATION:-1}" == "1" ]]; then
+    train_one "$STUDENT_B_MODEL" "$CK/$(slug "$STUDENT_B_MODEL")-navsearch-lora"
   fi
 }
 
-ft_cost(){ # train_seconds_file -> usd
-  local s; s=$(cat "$1" 2>/dev/null || echo 0)
-  $PY - "$s" "$NUM_GPUS" "${GPU_HOURLY_USD:-2.5}" <<'PY'
-import sys; s,g,r=float(sys.argv[1]),float(sys.argv[2]),float(sys.argv[3]); print(f"{s/3600.0*g*r:.4f}")
-PY
+ft_cost(){ # seconds_file gpus
+  $PY - "$(cat "$1" 2>/dev/null || echo 0)" "$2" "${GPU_HOURLY_USD:-2.5}" <<'P'
+import sys; s,g,r=(float(x) for x in sys.argv[1:4]); print(f"{s/3600.0*g*r:.4f}")
+P
 }
 
-eval_students(){ # base_model adapter_path adapter_name expid outdir
-  local base="$1" apath="$2" aname="$3" expid="$4" outdir="$5"
-  mkdir -p "$outdir"
-  export STUDENT_BASE="$base" ADAPTER_PATH="$apath" ADAPTER_NAME="$aname"
-  local PID; PID=$(serve_bg students "$LOGS/students_$expid.log"); trap "stop $PID" RETURN
-  wait_health "$STUDENT_URL" 1800
-  measure_price "$STUDENT_URL" "$base" "$NUM_GPUS" "$outdir/price_base.json"
-  measure_price "$STUDENT_URL" "$aname" "$NUM_GPUS" "$outdir/price_ft.json"
-  local fc; fc=$(ft_cost "$apath/.train_seconds")
-  log "$expid: fine-tune cost = \$$fc ; evaluating C2,C3,C4,C5 on test"
+eval_student(){ # base_model variant_tag
+  local base="$1" tag="$2"
+  local lora="$CK/$(slug "$base")-navsearch-lora" merged
+  merged="${lora%-lora}-merged"
+  [[ -d "$merged" ]] || { echo "ERROR: merged model missing: $merged (run 'train')"; exit 1; }
+  mkdir -p "$RES/eval_$tag" "$RES/eval_${tag}_base" "$RES/eval_${tag}_ft"
+  local fc; fc=$(ft_cost "$lora/.train_seconds" "${TRAIN_GPUS:-1}")
+  log "[$tag] fine-tune cost: \$$fc"
+
+  # Phase 1: base student -> C2 (generic), C3 (custom)
+  log "[$tag] serving BASE $base for C2,C3"
+  export SERVE_MODEL="$base" SERVE_NAME="$base" SERVE_PORT="${STUDENT_PORT:-8002}" SERVE_TP=1
+  local PID; PID=$(serve_bg model "$LOGS/student_${tag}_base.log")
+  wait_health "$STUDENT_URL" 3600 || { tail -20 "$LOGS/student_${tag}_base.log"; stop_pid $PID; exit 1; }
+  measure_price "$STUDENT_URL" "$base" 1 "$RES/eval_$tag/price_base.json" || true
   $PY -m research.slm_harness.infra.run_conditions \
-      --experiment-id "$expid" --tasks "$BENCH/run_test.json" --split test \
-      --conditions C2 C3 C4 C5 \
-      --student-url "$STUDENT_URL" --student-model "$base" --adapter-name "$aname" \
-      --student-base-pricing "$outdir/price_base.json" \
-      --student-ft-pricing "$outdir/price_ft.json" \
-      --finetune-cost "$fc" --seeds "${SEEDS:-5}" --out "$outdir"
-  echo "$fc" > "$outdir/.ft_cost"
+      --experiment-id "real-$tag" --tasks "$BENCH/run_test.json" --split test \
+      --conditions C2 C3 \
+      --student-url "$STUDENT_URL" --student-model "$base" --adapter-name "navsearch-$tag" \
+      --student-base-pricing "$RES/eval_$tag/price_base.json" \
+      --teacher-url "$TEACHER_URL" --teacher-pricing "$RES/price_teacher.json" \
+      --seeds "${SEEDS:-3}" --out "$RES/eval_${tag}_base"
+  stop_pid $PID
+
+  # Phase 2: merged fine-tuned student -> C4 (generic), C5 (custom)
+  log "[$tag] serving MERGED $merged as navsearch-$tag for C4,C5"
+  export SERVE_MODEL="$merged" SERVE_NAME="navsearch-$tag" SERVE_PORT="${STUDENT_PORT:-8002}" SERVE_TP=1
+  PID=$(serve_bg model "$LOGS/student_${tag}_ft.log")
+  wait_health "$STUDENT_URL" 3600 || { tail -20 "$LOGS/student_${tag}_ft.log"; stop_pid $PID; exit 1; }
+  measure_price "$STUDENT_URL" "navsearch-$tag" 1 "$RES/eval_$tag/price_ft.json" || true
+  $PY -m research.slm_harness.infra.run_conditions \
+      --experiment-id "real-$tag" --tasks "$BENCH/run_test.json" --split test \
+      --conditions C4 C5 \
+      --student-url "$STUDENT_URL" --student-model "$base" --adapter-name "navsearch-$tag" \
+      --student-ft-pricing "$RES/eval_$tag/price_ft.json" \
+      --teacher-url "$TEACHER_URL" --teacher-pricing "$RES/price_teacher.json" \
+      --finetune-cost "$fc" --seeds "${SEEDS:-3}" --out "$RES/eval_${tag}_ft"
+  stop_pid $PID
+  echo "$fc" > "$RES/eval_${tag}_ft/.ft_cost" 2>/dev/null || { mkdir -p "$RES/eval_${tag}_ft"; echo "$fc" > "$RES/eval_${tag}_ft/.ft_cost"; }
 }
 
-stage_students_4b(){
-  log "students stage (4B headline)"
-  eval_students "$STUDENT4B_MODEL" "$CK/qwen3-4b-navsearch-lora" navsearch-4b real-4b "$RES/eval_4b"
-}
-stage_students_17b(){
-  [[ "${RUN_17B_ABLATION:-1}" == "1" ]] || { log "skip 1.7B ablation"; return; }
-  log "students stage (1.7B ablation)"
-  eval_students "$STUDENT17B_MODEL" "$CK/qwen3-1.7b-navsearch-lora" navsearch-17b real-17b "$RES/eval_17b"
+stage_students_a(){ mkdir -p "$RES/eval_a"; eval_student "$STUDENT_A_MODEL" a; }
+stage_students_b(){
+  [[ "${RUN_ABLATION:-1}" == "1" ]] || { log "skip ablation"; return; }
+  mkdir -p "$RES/eval_b"; eval_student "$STUDENT_B_MODEL" b
 }
 
 stage_report(){
-  log "report stage: merge runs, metrics, figures, paper"
-  for variant in 4b 17b; do
-    ev="$RES/eval_$variant"; [[ -d "$ev" ]] || continue
-    merged="$RES/runs_$variant.jsonl"
-    cat "$RES/eval_teacher/runs.jsonl" "$ev/runs.jsonl" > "$merged" 2>/dev/null || cp "$ev/runs.jsonl" "$merged"
-    fc=$(cat "$ev/.ft_cost" 2>/dev/null || echo 0)
-    $PY research/slm_harness/scripts/compute_metrics.py --runs "$merged" --finetune-cost "$fc" \
-        --out "$RES/metrics_$variant.json"
+  log "report: merge runs, metrics, figures, white paper"
+  for tag in a b; do
+    [[ -f "$RES/eval_${tag}_base/runs.jsonl" && -f "$RES/eval_${tag}_ft/runs.jsonl" ]] || continue
+    local merged="$RES/runs_$tag.jsonl"
+    cat "$RES/eval_teacher/runs.jsonl" "$RES/eval_${tag}_base/runs.jsonl" \
+        "$RES/eval_${tag}_ft/runs.jsonl" > "$merged"
+    local fc; fc=$(cat "$RES/eval_${tag}_ft/.ft_cost" 2>/dev/null || echo 0)
+    $PY research/slm_harness/scripts/compute_metrics.py --runs "$merged" \
+        --finetune-cost "$fc" --out "$RES/metrics_$tag.json"
     $PY research/slm_harness/scripts/make_figures.py --runs "$merged" --real \
-        --finetune-cost "$fc" --out "$RES/figures_$variant"
+        --finetune-cost "$fc" --out "$RES/figures_$tag"
   done
   $PY research/slm_harness/paper/fill_paper.py \
-      --headline "$RES/metrics_4b.json" --ablation "$RES/metrics_17b.json" \
-      --figures "$RES/figures_4b" --out "research/slm_harness/paper/white_paper.md" || true
-  log "DONE. See $RES/metrics_4b.json and research/slm_harness/paper/white_paper.md"
+      --headline "$RES/metrics_a.json" --ablation "$RES/metrics_b.json" \
+      --figures "$RES/figures_a" --out "research/slm_harness/paper/white_paper.md" || true
+  log "DONE. metrics: $RES/metrics_a.json ; paper: research/slm_harness/paper/white_paper.md"
 }
 
 STAGE="${1:-all}"
 run(){ log ">>> stage $1"; "stage_$1"; }
 case "$STAGE" in
-  all) for s in preflight setup genbench teacher train students_4b students_17b report; do run "$s"; done;;
+  all) for s in preflight setup genbench teacher train students_a students_b report; do run "$s"; done;;
   *) run "$STAGE";;
 esac
