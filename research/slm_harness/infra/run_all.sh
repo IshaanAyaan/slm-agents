@@ -19,6 +19,12 @@ CK="research/slm_harness/training/checkpoints"
 
 [[ -f "$HERE/config.env" ]] && source "$HERE/config.env" || { echo "create $HERE/config.env (copy config.env.example)"; exit 1; }
 NUM_GPUS="${NUM_GPUS:-$(nvidia-smi -L 2>/dev/null | wc -l | tr -d ' ')}"
+# Auto-pick serving dtype if unset: fp16 on pre-Ampere (no bf16), else auto (bf16).
+if [[ -z "${VLLM_DTYPE:-}" ]]; then
+  _cc="$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null | head -1 | tr -d ' .')"
+  if [[ -n "$_cc" && "$_cc" -lt 80 ]]; then export VLLM_DTYPE=half; else export VLLM_DTYPE=auto; fi
+fi
+export TEACHER_TP="${TEACHER_TP:-$NUM_GPUS}"
 TEACHER_URL="http://localhost:${TEACHER_PORT:-8001}/v1"
 STUDENT_URL="http://localhost:${STUDENT_PORT:-8002}/v1"
 PY="python"
