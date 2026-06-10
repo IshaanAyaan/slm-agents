@@ -104,12 +104,15 @@ def train(config: TrainConfig) -> None:
         per_device_train_batch_size=config.batch_size,
         gradient_accumulation_steps=config.grad_accum,
         max_seq_length=config.max_seq_len,
+        dataset_text_field="text",
+        packing=False,
         seed=config.seed,
         logging_steps=10,
         save_strategy="epoch",
         eval_strategy="epoch" if val_ds is not None else "no",
         bf16=use_bf16,
         fp16=not use_bf16,
+        gradient_checkpointing=True,
         report_to=[],
     )
     trainer = SFTTrainer(

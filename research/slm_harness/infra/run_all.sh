@@ -74,10 +74,12 @@ stage_setup(){
   else
     # Ampere+ (A40/A100/H100). RunPod images sometimes preinstall a vLLM/torch built
     # for a CUDA newer than the pod's driver (seen: driver 12.8 vs a cu12.9 torch ->
-    # 'NVIDIA driver too old' hard crash). Pin a coherent cu124 stack that runs on a
-    # 12.8 driver and whose trl/transformers match train_lora's SFT API.
-    $PY -m pip install -q "torch==2.5.1" "vllm==0.7.3" "transformers==4.48.3" \
-        "trl==0.12.2" "peft==0.14.0" "datasets>=2.19" "accelerate>=0.34" matplotlib
+    # 'NVIDIA driver too old' hard crash). Pin a cu124 serving stack that runs on a 12.8
+    # driver. Install serving and training deps in SEPARATE passes so pip never has to
+    # co-resolve vLLM's and trl's (differing) transformers pins in one shot.
+    $PY -m pip install -q "torch==2.5.1" "vllm==0.7.3"          # serving (pins transformers)
+    $PY -m pip install -q "trl>=0.11,<0.13" "peft>=0.13,<0.15" \
+        "datasets>=2.19" "accelerate>=0.34" matplotlib          # training; keep vLLM's transformers
   fi
   $PY -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda, 'avail', torch.cuda.is_available())"
   $PY -m pytest research/slm_harness/tests/ -q
