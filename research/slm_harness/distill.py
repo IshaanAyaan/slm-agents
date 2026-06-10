@@ -75,8 +75,13 @@ def _canonical(action: dict[str, Any]) -> str:
 
 
 def assign_split(task_id: str, task: NavTask | None) -> str:
-    """Task-declared split when present; otherwise deterministic 80/10/10 hash split."""
-    if task is not None and task.split in ("train", "val", "test"):
+    """Explicit val/test follow the task; everything else hash-splits 80/10/10.
+
+    The task-declared split is the benchmark train/test split, and every
+    distillation source task is declared "train" - honoring it starves the
+    SFT val split entirely.
+    """
+    if task is not None and task.split in ("val", "test"):
         return task.split
     bucket = int(hashlib.sha256(task_id.encode()).hexdigest(), 16) % 10
     return "train" if bucket < 8 else ("val" if bucket < 9 else "test")
@@ -218,6 +223,15 @@ async def build_distillation_dataset(
         if key not in seen:
             seen.add(key)
             unique.append(ex)
+
+    # With few successful trajectories the hash split can still starve val;
+    # SFT needs at least one eval example, so promote ~10% of train.
+    splits = [str(ex.meta.get("split", "train")) for ex in unique]
+    if "val" not in splits:
+        train_idx = [i for i, s in enumerate(splits) if s == "train"]
+        if len(train_idx) > 1:
+            for i in train_idx[::10]:
+                unique[i].meta["split"] = "val"
 
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)

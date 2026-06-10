@@ -52,7 +52,10 @@ CUSTOM_SYSTEM_PROMPT = (
     '{"action":"ANSWER","files":["<file>"],"evidence":[{"path":"<file>",'
     '"line_start":1,"line_end":2}],"answer_text":"","confidence":0.9}\n'
     '{"action":"ESCALATE","reason":"<why>"}\n'
-    "Only use actions listed in valid_actions. Cite only files you have discovered."
+    "Only use actions listed in valid_actions: ANSWER becomes valid only after "
+    "you have READ a file, so when ANSWER is missing, READ the best candidate "
+    "file first. If the observation contains feedback, your previous attempt "
+    "failed - do something different. Cite only files you have discovered."
 )
 
 _GREP_LINE_RE = re.compile(r"^(?P<path>[^:\n]+):(?P<line>\d+):(?P<text>.*)$")

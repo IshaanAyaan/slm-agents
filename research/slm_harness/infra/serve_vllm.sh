@@ -38,6 +38,8 @@ case "$ROLE" in
       --max-model-len "$MAXLEN" \
       --gpu-memory-utilization 0.90 \
       --enforce-eager \
+      --enable-auto-tool-choice \
+      --tool-call-parser hermes \
       --api-key "$API_KEY" \
       --port "$PORT"
     ;;
@@ -54,6 +56,8 @@ case "$ROLE" in
       --max-model-len "$MAXLEN" \
       --gpu-memory-utilization 0.90 \
       --enforce-eager \
+      --enable-auto-tool-choice \
+      --tool-call-parser hermes \
       --api-key "$API_KEY" \
       --port "$PORT"
     ;;

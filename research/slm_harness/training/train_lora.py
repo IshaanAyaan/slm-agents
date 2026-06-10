@@ -74,7 +74,14 @@ def train(config: TrainConfig) -> None:
         )
 
     train_rows = load_chat_jsonl(config.train_path, config.max_examples)
-    val_rows = load_chat_jsonl(config.val_path) if config.val_path else None
+    val_rows = None
+    if config.val_path:
+        try:
+            val_rows = load_chat_jsonl(config.val_path)
+        except ValueError as exc:
+            if "no examples" not in str(exc):
+                raise
+            val_rows = None  # empty val: train without eval rather than abort
     tokenizer = AutoTokenizer.from_pretrained(config.base_model)
 
     def render(row: dict) -> dict:
