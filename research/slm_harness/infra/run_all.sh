@@ -28,6 +28,8 @@ export TEACHER_TP="${TEACHER_TP:-$NUM_GPUS}"
 TEACHER_URL="http://localhost:${TEACHER_PORT:-8001}/v1"
 STUDENT_URL="http://localhost:${STUDENT_PORT:-8002}/v1"
 PY="python"
+# Use the project-local venv when it exists (isolates us from the base image's pins).
+[[ -x "$REPO/.venv/bin/python" ]] && { export PATH="$REPO/.venv/bin:$PATH"; hash -r 2>/dev/null || true; }
 
 log(){ echo "[$(date +%H:%M:%S)] $*"; }
 
@@ -63,25 +65,22 @@ stage_preflight(){
 }
 
 stage_setup(){
-  log "setup: installing deps (compute_cap=$(gpu_cc))"
-  $PY -m pip install -q -U pip
-  $PY -m pip install -q -e ".[dev]"
-  local cc; cc=$(gpu_cc)
-  if [[ "${cc%%.*}" -lt 8 ]]; then
-    # Volta (V100/sm70) lane.
-    $PY -m pip install -q "torch==2.5.1" "vllm==0.6.6.post1" "transformers==4.46.3" \
-        "peft==0.13.2" "trl==0.12.2" "datasets>=2.19" "accelerate>=0.30" matplotlib
-  else
-    # Ampere+ (A40/A100/H100). RunPod images sometimes preinstall a vLLM/torch built
-    # for a CUDA newer than the pod's driver (seen: driver 12.8 vs a cu12.9 torch ->
-    # 'NVIDIA driver too old' hard crash). Pin a cu124 serving stack that runs on a 12.8
-    # driver. Install serving and training deps in SEPARATE passes so pip never has to
-    # co-resolve vLLM's and trl's (differing) transformers pins in one shot.
-    $PY -m pip install -q "torch==2.5.1" "vllm==0.7.3"          # serving (pins transformers)
-    $PY -m pip install -q "trl>=0.11,<0.13" "peft>=0.13,<0.15" \
-        "datasets>=2.19" "accelerate>=0.34" matplotlib          # training; keep vLLM's transformers
+  # Build a CLEAN virtualenv so RunPod's preinstalled, mutually-conflicting packages
+  # (e.g. a cu12.9 torch, a transformers pin) can't corrupt our stack. One coherent
+  # cu124 set that runs on the pod's 12.8 driver; trl 0.14 (unlike 0.12) accepts the
+  # transformers that vLLM 0.7.3 requires, so a single-pass resolve succeeds.
+  log "setup: clean virtualenv + pinned stack (compute_cap=$(gpu_cc))"
+  if [[ ! -x "$REPO/.venv/bin/python" ]]; then
+    python3 -m venv "$REPO/.venv" || { python3 -m pip install --user -q virtualenv && python3 -m virtualenv "$REPO/.venv"; }
   fi
-  $PY -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda, 'avail', torch.cuda.is_available())"
+  export PATH="$REPO/.venv/bin:$PATH"; hash -r 2>/dev/null || true; PY="python"
+  $PY -m pip install -q -U pip setuptools wheel
+  $PY -m pip install -q -e ".[dev]"
+  local cc vllm_pin; cc=$(gpu_cc)
+  if [[ "${cc%%.*}" -lt 8 ]]; then vllm_pin="vllm==0.6.6.post1"; else vllm_pin="vllm==0.7.3"; fi
+  $PY -m pip install -q "torch==2.5.1" "$vllm_pin" "transformers==4.48.3" \
+      "trl==0.14.0" "peft==0.14.0" "datasets>=2.19" "accelerate>=0.34" matplotlib
+  $PY -c "import torch,transformers,vllm,trl,peft; print('torch',torch.__version__,'tf',transformers.__version__,'vllm',vllm.__version__,'trl',trl.__version__,'cuda_ok',torch.cuda.is_available())"
   $PY -m pytest research/slm_harness/tests/ -q
 }
 
