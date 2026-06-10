@@ -14,6 +14,9 @@ ROLE="${1:?usage: serve_vllm.sh teacher|model}"
 API_KEY="${VLLM_API_KEY:-EMPTY}"
 DTYPE="${VLLM_DTYPE:-auto}"
 MAXLEN="${MAX_MODEL_LEN:-8192}"
+# Use the in-process (v0) engine: avoids the separate EngineCore multiprocess that
+# is fragile on constrained containers. Pinned vLLM (0.6.6/0.7.3) supports it.
+export VLLM_USE_V1="${VLLM_USE_V1:-0}"
 
 # Volta has no FlashAttention; force a compatible backend when running fp16.
 if [[ "$DTYPE" == "half" || "$DTYPE" == "float16" ]]; then

@@ -68,14 +68,18 @@ stage_setup(){
   $PY -m pip install -q -e ".[dev]"
   local cc; cc=$(gpu_cc)
   if [[ "${cc%%.*}" -lt 8 ]]; then
-    # Volta lane: last vLLM line with solid sm70 support + matching HF stack.
-    $PY -m pip install -q "vllm==0.6.6.post1" "transformers==4.46.3" \
+    # Volta (V100/sm70) lane.
+    $PY -m pip install -q "torch==2.5.1" "vllm==0.6.6.post1" "transformers==4.46.3" \
         "peft==0.13.2" "trl==0.12.2" "datasets>=2.19" "accelerate>=0.30" matplotlib
-    export VLLM_USE_V1=0
   else
-    $PY -m pip install -q "vllm>=0.6.6" "transformers>=4.46" "peft>=0.13" "trl>=0.12" \
-        "datasets>=2.19" "accelerate>=0.30" matplotlib
+    # Ampere+ (A40/A100/H100). RunPod images sometimes preinstall a vLLM/torch built
+    # for a CUDA newer than the pod's driver (seen: driver 12.8 vs a cu12.9 torch ->
+    # 'NVIDIA driver too old' hard crash). Pin a coherent cu124 stack that runs on a
+    # 12.8 driver and whose trl/transformers match train_lora's SFT API.
+    $PY -m pip install -q "torch==2.5.1" "vllm==0.7.3" "transformers==4.48.3" \
+        "trl==0.12.2" "peft==0.14.0" "datasets>=2.19" "accelerate>=0.34" matplotlib
   fi
+  $PY -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda, 'avail', torch.cuda.is_available())"
   $PY -m pytest research/slm_harness/tests/ -q
 }
 
