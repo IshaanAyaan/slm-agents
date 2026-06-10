@@ -35,13 +35,19 @@ gpu_cc(){ # compute capability of GPU0, e.g. "7.0"
   nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null | head -1 | tr -d ' '
 }
 
-wait_health(){ # url timeout_s
-  local url="$1" t="${2:-3600}" i=0
-  until curl -fsS "${url%/v1}/health" >/dev/null 2>&1; do
+wait_health(){ # url timeout_s [server_pid]
+  # Confirm it is really our vLLM OpenAI server (a JSON model list), not some other
+  # process (e.g. nginx) squatting on the port. Abort early if the server died.
+  local url="$1" t="${2:-3600}" pid="${3:-}" i=0
+  local auth="Authorization: Bearer ${VLLM_API_KEY:-EMPTY}"
+  until curl -fsS -H "$auth" "$url/models" 2>/dev/null | grep -q '"object"'; do
+    if [[ -n "$pid" ]] && ! kill -0 "$pid" 2>/dev/null; then
+      echo "ERROR: serving process ($pid) exited before becoming ready"; return 1
+    fi
     sleep 10; i=$((i+10))
     if [[ $i -ge $t ]]; then echo "timeout waiting for $url"; return 1; fi
     if (( i % 120 == 0 )); then log "still waiting for $url (${i}s; model may be downloading)"; fi
-  done; log "endpoint healthy: $url"
+  done; log "endpoint healthy (verified vLLM): $url"
 }
 
 serve_bg(){ bash "$HERE/serve_vllm.sh" "$1" >"$2" 2>&1 & echo $!; }
@@ -112,10 +118,12 @@ measure_price(){ # base_url served_name num_gpus out.json
 }
 
 stage_teacher(){
-  log "teacher: serve $TEACHER_MODEL (tp=${TEACHER_TP:-auto})"
+  pkill -f "vllm serve" 2>/dev/null || true; sleep 3
+  rm -rf "$RES/teacher" "$RES/eval_teacher" "$RES/distillation"  # clean re-runs
+  log "teacher: serve $TEACHER_MODEL (tp=${TEACHER_TP:-auto}) on port ${TEACHER_PORT:-8001}"
   local PID; PID=$(serve_bg teacher "$LOGS/teacher.log")
   trap "stop_pid $PID" RETURN
-  wait_health "$TEACHER_URL" 5400 || { tail -20 "$LOGS/teacher.log"; exit 1; }
+  wait_health "$TEACHER_URL" 5400 "$PID" || { echo '--- teacher.log tail ---'; tail -30 "$LOGS/teacher.log"; exit 1; }
   measure_price "$TEACHER_URL" teacher "${TEACHER_TP:-$NUM_GPUS}" "$RES/price_teacher.json"
   log "teacher: distillation data-gen (C1,C6 on train, ${TRAIN_SEEDS:-2} seeds)"
   $PY -m research.slm_harness.infra.gen_teacher_data \
@@ -164,14 +172,16 @@ eval_student(){ # base_model variant_tag
   merged="${lora%-lora}-merged"
   [[ -d "$merged" ]] || { echo "ERROR: merged model missing: $merged (run 'train')"; exit 1; }
   mkdir -p "$RES/eval_$tag" "$RES/eval_${tag}_base" "$RES/eval_${tag}_ft"
+  rm -f "$RES/eval_${tag}_base/runs.jsonl" "$RES/eval_${tag}_ft/runs.jsonl"  # clean re-runs
   local fc; fc=$(ft_cost "$lora/.train_seconds" "${TRAIN_GPUS:-1}")
   log "[$tag] fine-tune cost: \$$fc"
 
   # Phase 1: base student -> C2 (generic), C3 (custom)
-  log "[$tag] serving BASE $base for C2,C3"
+  pkill -f "vllm serve" 2>/dev/null || true; sleep 3
+  log "[$tag] serving BASE $base for C2,C3 on port ${STUDENT_PORT:-8002}"
   export SERVE_MODEL="$base" SERVE_NAME="$base" SERVE_PORT="${STUDENT_PORT:-8002}" SERVE_TP=1
   local PID; PID=$(serve_bg model "$LOGS/student_${tag}_base.log")
-  wait_health "$STUDENT_URL" 3600 || { tail -20 "$LOGS/student_${tag}_base.log"; stop_pid $PID; exit 1; }
+  wait_health "$STUDENT_URL" 3600 "$PID" || { tail -30 "$LOGS/student_${tag}_base.log"; stop_pid $PID; exit 1; }
   measure_price "$STUDENT_URL" "$base" 1 "$RES/eval_$tag/price_base.json" || true
   $PY -m research.slm_harness.infra.run_conditions \
       --experiment-id "real-$tag" --tasks "$BENCH/run_test.json" --split test \
@@ -183,10 +193,11 @@ eval_student(){ # base_model variant_tag
   stop_pid $PID
 
   # Phase 2: merged fine-tuned student -> C4 (generic), C5 (custom)
-  log "[$tag] serving MERGED $merged as navsearch-$tag for C4,C5"
+  pkill -f "vllm serve" 2>/dev/null || true; sleep 3
+  log "[$tag] serving MERGED $merged as navsearch-$tag for C4,C5 on port ${STUDENT_PORT:-8002}"
   export SERVE_MODEL="$merged" SERVE_NAME="navsearch-$tag" SERVE_PORT="${STUDENT_PORT:-8002}" SERVE_TP=1
   PID=$(serve_bg model "$LOGS/student_${tag}_ft.log")
-  wait_health "$STUDENT_URL" 3600 || { tail -20 "$LOGS/student_${tag}_ft.log"; stop_pid $PID; exit 1; }
+  wait_health "$STUDENT_URL" 3600 "$PID" || { tail -30 "$LOGS/student_${tag}_ft.log"; stop_pid $PID; exit 1; }
   measure_price "$STUDENT_URL" "navsearch-$tag" 1 "$RES/eval_$tag/price_ft.json" || true
   $PY -m research.slm_harness.infra.run_conditions \
       --experiment-id "real-$tag" --tasks "$BENCH/run_test.json" --split test \
