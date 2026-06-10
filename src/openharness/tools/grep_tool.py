@@ -83,9 +83,16 @@ class GrepTool(BaseTool):
             return _format_rg_result(matches, arguments.timeout_seconds)
 
         # Python fallback (kept for portability).
+        try:
+            paths = list(root.glob(arguments.file_glob))
+        except ValueError as exc:
+            return ToolResult(
+                output=f"(invalid file glob '{arguments.file_glob}': {exc})",
+                is_error=True,
+            )
         return ToolResult(
             output=_python_grep_files(
-                paths=root.glob(arguments.file_glob),
+                paths=paths,
                 pattern=arguments.pattern,
                 case_sensitive=arguments.case_sensitive,
                 limit=arguments.limit,
