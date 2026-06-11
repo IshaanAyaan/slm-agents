@@ -1,9 +1,9 @@
 {
-  "total_examples": 288,
+  "total_examples": 533,
   "splits": {
-    "train": 234,
-    "val": 24,
-    "test": 30
+    "train": 428,
+    "val": 48,
+    "test": 57
   },
   "source_conditions": [
     "C1",

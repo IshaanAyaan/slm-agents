@@ -1,0 +1,12 @@
+{
+  "model": "navsearch-c",
+  "num_gpus": 1,
+  "gpu_hourly_usd": 3.19,
+  "prompt_tok_s": 19234.6,
+  "gen_tok_s": 76.8,
+  "pricing": {
+    "usd_per_million_input": 0.04606856594993018,
+    "usd_per_million_output": 11.532497676132522,
+    "is_placeholder": false
+  }
+}

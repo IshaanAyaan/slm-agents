@@ -1,0 +1,512 @@
+{
+  "method": {
+    "dedup": "one attempt per (condition, task), lowest seed kept",
+    "success_ci": "Wilson 95%",
+    "paired_test": "exact two-sided McNemar on shared tasks",
+    "cost_ci": "paired percentile bootstrap over tasks, 10000 resamples",
+    "rng_seed": 0
+  },
+  "conditions": {
+    "C1": {
+      "condition_id": "C1",
+      "n_tasks": 200,
+      "n_success": 191,
+      "success_rate": 0.955,
+      "success_ci95": [
+        0.9167032959981803,
+        0.976147456998507
+      ],
+      "total_cost_usd": 1.9581153727058034,
+      "cost_per_attempt": 0.009790576863529016,
+      "cost_per_success": 0.010251912946103683,
+      "replays_identical": 0,
+      "replays_divergent": 0
+    },
+    "C2": {
+      "condition_id": "C2",
+      "n_tasks": 200,
+      "n_success": 127,
+      "success_rate": 0.635,
+      "success_ci95": [
+        0.566317026527406,
+        0.698594735350732
+      ],
+      "total_cost_usd": 0.5715311544969524,
+      "cost_per_attempt": 0.0028576557724847617,
+      "cost_per_success": 0.004500245310999624,
+      "replays_identical": 0,
+      "replays_divergent": 0
+    },
+    "C3": {
+      "condition_id": "C3",
+      "n_tasks": 200,
+      "n_success": 74,
+      "success_rate": 0.37,
+      "success_ci95": [
+        0.30612608409859116,
+        0.4387737007594981
+      ],
+      "total_cost_usd": 0.5757901490117288,
+      "cost_per_attempt": 0.0028789507450586436,
+      "cost_per_success": 0.007780947959617956,
+      "replays_identical": 0,
+      "replays_divergent": 0
+    },
+    "C4": {
+      "condition_id": "C4",
+      "n_tasks": 200,
+      "n_success": 142,
+      "success_rate": 0.71,
+      "success_ci95": [
+        0.6436252189922268,
+        0.7684597439293211
+      ],
+      "total_cost_usd": 0.37531675068057907,
+      "cost_per_attempt": 0.0018765837534028954,
+      "cost_per_success": 0.0026430757090181623,
+      "replays_identical": 0,
+      "replays_divergent": 0
+    },
+    "C5": {
+      "condition_id": "C5",
+      "n_tasks": 200,
+      "n_success": 184,
+      "success_rate": 0.92,
+      "success_ci95": [
+        0.874010511732856,
+        0.9501594141102401
+      ],
+      "total_cost_usd": 0.44819993658873825,
+      "cost_per_attempt": 0.002240999682943691,
+      "cost_per_success": 0.002435869220590969,
+      "replays_identical": 0,
+      "replays_divergent": 0
+    },
+    "C6": {
+      "condition_id": "C6",
+      "n_tasks": 200,
+      "n_success": 162,
+      "success_rate": 0.81,
+      "success_ci95": [
+        0.7499876129240015,
+        0.8583282847220932
+      ],
+      "total_cost_usd": 3.6833106386885026,
+      "cost_per_attempt": 0.018416553193442514,
+      "cost_per_success": 0.022736485424003104,
+      "replays_identical": 0,
+      "replays_divergent": 0
+    }
+  },
+  "paired_success": [
+    {
+      "condition_a": "C5",
+      "condition_b": "C1",
+      "n_shared_tasks": 200,
+      "a_only_success": 8,
+      "b_only_success": 15,
+      "mcnemar_p": 0.21003961563110352
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C2",
+      "n_shared_tasks": 200,
+      "a_only_success": 69,
+      "b_only_success": 12,
+      "mcnemar_p": 7.03300083476893e-11
+    },
+    {
+      "condition_a": "C2",
+      "condition_b": "C1",
+      "n_shared_tasks": 200,
+      "a_only_success": 2,
+      "b_only_success": 66,
+      "mcnemar_p": 1.5903890617646743e-17
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C4",
+      "n_shared_tasks": 200,
+      "a_only_success": 50,
+      "b_only_success": 8,
+      "mcnemar_p": 1.5702617754687065e-08
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C3",
+      "n_shared_tasks": 200,
+      "a_only_success": 114,
+      "b_only_success": 4,
+      "mcnemar_p": 4.783391878716367e-29
+    }
+  ],
+  "per_repo": {
+    "click": {
+      "C1": {
+        "n_tasks": 40,
+        "n_success": 38,
+        "success_rate": 0.95,
+        "success_ci95": [
+          0.8349612263085903,
+          0.9861793326138516
+        ]
+      },
+      "C2": {
+        "n_tasks": 40,
+        "n_success": 23,
+        "success_rate": 0.575,
+        "success_ci95": [
+          0.42195068541991065,
+          0.7149060744004962
+        ]
+      },
+      "C3": {
+        "n_tasks": 40,
+        "n_success": 13,
+        "success_rate": 0.325,
+        "success_ci95": [
+          0.20084502231782697,
+          0.47982253810122333
+        ]
+      },
+      "C4": {
+        "n_tasks": 40,
+        "n_success": 23,
+        "success_rate": 0.575,
+        "success_ci95": [
+          0.42195068541991065,
+          0.7149060744004962
+        ]
+      },
+      "C5": {
+        "n_tasks": 40,
+        "n_success": 35,
+        "success_rate": 0.875,
+        "success_ci95": [
+          0.738878801611489,
+          0.945404997490546
+        ]
+      },
+      "C6": {
+        "n_tasks": 40,
+        "n_success": 30,
+        "success_rate": 0.75,
+        "success_ci95": [
+          0.5980603857923197,
+          0.858128813609037
+        ]
+      }
+    },
+    "flask": {
+      "C1": {
+        "n_tasks": 40,
+        "n_success": 40,
+        "success_rate": 1.0,
+        "success_ci95": [
+          0.9123783988027135,
+          1.0
+        ]
+      },
+      "C2": {
+        "n_tasks": 40,
+        "n_success": 30,
+        "success_rate": 0.75,
+        "success_ci95": [
+          0.5980603857923197,
+          0.858128813609037
+        ]
+      },
+      "C3": {
+        "n_tasks": 40,
+        "n_success": 16,
+        "success_rate": 0.4,
+        "success_ci95": [
+          0.2634832568429192,
+          0.5540410633965381
+        ]
+      },
+      "C4": {
+        "n_tasks": 40,
+        "n_success": 33,
+        "success_rate": 0.825,
+        "success_ci95": [
+          0.6805000966821229,
+          0.9125458625396408
+        ]
+      },
+      "C5": {
+        "n_tasks": 40,
+        "n_success": 36,
+        "success_rate": 0.9,
+        "success_ci95": [
+          0.769482247724777,
+          0.9604204713173937
+        ]
+      },
+      "C6": {
+        "n_tasks": 40,
+        "n_success": 33,
+        "success_rate": 0.825,
+        "success_ci95": [
+          0.6805000966821229,
+          0.9125458625396408
+        ]
+      }
+    },
+    "httpx": {
+      "C1": {
+        "n_tasks": 40,
+        "n_success": 33,
+        "success_rate": 0.825,
+        "success_ci95": [
+          0.6805000966821229,
+          0.9125458625396408
+        ]
+      },
+      "C2": {
+        "n_tasks": 40,
+        "n_success": 16,
+        "success_rate": 0.4,
+        "success_ci95": [
+          0.2634832568429192,
+          0.5540410633965381
+        ]
+      },
+      "C3": {
+        "n_tasks": 40,
+        "n_success": 14,
+        "success_rate": 0.35,
+        "success_ci95": [
+          0.2213452887317629,
+          0.5049411916274231
+        ]
+      },
+      "C4": {
+        "n_tasks": 40,
+        "n_success": 14,
+        "success_rate": 0.35,
+        "success_ci95": [
+          0.2213452887317629,
+          0.5049411916274231
+        ]
+      },
+      "C5": {
+        "n_tasks": 40,
+        "n_success": 38,
+        "success_rate": 0.95,
+        "success_ci95": [
+          0.8349612263085903,
+          0.9861793326138516
+        ]
+      },
+      "C6": {
+        "n_tasks": 40,
+        "n_success": 34,
+        "success_rate": 0.85,
+        "success_ci95": [
+          0.709276756335103,
+          0.9293881228267964
+        ]
+      }
+    },
+    "ohmo": {
+      "C1": {
+        "n_tasks": 40,
+        "n_success": 40,
+        "success_rate": 1.0,
+        "success_ci95": [
+          0.9123783988027135,
+          1.0
+        ]
+      },
+      "C2": {
+        "n_tasks": 40,
+        "n_success": 22,
+        "success_rate": 0.55,
+        "success_ci95": [
+          0.39829091798932054,
+          0.6929469218909508
+        ]
+      },
+      "C3": {
+        "n_tasks": 40,
+        "n_success": 16,
+        "success_rate": 0.4,
+        "success_ci95": [
+          0.2634832568429192,
+          0.5540410633965381
+        ]
+      },
+      "C4": {
+        "n_tasks": 40,
+        "n_success": 40,
+        "success_rate": 1.0,
+        "success_ci95": [
+          0.9123783988027135,
+          1.0
+        ]
+      },
+      "C5": {
+        "n_tasks": 40,
+        "n_success": 39,
+        "success_rate": 0.975,
+        "success_ci95": [
+          0.8711863103652591,
+          0.9955731684973186
+        ]
+      },
+      "C6": {
+        "n_tasks": 40,
+        "n_success": 34,
+        "success_rate": 0.85,
+        "success_ci95": [
+          0.709276756335103,
+          0.9293881228267964
+        ]
+      }
+    },
+    "rich": {
+      "C1": {
+        "n_tasks": 40,
+        "n_success": 40,
+        "success_rate": 1.0,
+        "success_ci95": [
+          0.9123783988027135,
+          1.0
+        ]
+      },
+      "C2": {
+        "n_tasks": 40,
+        "n_success": 36,
+        "success_rate": 0.9,
+        "success_ci95": [
+          0.769482247724777,
+          0.9604204713173937
+        ]
+      },
+      "C3": {
+        "n_tasks": 40,
+        "n_success": 15,
+        "success_rate": 0.375,
+        "success_ci95": [
+          0.24222979167233266,
+          0.5296756086269889
+        ]
+      },
+      "C4": {
+        "n_tasks": 40,
+        "n_success": 32,
+        "success_rate": 0.8,
+        "success_ci95": [
+          0.652426936536005,
+          0.895000102745623
+        ]
+      },
+      "C5": {
+        "n_tasks": 40,
+        "n_success": 36,
+        "success_rate": 0.9,
+        "success_ci95": [
+          0.769482247724777,
+          0.9604204713173937
+        ]
+      },
+      "C6": {
+        "n_tasks": 40,
+        "n_success": 31,
+        "success_rate": 0.775,
+        "success_ci95": [
+          0.6249690325768998,
+          0.8768390867645927
+        ]
+      }
+    }
+  },
+  "cost_ratio_bootstrap": [
+    {
+      "condition_a": "C5",
+      "condition_b": "C1",
+      "point_ratio": 0.23760143432711642,
+      "ci95": [
+        0.21866806966517421,
+        0.2584099348714983
+      ],
+      "reduction_pct_point": 76.23985656728836,
+      "reduction_pct_ci95": [
+        74.15900651285017,
+        78.13319303348258
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C2",
+      "point_ratio": 0.5412747644305411,
+      "ci95": [
+        0.44190978642766954,
+        0.660977444867209
+      ],
+      "reduction_pct_point": 45.872523556945886,
+      "reduction_pct_ci95": [
+        33.9022555132791,
+        55.80902135723305
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C2",
+      "condition_b": "C1",
+      "point_ratio": 0.438966399213327,
+      "ci95": [
+        0.3650666144329001,
+        0.5298497851446496
+      ],
+      "reduction_pct_point": 56.10336007866729,
+      "reduction_pct_ci95": [
+        47.01502148553504,
+        63.493338556709986
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C4",
+      "point_ratio": 0.9216040283219259,
+      "ci95": [
+        0.737740327965742,
+        1.153028798145105
+      ],
+      "reduction_pct_point": 7.83959716780741,
+      "reduction_pct_ci95": [
+        -15.302879814510506,
+        26.225967203425803
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C3",
+      "point_ratio": 0.3130555856732102,
+      "ci95": [
+        0.24929364102890175,
+        0.38136847622551073
+      ],
+      "reduction_pct_point": 68.69444143267897,
+      "reduction_pct_ci95": [
+        61.86315237744893,
+        75.07063589710982
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    }
+  ]
+}

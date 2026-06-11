@@ -1,0 +1,12 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "num_gpus": 1,
+  "gpu_hourly_usd": 3.19,
+  "prompt_tok_s": 14589.9,
+  "gen_tok_s": 58.3,
+  "pricing": {
+    "usd_per_million_input": 0.06073461332830729,
+    "usd_per_million_output": 15.20389820318626,
+    "is_placeholder": false
+  }
+}
