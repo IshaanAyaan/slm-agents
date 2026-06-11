@@ -79,7 +79,7 @@ stage_setup(){
   local cc vllm_pin; cc=$(gpu_cc)
   if [[ "${cc%%.*}" -lt 8 ]]; then vllm_pin="vllm==0.6.6.post1"; else vllm_pin="vllm==0.7.3"; fi
   $PY -m pip install -q "torch==2.5.1" "$vllm_pin" "transformers==4.48.3" \
-      "trl==0.14.0" "peft==0.14.0" "datasets>=2.19" "accelerate>=0.34" matplotlib
+      "trl==0.14.0" "peft==0.14.0" "datasets>=2.19" "accelerate>=0.34" matplotlib flask
   $PY -c "import torch,transformers,vllm,trl,peft; print('torch',torch.__version__,'tf',transformers.__version__,'vllm',vllm.__version__,'trl',trl.__version__,'cuda_ok',torch.cuda.is_available())"
   $PY -m pytest research/slm_harness/tests/ -q
 }
@@ -162,6 +162,7 @@ stage_train(){
   train_one "$STUDENT_A_MODEL" "$CK/$(slug "$STUDENT_A_MODEL")-navsearch-lora"
   if [[ "${RUN_ABLATION:-1}" == "1" ]]; then
     train_one "$STUDENT_B_MODEL" "$CK/$(slug "$STUDENT_B_MODEL")-navsearch-lora"
+    [[ -n "${STUDENT_C_MODEL:-}" ]] && train_one "$STUDENT_C_MODEL" "$CK/$(slug "$STUDENT_C_MODEL")-navsearch-lora"
   fi
 }
 
@@ -220,10 +221,14 @@ stage_students_b(){
   [[ "${RUN_ABLATION:-1}" == "1" ]] || { log "skip ablation"; return; }
   mkdir -p "$RES/eval_b"; eval_student "$STUDENT_B_MODEL" b
 }
+stage_students_c(){
+  [[ "${RUN_ABLATION:-1}" == "1" && -n "${STUDENT_C_MODEL:-}" ]] || { log "skip second ablation"; return; }
+  mkdir -p "$RES/eval_c"; eval_student "$STUDENT_C_MODEL" c
+}
 
 stage_report(){
   log "report: merge runs, metrics, figures, white paper"
-  for tag in a b; do
+  for tag in a b c; do
     [[ -f "$RES/eval_${tag}_base/runs.jsonl" && -f "$RES/eval_${tag}_ft/runs.jsonl" ]] || continue
     local merged="$RES/runs_$tag.jsonl"
     cat "$RES/eval_teacher/runs.jsonl" "$RES/eval_${tag}_base/runs.jsonl" \
@@ -243,6 +248,6 @@ stage_report(){
 STAGE="${1:-all}"
 run(){ log ">>> stage $1"; "stage_$1"; }
 case "$STAGE" in
-  all) for s in preflight setup genbench teacher train students_a students_b report; do run "$s"; done;;
+  all) for s in preflight setup genbench teacher train students_a students_b students_c report; do run "$s"; done;;
   *) run "$STAGE";;
 esac

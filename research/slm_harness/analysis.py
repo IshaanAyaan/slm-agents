@@ -291,6 +291,29 @@ def bootstrap_cost_ratio(
     )
 
 
+def per_repo_breakdown(attempts: list[Attempt]) -> dict[str, dict[str, Any]]:
+    """Success per (repo, condition); repo = first dash-segment of task_id.
+
+    Realbench task ids are "<repo>-<kind>-<idx>", so this groups by source
+    repository — the external-validity view.
+    """
+    by_repo: dict[str, dict[str, list[Attempt]]] = defaultdict(lambda: defaultdict(list))
+    for a in attempts:
+        by_repo[a.task_id.split("-", 1)[0]][a.condition_id].append(a)
+    out: dict[str, dict[str, Any]] = {}
+    for repo, conds in sorted(by_repo.items()):
+        out[repo] = {}
+        for cond, atts in sorted(conds.items()):
+            wins = sum(a.success for a in atts)
+            out[repo][cond] = {
+                "n_tasks": len(atts),
+                "n_success": wins,
+                "success_rate": wins / len(atts) if atts else 0.0,
+                "success_ci95": list(wilson_interval(wins, len(atts))),
+            }
+    return out
+
+
 # ----------------------------------------------------------------------
 # Full report
 # ----------------------------------------------------------------------
@@ -327,6 +350,7 @@ def significance_report(
         "paired_success": [
             paired_success_test(by_cond[a], by_cond[b]).to_dict() for a, b in comparisons
         ],
+        "per_repo": per_repo_breakdown(attempts),
         "cost_ratio_bootstrap": [
             bootstrap_cost_ratio(by_cond[a], by_cond[b], n_resamples, rng_seed).to_dict()
             for a, b in comparisons

@@ -99,6 +99,24 @@ def test_paired_test_and_summary(tmp_path):
     assert boot.ci95 == boot2.ci95
 
 
+def test_per_repo_breakdown(tmp_path):
+    from research.slm_harness.analysis import per_repo_breakdown
+
+    records = [
+        _record("C5", "flask-fun-0001", 0, True, 0.001, "a"),
+        _record("C5", "flask-cla-0002", 0, False, 0.001, "b"),
+        _record("C5", "ohmo-fun-0001", 0, True, 0.001, "c"),
+        _record("C1", "flask-fun-0001", 0, True, 0.004, "d"),
+    ]
+    attempts, _ = load_unique_attempts([_write_runs(tmp_path, records)])
+    repos = per_repo_breakdown(attempts)
+    assert set(repos) == {"flask", "ohmo"}
+    assert repos["flask"]["C5"]["n_tasks"] == 2
+    assert repos["flask"]["C5"]["n_success"] == 1
+    assert repos["ohmo"]["C5"]["success_rate"] == 1.0
+    assert repos["flask"]["C1"]["n_tasks"] == 1
+
+
 def test_significance_report_end_to_end(tmp_path):
     records = []
     for i in range(8):
