@@ -1,0 +1,12 @@
+{
+  "model": "teacher",
+  "num_gpus": 1,
+  "gpu_hourly_usd": 0.44,
+  "prompt_tok_s": 3280.6,
+  "gen_tok_s": 13.4,
+  "pricing": {
+    "usd_per_million_input": 0.0372554912249913,
+    "usd_per_million_output": 9.135958827744805,
+    "is_placeholder": false
+  }
+}

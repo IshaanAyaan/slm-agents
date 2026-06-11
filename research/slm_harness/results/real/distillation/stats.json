@@ -1,0 +1,13 @@
+{
+  "total_examples": 288,
+  "splits": {
+    "train": 234,
+    "val": 24,
+    "test": 30
+  },
+  "source_conditions": [
+    "C1",
+    "C6"
+  ],
+  "dedup_removed": 0
+}

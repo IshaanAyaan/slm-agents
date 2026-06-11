@@ -1,8 +1,8 @@
 # Specialized Small-Model Subagents: Co-Designing a Fine-Tuned SLM and a Task-Specific Harness for Cost-Efficient Multi-Agent Systems
 
-**Status:** DRAFT — [PENDING RUN]
+**Status:** FINAL (real self-hosted run, 2026-06-10)
 **Authors:** Ishaan Ranjan (Luxen LLC / AgentTree) · *affiliations TBD*
-**Artifact:** `github.com/LuxenAI/slm-harness` (branch `fable`), `research/slm_harness/`
+**Artifact:** `github.com/IshaanAyaan/slm-agents` (branch `main`), `research/slm_harness/`
 
 ---
 
@@ -18,13 +18,14 @@ co-designed task-specific harness**, beats a cheap general-purpose subagent on
 factorial design over {model ∈ large-general, small-general, small-fine-tuned} ×
 {harness ∈ generic, custom}, we isolate the harness effect, the fine-tuning effect, and
 their interaction. On a deterministic file/code-navigation benchmark with automatically
-verified ground truth, our proposed system (C5) achieves a **[PENDING RUN]%**
-reduction in cost-per-successful-task versus the standard large-model baseline (C1) at a
-**[PENDING RUN] pp** change in success rate (target: ≥50% reduction, ≤2 pp drop;
-claim holds: **[PENDING RUN]**). The fine-tuning×harness interaction is super-additive
-on success rate (**[PENDING RUN]**), confirming that the SLM and harness must be
-co-designed rather than combined post hoc. The entire study runs on self-hosted open
-models with **no paid API tokens**; cost is grounded in measured GPU throughput.
+verified ground truth, our proposed system (C5) achieves a **74.9%**
+reduction in cost-per-successful-task versus the standard large-model baseline (C1) while
+**increasing** success rate by **25.0 pp** (0.725 → 0.975) — exceeding the pre-registered
+target of a ≥50% cost reduction at ≤2 pp success drop. The fine-tuning×harness interaction
+is strongly super-additive on success rate (+0.650 over the additive prediction),
+confirming that the SLM and harness must be co-designed rather than combined post hoc. The
+entire study runs on self-hosted open models with **no paid API tokens**; cost is grounded
+in measured GPU throughput.
 
 ---
 
@@ -130,123 +131,154 @@ chat-format SFT JSONL, split train/val/test, used to LoRA-fine-tune the SLM (ran
 
 ### 4.1 Zero-API, self-hosted execution
 
-All models are served locally with vLLM on H100 GPUs. The large/teacher model is a strong
-**open** model (e.g. Llama-3.3-70B-Instruct or Qwen2.5-72B-Instruct); the students are
-Qwen3-4B (headline) and Qwen3-1.7B (ablation). No paid API is used anywhere.
+All models are served locally with vLLM 0.7.3 on a single **NVIDIA A40 (48 GB, $0.44/hr)**.
+The large/teacher model is **Qwen2.5-14B-Instruct**; the student is **Qwen2.5-3B-Instruct**,
+LoRA-fine-tuned (rank 64, 3 epochs) on 234 distilled training examples (24 val) and served
+merged. No paid API is used anywhere. One model is resident at a time; conditions run
+sequentially against the same card, so throughput-derived costs are directly comparable.
 
 ### 4.2 Cost model
 
 Cost is grounded in measured hardware throughput, not an external price list. For each
 served model we benchmark realized prefill/decode tokens-per-second and convert
-`GPU_count × $/GPU-hour` into per-token USD. The 70B teacher is therefore correctly
-costlier per token than the 4B/1.7B students. Fine-tuning cost is measured training
-wall-time × GPUs × rate, used in the break-even analysis.
+`GPU_count × $/GPU-hour` into per-token USD. The 14B teacher is therefore correctly
+costlier per token than the 3B student. Fine-tuning cost is measured training
+wall-time × GPUs × rate ($0.05 for this run), used in the break-even analysis. Because
+every condition shares the same GPU and rate, the headline *ratios* are independent of
+the chosen $/GPU-hour.
 
 ### 4.3 Benchmark
 
 Tasks are generated deterministically from real Python repositories: we index top-level
 class/function/constant definitions and keep symbols defined in exactly one file, yielding
 "which file defines `X`?" tasks with unambiguous, machine-checkable ground truth and **no
-human labeling**. Train-split repos feed distillation; held-out test-split repos measure
-generalization to code the SLM never trained on. Every condition is run for multiple seeds
-per task.
+human labeling**. Train-split repos (OpenHarness `src/`, `requests`; 120 tasks) feed
+distillation; a held-out test-split repo (`ohmo`; 40 tasks) measures generalization to
+code the SLM never trained on. Every condition runs each test task with 2 seeds
+(80 attempts per condition).
 
 ---
 
 ## 5. Results
 
-> Numbers below are auto-filled from `metrics_4b.json`. `[PENDING RUN]` means the
-> self-hosted run has not yet produced that value.
+> Numbers below are auto-filled from `results/real/metrics_a.json` (run of 2026-06-10).
 
-### 5.1 Main results (headline, Qwen3-4B specialist)
+### 5.1 Main results (headline, Qwen2.5-3B specialist)
 
 | Condition | Success rate | Cost / successful task (USD) | Cost / attempt (USD) |
 |---|---|---|---|
-| C1 large+generic (baseline) | [PENDING RUN] | [PENDING RUN] | [PENDING RUN] |
-| C2 small+generic (naive cut) | [PENDING RUN] | [PENDING RUN] | [PENDING RUN] |
-| C3 small+custom (harness-only) | [PENDING RUN] | [PENDING RUN] | [PENDING RUN] |
-| C4 fine-tuned+generic (FT-only) | [PENDING RUN] | [PENDING RUN] | [PENDING RUN] |
-| **C5 fine-tuned+custom (proposed)** | **[PENDING RUN]** | **[PENDING RUN]** | **[PENDING RUN]** |
-| C6 large+custom (upper bound) | [PENDING RUN] | [PENDING RUN] | [PENDING RUN] |
+| C1 large+generic (baseline) | 0.725 | 0.001818 | 0.001318 |
+| C2 small+generic (naive cut) | 0.463 | 0.003820 | 0.001767 |
+| C3 small+custom (harness-only) | 0.263 | 0.002132 | 0.000560 |
+| C4 fine-tuned+generic (FT-only) | 0.525 | 0.002291 | 0.001203 |
+| **C5 fine-tuned+custom (proposed)** | **0.975** | **0.000456** | **0.000445** |
+| C6 large+custom (design-stage upper bound; see §5.4) | 0.550 | 0.003762 | 0.002069 |
 
-![Cost per successful task](../results/real/figures_4b/fig2_cost_per_success.png)
-![Success by condition](../results/real/figures_4b/fig1_success_by_condition.png)
+![Cost per successful task](research/slm_harness/results/real/figures_a/fig2_cost_per_success.png)
+![Success by condition](research/slm_harness/results/real/figures_a/fig1_success_by_condition.png)
 
 ### 5.2 Primary claim (C5 vs C1)
 
-Cost-per-successful-task reduction: **[PENDING RUN]%** (target ≥ 50%).
-Success-rate change: **[PENDING RUN] pp** (target ≤ 2 pp drop).
-**Claim holds: [PENDING RUN].**
+Cost-per-successful-task reduction: **74.9%** (target ≥ 50%).
+Success-rate change: **+25.0 pp** (0.725 → 0.975; target allowed up to a 2 pp drop).
+**Claim holds — and the specialist is more reliable than the baseline, not merely cheaper.**
 
 ### 5.3 The naive cheap option fails (C2 vs C1)
 
 A key secondary result: despite far cheaper tokens, C2's cost-per-successful-task
-([PENDING RUN]) versus C1 ([PENDING RUN]) shows that retries and corrections eat the savings —
-this is what makes the full system non-obvious.
+(**$0.003820**) is **2.1× worse** than C1's (**$0.001818**) — retries and corrections eat
+the per-token savings. C2 also consumes 3.6× the input tokens per attempt (11,063 vs
+3,074 mean), exactly the failure-amplification the introduction predicts. This is what
+makes the full system non-obvious: swapping in a cheap general model is a net loss.
 
 ### 5.4 Attribution decomposition
 
-![Attribution](../results/real/figures_4b/fig3_attribution_success.png)
+![Attribution](research/slm_harness/results/real/figures_a/fig3_attribution_success.png)
 
-On **success rate**: harness effect (C3−C2) = [PENDING RUN];
-fine-tuning effect (C4−C2) = [PENDING RUN];
-additive prediction for C5 = [PENDING RUN];
-observed interaction = [PENDING RUN]; **super-additive: [PENDING RUN]**.
+On **success rate**: harness effect (C3−C2) = **−0.200**;
+fine-tuning effect (C4−C2) = **+0.062**;
+additive prediction for C5 = 0.325;
+observed C5 = 0.975, i.e. interaction = **+0.650**; **super-additive**.
 
-On **cost-per-successful-task**: harness effect = [PENDING RUN];
-fine-tuning effect = [PENDING RUN];
-interaction = [PENDING RUN]; **super-additive: [PENDING RUN]**.
+On **cost-per-successful-task**: harness effect = −$0.001688;
+fine-tuning effect = −$0.001530;
+interaction = −$0.000147; **super-additive** (more negative cost than additive).
+
+The decomposition is the scientific core of the result. The custom harness *hurts* the
+untrained small model (C3 < C2: the base 3B fails the strict JSON action schema, averaging
+2.5 invalid actions per attempt) and even hurts the large model (C6 = 0.550 < C1 = 0.725,
+with 1.9 invalid actions per attempt — the "upper bound" condition lands *below* the
+generic baseline). Fine-tuning alone barely helps (C4 ≈ C2 + 6 pp). Only the combination —
+a model distilled specifically to speak the harness's schema — reaches 0.975 with a 0.025
+invalid-action rate. Neither intervention works without the other; this is co-design, not
+stacking.
 
 ### 5.5 Break-even on the one-time fine-tuning cost
 
-![Break-even](../results/real/figures_4b/fig5_break_even.png)
+![Break-even](research/slm_harness/results/real/figures_a/fig5_break_even.png)
 
-Fine-tuning cost = $[PENDING RUN]; savings per successful task = $[PENDING RUN];
-**break-even at [PENDING RUN] tasks**.
+Fine-tuning cost = $0.05; savings per successful task = $0.001361;
+**break-even at 37 successful tasks**. At realistic subagent volumes the one-time
+fine-tuning cost is negligible.
 
-### 5.6 Size ablation (Qwen3-1.7B specialist)
+### 5.6 Size ablation (Qwen2.5-1.5B specialist)
 
-C5 with a 1.7B specialist: success rate [PENDING RUN], cost/success [PENDING RUN] —
-testing how far the model can shrink before the harness can no longer carry it.
+The 1.5B ablation was disabled in this budget run (`RUN_ABLATION=0`); it tests how far
+the model can shrink before the harness can no longer carry it, and is left to a
+follow-up run.
 
 ---
 
 ## 6. Discussion
 
-If the claim holds, the practical implication is that the cheapest reliable subagent is not
-a smaller general model but a **co-designed specialist**: a tiny fine-tuned model whose
-harness owns state, memory, valid actions, and verification. The super-additivity result is
-the scientific core — it shows the two interventions are not independent knobs; the model
-becomes extra-effective precisely because it was trained to speak the harness's language.
+The practical implication is that the cheapest reliable subagent is not a smaller general
+model but a **co-designed specialist**: a tiny fine-tuned model whose harness owns state,
+memory, valid actions, and verification. The super-additivity result is the scientific
+core — it shows the two interventions are not independent knobs; the model becomes
+extra-effective precisely because it was trained to speak the harness's language. The C5
+specialist is simultaneously the **most reliable** (0.975) and the **cheapest per success**
+($0.000456) of all six conditions, while the naive cheap swap (C2) is the most expensive
+per success after C6 — the two ends of the design space the field currently conflates.
 
 ## 7. Limitations and threats to validity
 
 - **One role, one task family (Phase 1).** Generalization to a second role (e.g. test
   execution and result parsing) and to SWE-bench-Verified-style tasks is future work.
-- **Open teacher as frontier proxy.** Cost is API-free by using a strong open model as the
-  large/teacher condition; an optional small real-frontier slice can anchor representativeness.
+- **Open 14B teacher as frontier proxy.** Cost is API-free by using Qwen2.5-14B-Instruct
+  as the large/teacher condition; a frontier API model would likely raise C1's success
+  rate (and its cost). An optional small real-frontier slice can anchor representativeness.
 - **Deterministic navigation ground truth** is unambiguous but narrower than open-ended
   agentic tasks; it is chosen for measurement rigor in Phase 1.
-- **Cost model** reflects measured throughput on specific hardware and a chosen GPU rate;
-  absolute dollars scale with both, though the *ratios* between conditions are robust.
+- **Single test repository, 40 tasks × 2 seeds.** Error bars are reported (C5 stderr
+  0.017, others ~0.05); more repos and seeds would tighten them.
+- **Cost model** reflects measured throughput on one A40 and a chosen GPU rate
+  ($0.44/hr); absolute dollars scale with both, though the *ratios* between conditions
+  are rate-independent because all conditions share the same hardware.
+- **Harness prompt iteration.** The custom-harness prompt was refined once during the
+  run (stating the READ-before-ANSWER rule) after observing the teacher burning retries;
+  the change applies uniformly to every custom-harness condition (C3, C5, C6).
 
 ## 8. Reproducibility
 
 All harness specifications, the distillation pipeline, the deterministic benchmark
 generator, training configs, evaluation scripts, and this paper's number-filling script are
 released in `research/slm_harness/`. The full run is a single command
-(`infra/run_all.sh`) on self-hosted H100s with no API keys.
+(`infra/run_all.sh`) on one self-hosted A40/A6000-class GPU with no API keys; this run
+completed in under an hour of GPU time (~$0.50 at the quoted rate).
 
 ## 9. Conclusion
 
 We tested whether a fine-tuned SLM with a co-designed harness can be a cheaper-yet-reliable
 subagent than a general cheap model under a fixed orchestrator. Under a controlled 2×3
-attribution, the proposed system delivers a [PENDING RUN]% cost-per-successful-task
-reduction versus the standard baseline at [PENDING RUN] pp success change, with a
-super-additive fine-tuning×harness interaction. Specialized subagents, not merely smaller
-ones, are the cost-efficient building block for multi-agent systems.
+attribution, the proposed system delivers a 74.9% cost-per-successful-task
+reduction versus the standard baseline while raising success rate by 25 pp (0.725 → 0.975),
+with a strongly super-additive fine-tuning×harness interaction (+0.650 over the additive
+prediction). Specialized subagents, not merely smaller ones, are the cost-efficient
+building block for multi-agent systems.
 
 ---
 
 *Appendix A — full per-condition token/reliability table and Tables 1–4 are generated in
-`../results/real/figures_4b/tables.md`. Appendix B — per-task trajectories are in `runs_4b.jsonl`.*
+`research/slm_harness/results/real/figures_a/tables.md`. Appendix B — per-task trajectories
+are in `results/real/eval_teacher/runs.jsonl` (C1, C6), `results/real/eval_a_base/runs.jsonl`
+(C2, C3), and `results/real/eval_a_ft/runs.jsonl` (C4, C5).*
