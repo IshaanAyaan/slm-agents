@@ -89,3 +89,30 @@ async def test_figures_generation(smoke_tasks_path: Path, tmp_path: Path) -> Non
     tables = (tmp_path / "figs" / "tables.md").read_text(encoding="utf-8")
     assert "Table 2 — Attribution decomposition" in tables
     assert "SYNTHETIC" in tables.upper() or "STUB" in tables.upper()
+
+
+async def test_distillation_val_split_never_starved(
+    smoke_tasks_path: Path, tmp_path: Path
+) -> None:
+    """All-train-declared source tasks must still yield a non-empty SFT val split.
+
+    Regression for the 2026-06-10 real run: every distillation source task is
+    declared split="train" (the benchmark split), which starved val.jsonl and
+    aborted LoRA training.
+    """
+    config = default_experiment_config(
+        str(smoke_tasks_path),
+        provider="stub",
+        seeds=[0, 1],
+        output_dir=str(tmp_path / "out"),
+    )
+    config.models["large_general"].stub_skill = 1.0
+    records = await run_experiment(config, condition_ids=["C6"], quiet=True)
+    suite = TaskSuite.load(smoke_tasks_path)
+    for task in suite.tasks:
+        task.split = "train"  # mirror the real benchmark: all sources are train
+    counts = await build_distillation_dataset(
+        records, suite, out_dir=tmp_path / "distill"
+    )
+    assert counts["train"] > 0
+    assert counts["val"] > 0, "val split must never be empty when train has examples"

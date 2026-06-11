@@ -19,8 +19,9 @@ factorial design over {model ∈ large-general, small-general, small-fine-tuned}
 {harness ∈ generic, custom}, we isolate the harness effect, the fine-tuning effect, and
 their interaction. On a deterministic file/code-navigation benchmark with automatically
 verified ground truth, our proposed system (C5) achieves a **74.9%**
-reduction in cost-per-successful-task versus the standard large-model baseline (C1) while
-**increasing** success rate by **25.0 pp** (0.725 → 0.975) — exceeding the pre-registered
+reduction in cost-per-successful-task (bootstrap 95% CI **[63.8%, 84.0%]**) versus the
+standard large-model baseline (C1) while **increasing** success rate by **25.0 pp**
+(0.725 → 0.975; exact McNemar p = 0.006) — exceeding the pre-registered
 target of a ≥50% cost reduction at ≤2 pp success drop. The fine-tuning×harness interaction
 is strongly super-additive on success rate (+0.650 over the additive prediction),
 confirming that the SLM and harness must be co-designed rather than combined post hoc. The
@@ -154,61 +155,83 @@ class/function/constant definitions and keep symbols defined in exactly one file
 "which file defines `X`?" tasks with unambiguous, machine-checkable ground truth and **no
 human labeling**. Train-split repos (OpenHarness `src/`, `requests`; 120 tasks) feed
 distillation; a held-out test-split repo (`ohmo`; 40 tasks) measures generalization to
-code the SLM never trained on. Every condition runs each test task with 2 seeds
-(80 attempts per condition).
+code the SLM never trained on.
+
+**Decoding is deterministic (temperature 0), so the analysis unit is the task, not the
+(task, seed) pair.** The pipeline executed each task under two nominal seeds, but the
+seed is not threaded into sampling: the replays were byte-identical for the teacher
+conditions (80/80 trajectories) and 85–93% identical for the student conditions, where
+the residual divergence traces to vLLM continuous-batching nondeterminism rather than
+controlled randomness. All statistics below therefore deduplicate to **one attempt per
+(condition, task)** — n = 40 per condition — with Wilson 95% intervals for success,
+exact McNemar tests for paired success comparisons, and a paired task-level bootstrap
+for cost ratios (`research/slm_harness/analysis.py`). Treating the replays as
+independent attempts would overstate precision by ~√2; we do not.
 
 ---
 
 ## 5. Results
 
-> Numbers below are auto-filled from `results/real/metrics_a.json` (run of 2026-06-10).
+> Numbers below come from `results/real/significance.json` (deduplicated per-task
+> statistics; run of 2026-06-10). The raw per-attempt aggregation is in
+> `results/real/metrics_a.json`; rates agree to within rounding.
 
-### 5.1 Main results (headline, Qwen2.5-3B specialist)
+### 5.1 Main results (headline, Qwen2.5-3B specialist; n = 40 tasks per condition)
 
-| Condition | Success rate | Cost / successful task (USD) | Cost / attempt (USD) |
+| Condition | Success rate [95% CI] | Cost / successful task (USD) | Cost / attempt (USD) |
 |---|---|---|---|
-| C1 large+generic (baseline) | 0.725 | 0.001818 | 0.001318 |
-| C2 small+generic (naive cut) | 0.463 | 0.003820 | 0.001767 |
-| C3 small+custom (harness-only) | 0.263 | 0.002132 | 0.000560 |
-| C4 fine-tuned+generic (FT-only) | 0.525 | 0.002291 | 0.001203 |
-| **C5 fine-tuned+custom (proposed)** | **0.975** | **0.000456** | **0.000445** |
-| C6 large+custom (design-stage upper bound; see §5.4) | 0.550 | 0.003762 | 0.002069 |
+| C1 large+generic (baseline) | 0.725 [0.572, 0.839] | 0.001818 | 0.001318 |
+| C2 small+generic (naive cut) | 0.475 [0.329, 0.625] | 0.003715 | 0.001765 |
+| C3 small+custom (harness-only) | 0.275 [0.161, 0.428] | 0.002041 | 0.000561 |
+| C4 fine-tuned+generic (FT-only) | 0.525 [0.375, 0.671] | 0.002291 | 0.001203 |
+| **C5 fine-tuned+custom (proposed)** | **0.975 [0.871, 0.996]** | **0.000457** | **0.000445** |
+| C6 large+custom (design-stage upper bound; see §5.4) | 0.550 [0.398, 0.693] | 0.003762 | 0.002069 |
 
 ![Cost per successful task](research/slm_harness/results/real/figures_a/fig2_cost_per_success.png)
 ![Success by condition](research/slm_harness/results/real/figures_a/fig1_success_by_condition.png)
 
 ### 5.2 Primary claim (C5 vs C1)
 
-Cost-per-successful-task reduction: **74.9%** (target ≥ 50%).
+Cost-per-successful-task reduction: **74.9%**, bootstrap 95% CI **[63.8%, 84.0%]** —
+the entire interval clears the pre-registered ≥50% target.
 Success-rate change: **+25.0 pp** (0.725 → 0.975; target allowed up to a 2 pp drop).
+On the 40 shared tasks the per-task outcomes are 11 C5-only successes vs 1 C1-only
+success (exact McNemar **p = 0.006**).
 **Claim holds — and the specialist is more reliable than the baseline, not merely cheaper.**
 
 ### 5.3 The naive cheap option fails (C2 vs C1)
 
 A key secondary result: despite far cheaper tokens, C2's cost-per-successful-task
-(**$0.003820**) is **2.1× worse** than C1's (**$0.001818**) — retries and corrections eat
-the per-token savings. C2 also consumes 3.6× the input tokens per attempt (11,063 vs
-3,074 mean), exactly the failure-amplification the introduction predicts. This is what
-makes the full system non-obvious: swapping in a cheap general model is a net loss.
+(**$0.003715**) is **2.0× worse** than C1's (**$0.001818**); the bootstrap 95% CI for the
+C2/C1 cost ratio is **[1.08, 4.01]**, excluding parity, and C2's success deficit is itself
+significant (12 C1-only vs 2 C2-only task successes; McNemar p = 0.013). C2 also consumes
+3.6× the input tokens per attempt (11,063 vs 3,074 mean), exactly the
+failure-amplification the introduction predicts. This is what makes the full system
+non-obvious: swapping in a cheap general model is a statistically resolvable net loss.
 
 ### 5.4 Attribution decomposition
 
 ![Attribution](research/slm_harness/results/real/figures_a/fig3_attribution_success.png)
 
-On **success rate**: harness effect (C3−C2) = **−0.200**;
-fine-tuning effect (C4−C2) = **+0.062**;
+On **success rate** (per-task, n = 40): harness effect (C3−C2) = **−0.200**;
+fine-tuning effect (C4−C2) = **+0.050**;
 additive prediction for C5 = 0.325;
 observed C5 = 0.975, i.e. interaction = **+0.650**; **super-additive**.
+C5's edge over each non-proposed small-model condition is individually significant
+(vs C2: 20/0 discordant tasks, p = 1.9×10⁻⁶; vs C4: 18/0, p = 7.6×10⁻⁶;
+vs C3: 28/0, p = 7.5×10⁻⁹).
 
-On **cost-per-successful-task**: harness effect = −$0.001688;
-fine-tuning effect = −$0.001530;
-interaction = −$0.000147; **super-additive** (more negative cost than additive).
+On **cost-per-successful-task**: harness effect = −$0.001674;
+fine-tuning effect = −$0.001424;
+additive prediction for C5 = $0.000617;
+observed $0.000457, i.e. interaction = −$0.000160; **super-additive** (cheaper than
+the additive prediction).
 
 The decomposition is the scientific core of the result. The custom harness *hurts* the
 untrained small model (C3 < C2: the base 3B fails the strict JSON action schema, averaging
 2.5 invalid actions per attempt) and even hurts the large model (C6 = 0.550 < C1 = 0.725,
 with 1.9 invalid actions per attempt — the "upper bound" condition lands *below* the
-generic baseline). Fine-tuning alone barely helps (C4 ≈ C2 + 6 pp). Only the combination —
+generic baseline). Fine-tuning alone barely helps (C4 ≈ C2 + 5 pp). Only the combination —
 a model distilled specifically to speak the harness's schema — reaches 0.975 with a 0.025
 invalid-action rate. Neither intervention works without the other; this is co-design, not
 stacking.
@@ -237,7 +260,7 @@ memory, valid actions, and verification. The super-additivity result is the scie
 core — it shows the two interventions are not independent knobs; the model becomes
 extra-effective precisely because it was trained to speak the harness's language. The C5
 specialist is simultaneously the **most reliable** (0.975) and the **cheapest per success**
-($0.000456) of all six conditions, while the naive cheap swap (C2) is the most expensive
+($0.000457) of all six conditions, while the naive cheap swap (C2) is the most expensive
 per success after C6 — the two ends of the design space the field currently conflates.
 
 ## 7. Limitations and threats to validity
@@ -249,8 +272,12 @@ per success after C6 — the two ends of the design space the field currently co
   rate (and its cost). An optional small real-frontier slice can anchor representativeness.
 - **Deterministic navigation ground truth** is unambiguous but narrower than open-ended
   agentic tasks; it is chosen for measurement rigor in Phase 1.
-- **Single test repository, 40 tasks × 2 seeds.** Error bars are reported (C5 stderr
-  0.017, others ~0.05); more repos and seeds would tighten them.
+- **Single test repository, 40 unique tasks, deterministic decoding.** Uncertainty is
+  reported as Wilson 95% intervals over tasks (C5 [0.871, 0.996]; others span roughly
+  ±0.15), with paired exact tests for between-condition claims. The binding constraint
+  on precision is the number of *tasks and repositories*, not seeds — temperature-0
+  replays add no information, and we deduplicate them rather than letting them shrink
+  the error bars. More held-out repos is the single best upgrade to external validity.
 - **Cost model** reflects measured throughput on one A40 and a chosen GPU rate
   ($0.44/hr); absolute dollars scale with both, though the *ratios* between conditions
   are rate-independent because all conditions share the same hardware.
@@ -264,14 +291,24 @@ All harness specifications, the distillation pipeline, the deterministic benchma
 generator, training configs, evaluation scripts, and this paper's number-filling script are
 released in `research/slm_harness/`. The full run is a single command
 (`infra/run_all.sh`) on one self-hosted A40/A6000-class GPU with no API keys; this run
-completed in under an hour of GPU time (~$0.50 at the quoted rate).
+completed in under an hour of GPU time (~$0.50 at the quoted rate). The statistical
+analysis is reproducible offline from the committed run logs:
+
+```bash
+python research/slm_harness/scripts/compute_significance.py \
+  --runs research/slm_harness/results/real/eval_teacher/runs.jsonl \
+         research/slm_harness/results/real/eval_a_base/runs.jsonl \
+         research/slm_harness/results/real/eval_a_ft/runs.jsonl \
+  --out research/slm_harness/results/real/significance.json
+```
 
 ## 9. Conclusion
 
 We tested whether a fine-tuned SLM with a co-designed harness can be a cheaper-yet-reliable
 subagent than a general cheap model under a fixed orchestrator. Under a controlled 2×3
-attribution, the proposed system delivers a 74.9% cost-per-successful-task
-reduction versus the standard baseline while raising success rate by 25 pp (0.725 → 0.975),
+attribution, the proposed system delivers a 74.9% (95% CI [63.8%, 84.0%])
+cost-per-successful-task reduction versus the standard baseline while raising success
+rate by 25 pp (0.725 → 0.975; exact McNemar p = 0.006),
 with a strongly super-additive fine-tuning×harness interaction (+0.650 over the additive
 prediction). Specialized subagents, not merely smaller ones, are the cost-efficient
 building block for multi-agent systems.

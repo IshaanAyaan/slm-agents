@@ -1,0 +1,230 @@
+{
+  "method": {
+    "dedup": "one attempt per (condition, task), lowest seed kept",
+    "success_ci": "Wilson 95%",
+    "paired_test": "exact two-sided McNemar on shared tasks",
+    "cost_ci": "paired percentile bootstrap over tasks, 10000 resamples",
+    "rng_seed": 0
+  },
+  "conditions": {
+    "C1": {
+      "condition_id": "C1",
+      "n_tasks": 40,
+      "n_success": 29,
+      "success_rate": 0.725,
+      "success_ci95": [
+        0.5716504419378943,
+        0.8389198375233267
+      ],
+      "total_cost_usd": 0.052709650626970486,
+      "cost_per_attempt": 0.0013177412656742622,
+      "cost_per_success": 0.0018175741595507064,
+      "replays_identical": 40,
+      "replays_divergent": 0
+    },
+    "C2": {
+      "condition_id": "C2",
+      "n_tasks": 40,
+      "n_success": 19,
+      "success_rate": 0.475,
+      "success_ci95": [
+        0.329354701126789,
+        0.6250263789330753
+      ],
+      "total_cost_usd": 0.07058412962039692,
+      "cost_per_attempt": 0.0017646032405099232,
+      "cost_per_success": 0.0037149541905472064,
+      "replays_identical": 34,
+      "replays_divergent": 6
+    },
+    "C3": {
+      "condition_id": "C3",
+      "n_tasks": 40,
+      "n_success": 11,
+      "success_rate": 0.275,
+      "success_ci95": [
+        0.16108016247667337,
+        0.42834955806210573
+      ],
+      "total_cost_usd": 0.022451824643560277,
+      "cost_per_attempt": 0.0005612956160890069,
+      "cost_per_success": 0.002041074967596389,
+      "replays_identical": 35,
+      "replays_divergent": 5
+    },
+    "C4": {
+      "condition_id": "C4",
+      "n_tasks": 40,
+      "n_success": 21,
+      "success_rate": 0.525,
+      "success_ci95": [
+        0.3749736210669247,
+        0.670645298873211
+      ],
+      "total_cost_usd": 0.04810755406229186,
+      "cost_per_attempt": 0.0012026888515572966,
+      "cost_per_success": 0.002290835907728184,
+      "replays_identical": 40,
+      "replays_divergent": 0
+    },
+    "C5": {
+      "condition_id": "C5",
+      "n_tasks": 40,
+      "n_success": 39,
+      "success_rate": 0.975,
+      "success_ci95": [
+        0.8711863103652591,
+        0.9955731684973186
+      ],
+      "total_cost_usd": 0.01780662239190419,
+      "cost_per_attempt": 0.0004451655597976048,
+      "cost_per_success": 0.0004565800613308767,
+      "replays_identical": 37,
+      "replays_divergent": 3
+    },
+    "C6": {
+      "condition_id": "C6",
+      "n_tasks": 40,
+      "n_success": 22,
+      "success_rate": 0.55,
+      "success_ci95": [
+        0.39829091798932054,
+        0.6929469218909508
+      ],
+      "total_cost_usd": 0.08277470887432258,
+      "cost_per_attempt": 0.0020693677218580646,
+      "cost_per_success": 0.0037624867670146625,
+      "replays_identical": 40,
+      "replays_divergent": 0
+    }
+  },
+  "paired_success": [
+    {
+      "condition_a": "C5",
+      "condition_b": "C1",
+      "n_shared_tasks": 40,
+      "a_only_success": 11,
+      "b_only_success": 1,
+      "mcnemar_p": 0.00634765625
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C2",
+      "n_shared_tasks": 40,
+      "a_only_success": 20,
+      "b_only_success": 0,
+      "mcnemar_p": 1.9073486328125e-06
+    },
+    {
+      "condition_a": "C2",
+      "condition_b": "C1",
+      "n_shared_tasks": 40,
+      "a_only_success": 2,
+      "b_only_success": 12,
+      "mcnemar_p": 0.012939453125
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C4",
+      "n_shared_tasks": 40,
+      "a_only_success": 18,
+      "b_only_success": 0,
+      "mcnemar_p": 7.62939453125e-06
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C3",
+      "n_shared_tasks": 40,
+      "a_only_success": 28,
+      "b_only_success": 0,
+      "mcnemar_p": 7.450580596923828e-09
+    }
+  ],
+  "cost_ratio_bootstrap": [
+    {
+      "condition_a": "C5",
+      "condition_b": "C1",
+      "point_ratio": 0.25120298884736597,
+      "ci95": [
+        0.16021536362456482,
+        0.3624019356216412
+      ],
+      "reduction_pct_point": 74.8797011152634,
+      "reduction_pct_ci95": [
+        63.75980643783588,
+        83.97846363754353
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C2",
+      "point_ratio": 0.1229032816858566,
+      "ci95": [
+        0.07076787935347927,
+        0.20780251792650417
+      ],
+      "reduction_pct_point": 87.70967183141434,
+      "reduction_pct_ci95": [
+        79.21974820734958,
+        92.92321206465208
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C2",
+      "condition_b": "C1",
+      "point_ratio": 2.0439079038543997,
+      "ci95": [
+        1.0768535618778845,
+        4.013517558157009
+      ],
+      "reduction_pct_point": -104.39079038543997,
+      "reduction_pct_ci95": [
+        -301.35175581570087,
+        -7.68535618778845
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C4",
+      "point_ratio": 0.19930718729813604,
+      "ci95": [
+        0.11097669781761725,
+        0.35564569692979947
+      ],
+      "reduction_pct_point": 80.0692812701864,
+      "reduction_pct_ci95": [
+        64.43543030702006,
+        88.90233021823828
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    },
+    {
+      "condition_a": "C5",
+      "condition_b": "C3",
+      "point_ratio": 0.22369588015111205,
+      "ci95": [
+        0.10934148150332246,
+        0.37250347069697354
+      ],
+      "reduction_pct_point": 77.6304119848888,
+      "reduction_pct_ci95": [
+        62.749652930302645,
+        89.06585184966775
+      ],
+      "n_resamples": 10000,
+      "n_degenerate": 0,
+      "rng_seed": 0
+    }
+  ]
+}

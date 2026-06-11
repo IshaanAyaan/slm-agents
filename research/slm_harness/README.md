@@ -1,5 +1,27 @@
 # SLM + co-designed harness as a subagent: research scaffold
 
+## Status: real run completed (2026-06-10) — primary claim holds
+
+The full 2×3 factorial ran end-to-end on one self-hosted NVIDIA A40 (Qwen2.5-14B-Instruct
+teacher, Qwen2.5-3B-Instruct student, vLLM 0.7.3, zero API spend). Deduplicated per-task
+statistics over the 40 held-out test tasks (`results/real/significance.json`):
+
+| Condition | Success [95% CI] | Cost/success |
+|---|---|---|
+| C1 large+generic (baseline) | 0.725 [0.572, 0.839] | $0.001818 |
+| C2 small+generic (naive swap) | 0.475 [0.329, 0.625] | $0.003715 — **2.0× worse than C1** |
+| C3 small+custom | 0.275 [0.161, 0.428] | $0.002041 |
+| C4 fine-tuned+generic | 0.525 [0.375, 0.671] | $0.002291 |
+| **C5 fine-tuned+custom (proposed)** | **0.975 [0.871, 0.996]** | **$0.000457** |
+| C6 large+custom | 0.550 [0.398, 0.693] | $0.003762 |
+
+C5 vs C1: **−74.9%** cost-per-success (bootstrap 95% CI [63.8%, 84.0%]), **+25 pp**
+success (exact McNemar p = 0.006). Interaction on success is super-additive (+0.650 over
+the additive prediction). Full write-up: [`paper/white_paper.md`](paper/white_paper.md);
+raw trajectories and metrics are committed under `results/real/`. To reproduce on a
+RunPod-style pod: copy `infra/config.runpod.env.example` to `infra/config.env`, set your
+GPU rate, and run `bash research/slm_harness/infra/run_all.sh` (~1 GPU-hour on an A40).
+
 ## Research question
 
 Multi-agent systems typically pair a frontier-model orchestrator with cheaper
@@ -148,24 +170,32 @@ directory and emits this same task schema — runner/harness/metrics are unchang
    (secondary: Llama-3.2-3B). Record actual cost into `finetune_cost_usd`.
 5. **C4/C5 (fine-tuned):** serve the LoRA adapter via vLLM, point the
    `small_finetuned` profile at it.
-6. **Evaluate** on `val`/`test` splits only, ≥ 5 seeds per condition per task:
-   `run_experiment(config, splits=["test"])`.
-7. **Report:** `compute_metrics.py` (attribution + claim + break-even) and
-   `make_figures.py --real`.
+6. **Evaluate** on `val`/`test` splits only: `run_experiment(config, splits=["test"])`.
+   Decoding is temperature-0 and the nominal seed is not threaded into sampling, so
+   extra seeds replay the same trajectory — spend budget on more *tasks/repos*, not
+   seeds, and let `analysis.py` deduplicate any replays.
+7. **Report:** `compute_metrics.py` (attribution + claim + break-even),
+   `make_figures.py --real`, and `compute_significance.py` (dedup, Wilson CIs,
+   exact McNemar, paired bootstrap over tasks).
 
 ## Implemented vs stubbed / not implemented
 
 Implemented and tested: schemas; C1–C6 registry; generic + custom harnesses; deterministic
 verifier; JSONL logging; runner; all metrics incl. attribution, super-additivity, claim
 check, break-even; distillation builder (C6 verbatim + C1 replay); figure/table generation;
-offline smoke benchmark; LoRA training interface with dry-run validation.
+offline smoke benchmark; LoRA training (executed for real on the A40 run); the realbench
+generator over real repos; the turnkey pod pipeline (`infra/run_all.sh`); statistical
+analysis (`analysis.py`: dedup, Wilson CIs, exact McNemar, paired task bootstrap).
 
-Stubbed or placeholder (clearly labeled in code): model prices and SLM endpoint defaults;
-stub-client skill levels and chars/4 token estimates; the data-efficiency figure (needs
-checkpoints trained on nested data subsets); real-model adapters are implemented but
-exercised only by unit-level paths (no credentials in CI).
+Completed for real (2026-06-10 A40 run): C1–C6 evaluation on the realbench test split;
+teacher distillation; 3B LoRA training + merge; metrics, figures, significance, and the
+filled white paper. Raw run logs are committed under `results/real/`.
 
-Not implemented yet (next steps): SWE-bench Verified / Terminal-Bench task adapters; real
-C1–C6 runs; LoRA training execution; a second subagent role (test execution & result
-parsing) for the generalization phase; bootstrap confidence intervals over seeds for the
-attribution terms.
+Stubbed or placeholder (clearly labeled in code): stub-client skill levels and chars/4
+token estimates (offline tests only); the data-efficiency figure (needs checkpoints
+trained on nested data subsets).
+
+Not implemented yet (next steps): the 1.5B size ablation (`RUN_ABLATION=1`, pending);
+additional held-out test repos for external validity; SWE-bench Verified /
+Terminal-Bench task adapters; a second subagent role (test execution & result parsing)
+for the generalization phase.

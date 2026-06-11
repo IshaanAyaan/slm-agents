@@ -130,16 +130,17 @@ chat-format SFT JSONL, split train/val/test, used to LoRA-fine-tune the SLM (ran
 
 ### 4.1 Zero-API, self-hosted execution
 
-All models are served locally with vLLM on H100 GPUs. The large/teacher model is a strong
-**open** model (e.g. Llama-3.3-70B-Instruct or Qwen2.5-72B-Instruct); the students are
-Qwen3-4B (headline) and Qwen3-1.7B (ablation). No paid API is used anywhere.
+All models are served locally with vLLM on a single self-hosted GPU; the teacher and
+student checkpoints are open Qwen-family Instruct models selected in `infra/config.env`
+(the 2026-06-10 run: Qwen2.5-14B teacher, Qwen2.5-3B student, one NVIDIA A40 48 GB).
+No paid API is used anywhere.
 
 ### 4.2 Cost model
 
 Cost is grounded in measured hardware throughput, not an external price list. For each
 served model we benchmark realized prefill/decode tokens-per-second and convert
-`GPU_count × $/GPU-hour` into per-token USD. The 70B teacher is therefore correctly
-costlier per token than the 4B/1.7B students. Fine-tuning cost is measured training
+`GPU_count × $/GPU-hour` into per-token USD. The larger teacher is therefore correctly
+costlier per token than the student. Fine-tuning cost is measured training
 wall-time × GPUs × rate, used in the break-even analysis.
 
 ### 4.3 Benchmark
@@ -148,17 +149,19 @@ Tasks are generated deterministically from real Python repositories: we index to
 class/function/constant definitions and keep symbols defined in exactly one file, yielding
 "which file defines `X`?" tasks with unambiguous, machine-checkable ground truth and **no
 human labeling**. Train-split repos feed distillation; held-out test-split repos measure
-generalization to code the SLM never trained on. Every condition is run for multiple seeds
-per task.
+generalization to code the SLM never trained on. Decoding is deterministic
+(temperature 0), so the analysis unit is the task: statistics deduplicate to one attempt
+per (condition, task), with Wilson CIs and paired exact tests from
+`scripts/compute_significance.py`.
 
 ---
 
 ## 5. Results
 
-> Numbers below are auto-filled from `metrics_4b.json`. `[PENDING RUN]` means the
+> Numbers below are auto-filled from the run's metrics JSON. `[PENDING RUN]` means the
 > self-hosted run has not yet produced that value.
 
-### 5.1 Main results (headline, Qwen3-4B specialist)
+### 5.1 Main results (headline specialist)
 
 | Condition | Success rate | Cost / successful task (USD) | Cost / attempt (USD) |
 |---|---|---|---|
@@ -204,7 +207,7 @@ interaction = {{INTERACTION_CPS}}; **super-additive: {{SUPERADD_CPS}}**.
 Fine-tuning cost = ${{FT_COST}}; savings per successful task = ${{SAVINGS_PER_TASK}};
 **break-even at {{BREAKEVEN_TASKS}} tasks**.
 
-### 5.6 Size ablation (Qwen3-1.7B specialist)
+### 5.6 Size ablation (smaller specialist)
 
 C5 with a 1.7B specialist: success rate {{SR_C5_17B}}, cost/success {{CPS_C5_17B}} —
 testing how far the model can shrink before the harness can no longer carry it.
@@ -235,7 +238,7 @@ becomes extra-effective precisely because it was trained to speak the harness's 
 All harness specifications, the distillation pipeline, the deterministic benchmark
 generator, training configs, evaluation scripts, and this paper's number-filling script are
 released in `research/slm_harness/`. The full run is a single command
-(`infra/run_all.sh`) on self-hosted H100s with no API keys.
+(`infra/run_all.sh`) on one self-hosted Ampere-class GPU with no API keys.
 
 ## 9. Conclusion
 
@@ -249,4 +252,4 @@ ones, are the cost-efficient building block for multi-agent systems.
 ---
 
 *Appendix A — full per-condition token/reliability table and Tables 1–4 are generated in
-`{{FIGDIR}}/tables.md`. Appendix B — per-task trajectories are in `runs_4b.jsonl`.*
+`{{FIGDIR}}/tables.md`. Appendix B — per-task trajectories are in the committed `results/real/eval_*/runs.jsonl` files.*
