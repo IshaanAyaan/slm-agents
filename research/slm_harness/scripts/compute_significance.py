@@ -53,15 +53,21 @@ def main() -> None:
             f"| {p['condition_a']} vs {p['condition_b']} | "
             f"{p['a_only_success']}/{p['b_only_success']} | {p['mcnemar_p']:.2e} |"
         )
+    def fmt(x: float | None, suffix: str = "") -> str:
+        return "-" if x is None else f"{x:.3f}{suffix}"
+
     print("\n| Pair | cost/success ratio [95% CI] | reduction % [95% CI] |")
     print("|---|---|---|")
     for b in report["cost_ratio_bootstrap"]:
         lo, hi = b["ci95"]
         rlo, rhi = b["reduction_pct_ci95"]
+        red = b["reduction_pct_point"]
         print(
             f"| {b['condition_a']}/{b['condition_b']} | "
-            f"{b['point_ratio']:.3f} [{lo:.3f}, {hi:.3f}] | "
-            f"{b['reduction_pct_point']:.1f}% [{rlo:.1f}%, {rhi:.1f}%] |"
+            f"{fmt(b['point_ratio'])} [{fmt(lo)}, {fmt(hi)}] | "
+            f"{'-' if red is None else f'{red:.1f}%'} "
+            f"[{'-' if rlo is None else f'{rlo:.1f}%'}, "
+            f"{'-' if rhi is None else f'{rhi:.1f}%'}] |"
         )
 
 

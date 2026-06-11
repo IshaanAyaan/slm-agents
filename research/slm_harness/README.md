@@ -1,26 +1,32 @@
 # SLM + co-designed harness as a subagent: research scaffold
 
-## Status: real run completed (2026-06-10) — primary claim holds
+## Status: full-scale run completed (2026-06-11) — primary claim holds vs a strong baseline
 
-The full 2×3 factorial ran end-to-end on one self-hosted NVIDIA A40 (Qwen2.5-14B-Instruct
-teacher, Qwen2.5-3B-Instruct student, vLLM 0.7.3, zero API spend). Deduplicated per-task
-statistics over the 40 held-out test tasks (`results/real/significance.json`):
+The full 2×3 factorial ran end-to-end on one self-hosted NVIDIA H100 NVL:
+**Qwen2.5-72B-Instruct-AWQ** teacher/baseline, **7B / 3B / 1.5B** student sweep,
+**200 test tasks across five held-out repos** (ohmo, flask, click, rich, httpx),
+vLLM 0.7.3, zero API spend. Per-task statistics (n = 200/condition,
+`results/real/significance_b.json`, 3B grid):
 
 | Condition | Success [95% CI] | Cost/success |
 |---|---|---|
-| C1 large+generic (baseline) | 0.725 [0.572, 0.839] | $0.001818 |
-| C2 small+generic (naive swap) | 0.475 [0.329, 0.625] | $0.003715 — **2.0× worse than C1** |
-| C3 small+custom | 0.275 [0.161, 0.428] | $0.002041 |
-| C4 fine-tuned+generic | 0.525 [0.375, 0.671] | $0.002291 |
-| **C5 fine-tuned+custom (proposed)** | **0.975 [0.871, 0.996]** | **$0.000457** |
-| C6 large+custom | 0.550 [0.398, 0.693] | $0.003762 |
+| C1 72B+generic (baseline) | 0.955 [0.917, 0.976] | $0.010252 |
+| C2 3B+generic (naive swap) | 0.480 [0.412, 0.549] | $0.013908 — **worse than C1 on both axes** |
+| C3 3B+custom | 0.250 [0.195, 0.314] | $0.010199 |
+| C4 3B-FT+generic | 0.410 [0.344, 0.479] | $0.009759 |
+| **C5 3B-FT+custom (proposed)** | **0.945 [0.904, 0.969]** | **$0.001558** |
+| C6 72B+custom | 0.810 [0.750, 0.858] | $0.022736 |
 
-C5 vs C1: **−74.9%** cost-per-success (bootstrap 95% CI [63.8%, 84.0%]), **+25 pp**
-success (exact McNemar p = 0.006). Interaction on success is super-additive (+0.650 over
-the additive prediction). Full write-up: [`paper/white_paper.md`](paper/white_paper.md);
-raw trajectories and metrics are committed under `results/real/`. To reproduce on a
-RunPod-style pod: copy `infra/config.runpod.env.example` to `infra/config.env`, set your
-GPU rate, and run `bash research/slm_harness/infra/run_all.sh` (~1 GPU-hour on an A40).
+**C5 vs C1: −84.8% cost-per-success [83.3%, 86.1%] at statistically indistinguishable
+success (McNemar p = 0.82).** Size sweep: 7B −76.2%, 1.5B −82.6%, all p ≥ 0.21 vs C1.
+The co-design interaction at 1.5B: C4 (generic) = 0.010 vs C5 (custom) = 0.935.
+Per-repo C5 stays in [0.875, 0.975] on all five repos and beats C1 on httpx. An earlier
+A40 run (14B teacher, 40 tasks) replicated the direction (−74.9% [63.8, 84.0]); its logs
+are in git history. Full write-up: [`paper/white_paper.md`](paper/white_paper.md); raw
+trajectories, SFT data, metrics, and significance files are committed under
+`results/real/`. To reproduce: copy `infra/config.runpod.env.example` to
+`infra/config.env`, set your GPU rate and models, and run
+`bash research/slm_harness/infra/run_all.sh` (≈1.5 GPU-hours on an H100 NVL ≈ $5).
 
 ## Research question
 
