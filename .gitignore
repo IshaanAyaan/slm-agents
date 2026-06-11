@@ -47,3 +47,13 @@ research/slm_harness/tasks/realbench/run_test.json
 .venv-mac*/
 .venv-clean/
 slm_harness/results/smoke/
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/main.pdf
