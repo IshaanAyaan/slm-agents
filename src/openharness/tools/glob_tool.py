@@ -35,7 +35,12 @@ class GlobTool(BaseTool):
 
     async def execute(self, arguments: GlobToolInput, context: ToolExecutionContext) -> ToolResult:
         root, pattern = _resolve_glob_request(context.cwd, arguments.root, arguments.pattern)
-        matches = await _glob(root, pattern, limit=arguments.limit)
+        try:
+            matches = await _glob(root, pattern, limit=arguments.limit)
+        except ValueError as exc:
+            # Model-emitted patterns like "**.py" make pathlib raise; surface it
+            # as a normal tool error so agent loops get feedback instead of dying.
+            return ToolResult(output=f"(invalid glob pattern '{pattern}': {exc})", is_error=True)
         if not matches:
             return ToolResult(output="(no matches)")
         return ToolResult(output="\n".join(matches))

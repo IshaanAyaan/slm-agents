@@ -52,3 +52,30 @@ async def test_invalid_glob_returns_tool_error_not_crash(tmp_path, monkeypatch):
     )
     assert not ok.is_error
     assert "module.py" in ok.output
+
+
+@pytest.mark.asyncio
+async def test_glob_tool_invalid_pattern_returns_tool_error(tmp_path):
+    """Same crash class via the standalone glob tool (hit during the H100 run:
+    glob_tool.py's python fallback let pathlib's ValueError kill the C4 eval)."""
+    from openharness.tools.glob_tool import GlobTool, GlobToolInput
+
+    (tmp_path / "module.py").write_text("x = 1\n", encoding="utf-8")
+    try:
+        list(tmp_path.glob("**.py"))
+        glob_raises = False
+    except ValueError:
+        glob_raises = True
+
+    tool = GlobTool()
+    ctx = ToolExecutionContext(cwd=tmp_path)
+    result = await tool.execute(GlobToolInput(pattern="**.py"), ctx)
+    if glob_raises:
+        assert result.is_error
+        assert "invalid glob pattern" in result.output
+    else:
+        assert not result.is_error
+
+    ok = await tool.execute(GlobToolInput(pattern="**/*.py"), ctx)
+    assert not ok.is_error
+    assert "module.py" in ok.output
