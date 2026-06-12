@@ -58,7 +58,10 @@ def train(args: argparse.Namespace) -> None:
         eval_strategy="epoch" if val_ds is not None else "no",
         bf16=use_bf16,
         fp16=not use_bf16 and torch.cuda.is_available(),
-        gradient_checkpointing=False,  # tiny models: speed over memory
+        # Activations dominate at bs x 2k tokens even for sub-1B models; the
+        # fp32-upcast LM-head logits already eat tens of GB on long batches.
+        gradient_checkpointing=True,
+        gradient_checkpointing_kwargs={"use_reentrant": False},
         report_to=[],
     )
     trainer = SFTTrainer(

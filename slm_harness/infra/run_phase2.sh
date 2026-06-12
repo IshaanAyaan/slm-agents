@@ -78,18 +78,19 @@ train_one(){
   [[ -f "$out/train_meta.json" ]] && { log "skip train $sub/$size"; return; }
   local epochs=3 bs=32 ga=1
   case "$size" in
-    qwen2.5-0.5b) bs=24 ;;
+    qwen2.5-0.5b) bs=16; ga=2 ;;
     qwen2.5-1.5b) epochs=2; bs=8; ga=2 ;;
   esac
-  # Long-window subroutines (~2k tokens/example): the fp32-upcast LM-head logits
-  # dominate memory (seq x bs x vocab x 4B), so shrink bs and keep tokens/step
-  # roughly constant via grad accumulation. Qwen's 152k vocab needs the most care.
+  # Long-window subroutines (1.5k-2k tokens/example): the fp32-upcast LM-head
+  # logits dominate memory (seq x bs x vocab x 4B; Qwen's 152k vocab is worst),
+  # so shrink bs at constant tokens/step via grad accumulation. Gradient
+  # checkpointing in the trainer handles the activation side.
   case "$sub" in
-    read_span_selector)
+    read_span_selector|evidence_judge)
       bs=8; ga=4
       [[ "$size" == "qwen2.5-1.5b" ]] && { bs=2; ga=8; }
       ;;
-    evidence_judge|json_repair)
+    json_repair|trace_localizer)
       [[ "$size" == "qwen2.5-1.5b" ]] && { bs=4; ga=4; }
       ;;
   esac

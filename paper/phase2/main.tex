@@ -162,16 +162,49 @@ tested size clears the bar, the verdict is ``unsolved here'' and we say so.
 % ---------------------------------------------------------------- 4
 \section{Subroutine Taxonomy and Selection}
 
-We screened roughly twenty candidate subroutines drawn from logs of coding
-agents and from the structure of our previous harness. Selection criteria
-were narrowness (one decision, closed output schema), deterministic
-verifiability (an oracle or executable check exists), data availability
-(labels derivable from real repositories or seeded simulation), and usefulness
-inside a real agent loop. Candidates rejected at this stage include free-form
-patch writing (not verifiable without tests we cannot generate at scale),
-commit-message drafting (no oracle), and multi-file refactor planning (not
-narrow). Eight subroutines were implemented end to end
-(Table~\ref{tab:subroutines}).
+We screened twenty candidate subroutines drawn from logs of coding agents and
+from the structure of our previous harness. Selection criteria were
+narrowness (one decision, closed output schema), deterministic verifiability
+(an oracle or executable check exists), data availability (labels derivable
+from real repositories or seeded simulation), and usefulness inside a real
+agent loop. Table~\ref{tab:screen} shows the screen. Eight subroutines were
+implemented end to end (Table~\ref{tab:subroutines}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lp{6.2cm}l}
+\toprule
+Candidate & Screening outcome & Verdict \\
+\midrule
+JSON action repair & corruption oracle, exact verifier & implemented \\
+Tool/action router & policy oracle over simulated state & implemented \\
+Path normalizer & corruption oracle over real file lists & implemented \\
+Search query generator & execution-verifiable against the repo & implemented \\
+Search-hit ranker & AST definition oracle, real grep hits & implemented \\
+Read-span selector & AST span oracle & implemented \\
+Enough-evidence detector & AST membership oracle & implemented \\
+Stack-trace localizer & injected-fault oracle & implemented \\
+\midrule
+Symbol definition finder & subsumed by hit ranker plus span selector & folded in \\
+Evidence extractor & subsumed by evidence judge with span output & folded in \\
+Candidate file ranker & near-duplicate of search-hit ranker & folded in \\
+Workspace memory summarizer & no deterministic oracle for summary quality & rejected \\
+Subagent escalation policy & covered by the router's ESCALATE arm & folded in \\
+Related-test finder & oracle exists (imports) but weak usefulness signal & deferred \\
+Import statement fixer & verifiable, deferred for scope & deferred \\
+Diff-hunk applier & verifiable but rules (patch tools) are already perfect & rejected \\
+Commit-message drafter & no oracle without human judgment & rejected \\
+Free-form patch writer & needs generated tests at scale to verify & rejected \\
+Multi-file refactor planner & not narrow, no closed schema & rejected \\
+Docstring drafter & no deterministic oracle & rejected \\
+\bottomrule
+\end{tabular}
+\caption{The twenty-candidate screen. Implemented means trained and evaluated
+in this paper. Folded in means the capability ships inside another
+subroutine. Deferred means oracle-compatible but out of scope for this run.}
+\label{tab:screen}
+\end{table}
 
 \begin{table}[t]
 \centering
