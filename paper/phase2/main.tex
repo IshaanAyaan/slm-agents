@@ -58,10 +58,8 @@ any teacher judgment, and fine-tune specialists at four sizes between 135M and
 1.5B parameters. Evaluation is on held-out repositories the models never saw,
 with a rules-only baseline for every subroutine so that learned components
 must beat the best cheap deterministic alternative, not a strawman. The result
-is a parameter-floor map. \floorSummarySentence{} Schema validity above
-\minSchemaValidityFTPct{} percent across all fine-tuned sizes confirms that
-fine-tuning, not scale, buys format reliability, while base instruct models of
-the same sizes fail the same prompts badly. We describe an MCP server design
+is a parameter-floor map. \floorSummarySentence{} \schemaValiditySentence{}
+We describe an MCP server design
 through which a frontier coding agent delegates these subroutines to verified
 local specialists, and we report honestly which subroutines a plain rules
 baseline already solves, making a model unnecessary there.

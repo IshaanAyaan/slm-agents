@@ -1,0 +1,161 @@
+[17:16:42] === run_phase2 start (SIZES=smollm2-135m,smollm2-360m,qwen2.5-0.5b,qwen2.5-1.5b) ===
+[17:17:52] STAGE setup DONE
+[repo] click: 70 files, 175 unique symbols (train)
+[repo] flask: 83 files, 98 unique symbols (train)
+[repo] rich: 190 files, 308 unique symbols (train)
+[repo] httpx: 60 files, 155 unique symbols (test)
+[repo] jinja2: 60 files, 361 unique symbols (test)
+[data] action_router: train=2000 val=150 test=300 rules_test=0.277 (abstain 0.000) in 0.0s
+[data] evidence_judge: train=1460 val=1 test=300 rules_test=0.983 (abstain 0.000) in 36.4s
+[data] json_repair: train=2000 val=150 test=300 rules_test=0.147 (abstain 0.853) in 0.0s
+[data] path_normalizer: train=2000 val=150 test=300 rules_test=0.790 (abstain 0.000) in 5.6s
+[data] read_span_selector: train=1772 val=150 test=300 rules_test=0.817 (abstain 0.000) in 6.0s
+[data] search_hit_ranker: train=1576 val=1 test=300 rules_test=0.993 (abstain 0.000) in 34.1s
+[data] search_query_gen: train=2000 val=1 test=300 rules_test=0.237 (abstain 0.000) in 15.6s
+[data] trace_localizer: train=2000 val=150 test=300 rules_test=1.000 (abstain 0.000) in 0.4s
+[17:19:34] STAGE datagen DONE
+[sft] action_router: {'train': 2000, 'val': 150, 'test': 300}
+[sft] evidence_judge: {'train': 1460, 'val': 1, 'test': 300}
+[sft] json_repair: {'train': 2000, 'val': 150, 'test': 300}
+[sft] path_normalizer: {'train': 2000, 'val': 150, 'test': 300}
+[sft] read_span_selector: {'train': 1772, 'val': 150, 'test': 300}
+[sft] search_hit_ranker: {'train': 1576, 'val': 1, 'test': 300}
+[sft] search_query_gen: {'train': 2000, 'val': 1, 'test': 300}
+[sft] trace_localizer: {'train': 2000, 'val': 150, 'test': 300}
+[17:19:47] STAGE sft_export DONE
+[train] /root/slm-agents/slm_harness/results/subroutines/models/_dryrun: loss=3.5316 in 1s
+[17:19:56] STAGE dryrun DONE
+[17:19:56] train action_router/smollm2-135m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/action_router/smollm2-135m: loss=0.5706 in 28s
+[17:20:29] train evidence_judge/smollm2-135m (epochs=3 bs=8 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/evidence_judge/smollm2-135m: loss=1.3728 in 68s
+[17:21:43] train json_repair/smollm2-135m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/json_repair/smollm2-135m: loss=0.4523 in 35s
+[17:22:22] train path_normalizer/smollm2-135m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/path_normalizer/smollm2-135m: loss=0.6042 in 32s
+[17:23:00] train read_span_selector/smollm2-135m (epochs=3 bs=8 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/read_span_selector/smollm2-135m: loss=0.9164 in 231s
+[17:26:56] train search_hit_ranker/smollm2-135m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_hit_ranker/smollm2-135m: loss=1.0256 in 41s
+[17:27:43] train search_query_gen/smollm2-135m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_query_gen/smollm2-135m: loss=0.5296 in 25s
+[17:28:13] train trace_localizer/smollm2-135m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/trace_localizer/smollm2-135m: loss=0.7607 in 57s
+[17:29:14] train action_router/smollm2-360m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/action_router/smollm2-360m: loss=0.4273 in 48s
+[17:30:10] train evidence_judge/smollm2-360m (epochs=3 bs=8 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/evidence_judge/smollm2-360m: loss=1.1282 in 105s
+[17:32:02] train json_repair/smollm2-360m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/json_repair/smollm2-360m: loss=0.3389 in 60s
+[17:33:07] train path_normalizer/smollm2-360m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/path_normalizer/smollm2-360m: loss=0.4528 in 55s
+[17:34:08] train read_span_selector/smollm2-360m (epochs=3 bs=8 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/read_span_selector/smollm2-360m: loss=0.6988 in 401s
+[17:40:55] train search_hit_ranker/smollm2-360m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_hit_ranker/smollm2-360m: loss=0.8451 in 72s
+[17:42:12] train search_query_gen/smollm2-360m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_query_gen/smollm2-360m: loss=0.4096 in 29s
+[17:42:46] train trace_localizer/smollm2-360m (epochs=3 bs=32 ga=1)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/trace_localizer/smollm2-360m: loss=0.6053 in 99s
+[17:44:31] train action_router/qwen2.5-0.5b (epochs=3 bs=16 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/action_router/qwen2.5-0.5b: loss=0.1771 in 51s
+[17:45:32] train evidence_judge/qwen2.5-0.5b (epochs=3 bs=8 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/evidence_judge/qwen2.5-0.5b: loss=0.6149 in 92s
+[17:47:11] train json_repair/qwen2.5-0.5b (epochs=3 bs=16 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/json_repair/qwen2.5-0.5b: loss=0.1679 in 58s
+[17:48:15] train path_normalizer/qwen2.5-0.5b (epochs=3 bs=16 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/path_normalizer/qwen2.5-0.5b: loss=0.2838 in 51s
+[17:49:12] train read_span_selector/qwen2.5-0.5b (epochs=3 bs=8 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/read_span_selector/qwen2.5-0.5b: loss=0.1725 in 381s
+[17:55:40] train search_hit_ranker/qwen2.5-0.5b (epochs=3 bs=16 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_hit_ranker/qwen2.5-0.5b: loss=0.5321 in 62s
+[17:56:48] train search_query_gen/qwen2.5-0.5b (epochs=3 bs=16 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_query_gen/qwen2.5-0.5b: loss=0.1591 in 42s
+[17:57:36] train trace_localizer/qwen2.5-0.5b (epochs=3 bs=16 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/trace_localizer/qwen2.5-0.5b: loss=0.3679 in 87s
+[17:59:09] train action_router/qwen2.5-1.5b (epochs=2 bs=8 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/action_router/qwen2.5-1.5b: loss=0.1629 in 92s
+[18:00:53] train evidence_judge/qwen2.5-1.5b (epochs=2 bs=2 ga=8)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/evidence_judge/qwen2.5-1.5b: loss=0.5412 in 182s
+[18:04:02] train json_repair/qwen2.5-1.5b (epochs=2 bs=4 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/json_repair/qwen2.5-1.5b: loss=0.1486 in 133s
+[18:06:25] train path_normalizer/qwen2.5-1.5b (epochs=2 bs=8 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/path_normalizer/qwen2.5-1.5b: loss=0.2659 in 90s
+[18:08:02] train read_span_selector/qwen2.5-1.5b (epochs=2 bs=2 ga=8)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/read_span_selector/qwen2.5-1.5b: loss=0.1411 in 514s
+[18:16:45] train search_hit_ranker/qwen2.5-1.5b (epochs=2 bs=8 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_hit_ranker/qwen2.5-1.5b: loss=0.4965 in 100s
+[18:18:33] train search_query_gen/qwen2.5-1.5b (epochs=2 bs=8 ga=2)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/search_query_gen/qwen2.5-1.5b: loss=0.1450 in 73s
+[18:19:53] train trace_localizer/qwen2.5-1.5b (epochs=2 bs=4 ga=4)
+[train] /root/slm-agents/slm_harness/results/subroutines/models/trace_localizer/qwen2.5-1.5b: loss=0.3487 in 158s
+[18:22:39] STAGE train DONE
+[eval] action_router smollm2-135m ft: success=0.612 retry=0.612 valid=1.000 (4.3s)
+[eval] evidence_judge smollm2-135m ft: success=0.540 retry=0.540 valid=1.000 (3.7s)
+[eval] json_repair smollm2-135m ft: success=0.916 retry=0.924 valid=0.920 (16.5s)
+[eval] path_normalizer smollm2-135m ft: success=0.248 retry=0.500 valid=0.416 (5.8s)
+[eval] read_span_selector smollm2-135m ft: success=0.000 retry=0.000 valid=0.928 (7.4s)
+[eval] search_hit_ranker smollm2-135m ft: success=0.160 retry=0.160 valid=1.000 (1.4s)
+[eval] search_query_gen smollm2-135m ft: success=0.636 retry=0.636 valid=1.000 (2.7s)
+[eval] trace_localizer smollm2-135m ft: success=0.812 retry=0.812 valid=1.000 (2.8s)
+[eval] action_router smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (3.9s)
+[eval] evidence_judge smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (8.4s)
+[eval] json_repair smollm2-135m base: success=0.240 retry=0.240 valid=0.248 (22.8s)
+[eval] path_normalizer smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (6.1s)
+[eval] read_span_selector smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (11.8s)
+[eval] search_hit_ranker smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (3.0s)
+[eval] search_query_gen smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (5.4s)
+[eval] trace_localizer smollm2-135m base: success=0.000 retry=0.000 valid=0.000 (8.7s)
+[eval] action_router smollm2-360m ft: success=0.740 retry=0.740 valid=1.000 (4.4s)
+[eval] evidence_judge smollm2-360m ft: success=0.484 retry=0.484 valid=0.992 (8.3s)
+[eval] json_repair smollm2-360m ft: success=1.000 retry=1.000 valid=1.000 (6.7s)
+[eval] path_normalizer smollm2-360m ft: success=0.704 retry=0.704 valid=1.000 (2.3s)
+[eval] read_span_selector smollm2-360m ft: success=0.024 retry=0.024 valid=0.956 (11.6s)
+[eval] search_hit_ranker smollm2-360m ft: success=0.176 retry=0.176 valid=1.000 (2.4s)
+[eval] search_query_gen smollm2-360m ft: success=0.632 retry=0.632 valid=1.000 (3.2s)
+[eval] trace_localizer smollm2-360m ft: success=0.936 retry=0.936 valid=1.000 (4.0s)
+[eval] action_router smollm2-360m base: success=0.000 retry=0.000 valid=0.000 (3.0s)
+[eval] evidence_judge smollm2-360m base: success=0.040 retry=0.040 valid=0.068 (12.6s)
+[eval] json_repair smollm2-360m base: success=0.340 retry=0.340 valid=0.356 (20.7s)
+[eval] path_normalizer smollm2-360m base: success=0.192 retry=0.200 valid=0.584 (5.4s)
+[eval] read_span_selector smollm2-360m base: success=0.000 retry=0.000 valid=0.160 (18.5s)
+[eval] search_hit_ranker smollm2-360m base: success=0.000 retry=0.000 valid=0.000 (4.2s)
+[eval] search_query_gen smollm2-360m base: success=0.000 retry=0.000 valid=0.000 (5.9s)
+[eval] trace_localizer smollm2-360m base: success=0.000 retry=0.000 valid=0.000 (12.4s)
+[eval] action_router qwen2.5-0.5b ft: success=0.936 retry=0.936 valid=1.000 (4.5s)
+[eval] evidence_judge qwen2.5-0.5b ft: success=0.844 retry=0.844 valid=1.000 (3.4s)
+[eval] json_repair qwen2.5-0.5b ft: success=0.996 retry=0.996 valid=1.000 (5.1s)
+[eval] path_normalizer qwen2.5-0.5b ft: success=0.956 retry=0.956 valid=1.000 (1.9s)
+[eval] read_span_selector qwen2.5-0.5b ft: success=0.224 retry=0.224 valid=1.000 (6.1s)
+[eval] search_hit_ranker qwen2.5-0.5b ft: success=0.948 retry=0.948 valid=1.000 (1.9s)
+[eval] search_query_gen qwen2.5-0.5b ft: success=0.864 retry=0.864 valid=1.000 (2.8s)
+[eval] trace_localizer qwen2.5-0.5b ft: success=1.000 retry=1.000 valid=1.000 (3.3s)
+[eval] action_router qwen2.5-0.5b base: success=0.276 retry=0.276 valid=1.000 (1.2s)
+[eval] evidence_judge qwen2.5-0.5b base: success=0.208 retry=0.212 valid=0.984 (3.2s)
+[eval] json_repair qwen2.5-0.5b base: success=0.240 retry=0.240 valid=0.532 (15.6s)
+[eval] path_normalizer qwen2.5-0.5b base: success=0.584 retry=0.584 valid=1.000 (1.6s)
+[eval] read_span_selector qwen2.5-0.5b base: success=0.000 retry=0.000 valid=0.336 (11.5s)
+[eval] search_hit_ranker qwen2.5-0.5b base: success=0.000 retry=0.140 valid=0.008 (2.4s)
+[eval] search_query_gen qwen2.5-0.5b base: success=0.032 retry=0.064 valid=0.608 (4.1s)
+[eval] trace_localizer qwen2.5-0.5b base: success=0.108 retry=0.108 valid=0.976 (3.8s)
+[eval] action_router qwen2.5-1.5b ft: success=0.996 retry=0.996 valid=1.000 (6.8s)
+[eval] evidence_judge qwen2.5-1.5b ft: success=0.932 retry=0.932 valid=1.000 (6.7s)
+[eval] json_repair qwen2.5-1.5b ft: success=1.000 retry=1.000 valid=1.000 (13.1s)
+[eval] path_normalizer qwen2.5-1.5b ft: success=0.980 retry=0.980 valid=1.000 (4.6s)
+[eval] read_span_selector qwen2.5-1.5b ft: success=0.816 retry=0.816 valid=0.996 (13.5s)
+[eval] search_hit_ranker qwen2.5-1.5b ft: success=0.996 retry=0.996 valid=1.000 (4.2s)
+[eval] search_query_gen qwen2.5-1.5b ft: success=0.876 retry=0.876 valid=1.000 (5.1s)
+[eval] trace_localizer qwen2.5-1.5b ft: success=1.000 retry=1.000 valid=1.000 (6.7s)
+[eval] action_router qwen2.5-1.5b base: success=0.492 retry=0.492 valid=1.000 (2.5s)
+[eval] evidence_judge qwen2.5-1.5b base: success=0.536 retry=0.536 valid=1.000 (3.8s)
+[eval] json_repair qwen2.5-1.5b base: success=0.732 retry=0.812 valid=0.808 (20.0s)
+[eval] path_normalizer qwen2.5-1.5b base: success=0.728 retry=0.728 valid=1.000 (3.2s)
+[eval] read_span_selector qwen2.5-1.5b base: success=0.116 retry=0.116 valid=1.000 (12.8s)
+[eval] search_hit_ranker qwen2.5-1.5b base: success=0.544 retry=0.544 valid=1.000 (2.9s)
+[eval] search_query_gen qwen2.5-1.5b base: success=0.096 retry=0.116 valid=0.560 (10.9s)
+[eval] trace_localizer qwen2.5-1.5b base: success=0.236 retry=0.236 valid=1.000 (6.2s)
+[18:29:59] STAGE eval DONE
+[fig] /root/slm-agents/slm_harness/results/subroutines/figures/parameter_floor.png
+[fig] /root/slm-agents/slm_harness/results/subroutines/figures/ft_vs_base.png
+[18:30:01] STAGE floor DONE
+[18:30:01] === run_phase2 DONE ===

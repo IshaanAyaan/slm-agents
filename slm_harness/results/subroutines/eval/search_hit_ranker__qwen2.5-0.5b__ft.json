@@ -1,0 +1,1519 @@
+{
+  "subroutine": "search_hit_ranker",
+  "n": 250,
+  "schema_valid": 1.0,
+  "success": 0.948,
+  "success_retry": 0.948,
+  "usage": {
+    "tokens_in": 69601,
+    "tokens_out": 1500,
+    "wall_seconds": 0.8
+  },
+  "records": [
+    {
+      "id": "search_hit_ranker-test-00000",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00001",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00002",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00003",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00004",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00005",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00006",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00007",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00008",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00009",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00010",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00011",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00012",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00013",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00014",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00015",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00016",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00017",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00018",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00019",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00020",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00021",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00022",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00023",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00024",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00025",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00026",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00027",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00028",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00029",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00030",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00031",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00032",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00033",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00034",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00035",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00036",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00037",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00038",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00039",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00040",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00041",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00042",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00043",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00044",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00045",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00046",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00047",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00048",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00049",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00050",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00051",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00052",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00053",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00054",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00055",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00056",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00057",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00058",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00059",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00060",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00061",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00062",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00063",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00064",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00065",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00066",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00067",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00068",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00069",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00070",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00071",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00072",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00073",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00074",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00075",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00076",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00077",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00078",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00079",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00080",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00081",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00082",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00083",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00084",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00085",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00086",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00087",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00088",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00089",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00090",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00091",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00092",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00093",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00094",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00095",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00096",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00097",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00098",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00099",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00100",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00101",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00102",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00103",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00104",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00105",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00106",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00107",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00108",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00109",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00110",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00111",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00112",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00113",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00114",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00115",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00116",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00117",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00118",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00119",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00120",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00121",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00122",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00123",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00124",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00125",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00126",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00127",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00128",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00129",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00130",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00131",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00132",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00133",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00134",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00135",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00136",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00137",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00138",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00139",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00140",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00141",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00142",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00143",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00144",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00145",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00146",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00147",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00148",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00149",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00150",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00151",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00152",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00153",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00154",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00155",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00156",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00157",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00158",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00159",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00160",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00161",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00162",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00163",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00164",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00165",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00166",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00167",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00168",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00169",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00170",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00171",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00172",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00173",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00174",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00175",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00176",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00177",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00178",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00179",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00180",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00181",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00182",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00183",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00184",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00185",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00186",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00187",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00188",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00189",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00190",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00191",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00192",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00193",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00194",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00195",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00196",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00197",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00198",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00199",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00200",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00201",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00202",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00203",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00204",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00205",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00206",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00207",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00208",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00209",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00210",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00211",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00212",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00213",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00214",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00215",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00216",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00217",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00218",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00219",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00220",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00221",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00222",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00223",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00224",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00225",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00226",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00227",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00228",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00229",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00230",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00231",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00232",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00233",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00234",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00235",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00236",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00237",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00238",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00239",
+      "schema_valid": true,
+      "success": false,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00240",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00241",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00242",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00243",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00244",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00245",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00246",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00247",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00248",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    },
+    {
+      "id": "search_hit_ranker-test-00249",
+      "schema_valid": true,
+      "success": true,
+      "error": ""
+    }
+  ],
+  "size": "qwen2.5-0.5b",
+  "condition": "ft",
+  "model_path": "/root/slm-agents/slm_harness/results/subroutines/models/search_hit_ranker/qwen2.5-0.5b",
+  "params_m": 494,
+  "total_seconds": 1.9
+}

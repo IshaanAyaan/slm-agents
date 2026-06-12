@@ -1,0 +1,13 @@
+{
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "train_path": "/root/slm-agents/slm_harness/results/subroutines/sft/evidence_judge/train.jsonl",
+  "n_train": 1460,
+  "epochs": 2.0,
+  "lr": 2e-05,
+  "batch_size": 2,
+  "grad_accum": 8,
+  "max_seq_len": 2048,
+  "seed": 0,
+  "train_seconds": 181.8,
+  "train_loss": 0.5411864869542174
+}
