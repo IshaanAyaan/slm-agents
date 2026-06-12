@@ -57,3 +57,12 @@ paper/*.fls
 paper/*.log
 paper/*.out
 paper/main.pdf
+
+# LaTeX build artifacts
+paper/**/main.aux
+paper/**/main.blg
+paper/**/main.fdb_latexmk
+paper/**/main.fls
+paper/**/main.log
+paper/**/main.out
+paper/**/main.bbl

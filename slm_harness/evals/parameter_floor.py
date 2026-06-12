@@ -36,6 +36,50 @@ def wilson_ci(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     return max(0.0, center - half), min(1.0, center + half)
 
 
+def mcnemar_exact(b: int, c: int) -> float:
+    """Two-sided exact McNemar p-value from the discordant-pair counts."""
+    n = b + c
+    if n == 0:
+        return 1.0
+    k = min(b, c)
+    tail = sum(math.comb(n, i) for i in range(0, k + 1)) * 0.5 ** n
+    return min(1.0, 2 * tail)
+
+
+def rules_per_item(data_dir: Path, name: str) -> dict[str, bool]:
+    """Deterministic per-example rules outcomes on the test split (recomputable)."""
+    sub = REGISTRY[name]
+    outcomes: dict[str, bool] = {}
+    test_path = data_dir / name / "test.jsonl"
+    for line in test_path.read_text(encoding="utf-8").splitlines():
+        if not line:
+            continue
+        ex = json.loads(line)
+        out = sub.rules_baseline(ex)
+        outcomes[ex["id"]] = bool(out is not None and sub.verify(ex, out))
+    return outcomes
+
+
+def paired_vs_rules(cell: dict, rules_items: dict[str, bool]) -> dict:
+    """Exact McNemar of the fine-tuned cell against rules on identical items."""
+    b = c = both = neither = 0
+    for rec in cell.get("records", []):
+        ft_ok = rec["success"] or rec.get("retry", {}).get("success", False)
+        r_ok = rules_items.get(rec["id"])
+        if r_ok is None:
+            continue
+        if ft_ok and not r_ok:
+            b += 1
+        elif r_ok and not ft_ok:
+            c += 1
+        elif ft_ok:
+            both += 1
+        else:
+            neither += 1
+    return {"ft_only": b, "rules_only": c, "both": both, "neither": neither,
+            "p_mcnemar": round(mcnemar_exact(b, c), 6)}
+
+
 def load_cells(eval_dir: Path) -> dict[tuple[str, str, str], dict]:
     cells = {}
     for path in sorted(eval_dir.glob("*__*__*.json")):
@@ -44,10 +88,14 @@ def load_cells(eval_dir: Path) -> dict[tuple[str, str, str], dict]:
     return cells
 
 
-def build_floor(cells: dict, rules: dict, gpu_usd_hr: float) -> dict:
+def build_floor(cells: dict, rules: dict, gpu_usd_hr: float,
+                data_dir: Path | None = None) -> dict:
     """Per-subroutine size curves, verdicts, and cost-per-success."""
     out: dict[str, dict] = {}
     for name in sorted(REGISTRY):
+        rules_items = (rules_per_item(data_dir, name)
+                       if data_dir and (data_dir / name / "test.jsonl").is_file()
+                       else None)
         sizes: dict[str, dict] = {}
         for size in SIZE_ORDER:
             entry: dict = {}
@@ -74,6 +122,8 @@ def build_floor(cells: dict, rules: dict, gpu_usd_hr: float) -> dict:
                                              if succ_per_item_cost else None),
                     "tokens_out": cell["usage"]["tokens_out"],
                 }
+                if cond == "ft" and rules_items is not None:
+                    entry[cond]["vs_rules"] = paired_vs_rules(cell, rules_items)
             if entry:
                 sizes[size] = entry
 
@@ -208,7 +258,7 @@ def main() -> None:
     summary = json.loads((Path(args.data) / "datagen_summary.json")
                          .read_text(encoding="utf-8"))
     rules = {k: v["rules_test"] for k, v in summary.items()}
-    floor = build_floor(cells, rules, args.gpu_usd_hr)
+    floor = build_floor(cells, rules, args.gpu_usd_hr, data_dir=Path(args.data))
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
