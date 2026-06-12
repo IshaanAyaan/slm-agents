@@ -1,0 +1,50 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ranjan2026specialized}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ranjan2026specialized}
+\citation{hinton2015distill,hsieh2023step}
+\citation{yao2023react,schick2023toolformer}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Previous Result}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relation to prior work.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Research Question and Claims}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Subroutine Taxonomy and Selection}{2}{section.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The eight implemented subroutines. Every verifier is deterministic and runs offline. No teacher model judges any output.}}{3}{table.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:subroutines}{{1}{3}{The eight implemented subroutines. Every verifier is deterministic and runs offline. No teacher model judges any output}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Data Generation Without a Teacher Judge}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Harness and Verification Design}{4}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Deterministic verification.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Localized retry.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rules fallback.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Models, Training, and Hardware}{4}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Evaluation Design}{4}{section.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Parameter-floor map on held-out repositories (HTTPX, Jinja2). Cells show fine-tuned specialist success with one schema retry. Rules is the deterministic baseline on identical examples. Floor is the smallest size clearing 0.90 while beating rules by at least two points.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:floor}{{2}{5}{Parameter-floor map on held-out repositories (HTTPX, Jinja2). Cells show fine-tuned specialist success with one schema retry. Rules is the deterministic baseline on identical examples. Floor is the smallest size clearing 0.90 while beating rules by at least two points}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Results}{5}{section.9}\protected@file@percent }
+\newlabel{sec:results}{{9}{5}{Results}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}The parameter-floor map}{5}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Fine-tuning, not scale, buys schema reliability}{5}{subsection.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Where rules suffice}{5}{subsection.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Cost per successful call}{5}{subsection.9.4}\protected@file@percent }
+\newlabel{sec:cost}{{9.4}{5}{Cost per successful call}{subsection.9.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Fine-tuned specialist success against parameter count, per subroutine, on held-out repositories. The dashed line is the 0.90 reliability bar.}}{6}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:floor}{{1}{6}{Fine-tuned specialist success against parameter count, per subroutine, on held-out repositories. The dashed line is the 0.90 reliability bar}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Failure analysis}{6}{subsection.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}MCP Deployment Architecture}{6}{section.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mean success across subroutines for fine-tuned specialists versus base instruct models at identical sizes, prompts, and retry budgets.}}{7}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:ftbase}{{2}{7}{Mean success across subroutines for fine-tuned specialists versus base instruct models at identical sizes, prompts, and retry budgets}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Limitations}{7}{section.11}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{refs}
+\bibcite{hinton2015distill}{{1}{2015}{{Hinton et~al.}}{{Hinton, Vinyals, and Dean}}}
+\bibcite{hsieh2023step}{{2}{2023}{{Hsieh et~al.}}{{Hsieh, Li, Yeh, Nakhost, Fujii, Ratner, Krishna, Lee, and Pfister}}}
+\bibcite{ranjan2026specialized}{{3}{2026}{{Ranjan and Talluri}}{{}}}
+\bibcite{schick2023toolformer}{{4}{2023}{{Schick et~al.}}{{Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli, Hambro, Zettlemoyer, Cancedda, and Scialom}}}
+\bibcite{yao2023react}{{5}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
+\@writefile{toc}{\contentsline {section}{\numberline {12}Future Work}{8}{section.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}Conclusion}{8}{section.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{8}{section*.9}\protected@file@percent }
+\gdef \@abspage@last{9}

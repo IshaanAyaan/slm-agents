@@ -27,6 +27,21 @@ Full 2×3 factorial, one NVIDIA H100 NVL, Qwen2.5-72B-Instruct-AWQ as teacher an
 
 The result holds on every one of the five test repositories, across a 1.5B–7B size sweep (76–85% cost reductions, all statistically indistinguishable from the baseline on success), and replicates an earlier independent run at smaller scale.
 
+## Phase 2 — parameter floors for developer subroutines (sub-500M)
+
+Phase 1 showed a 1.5B–3B specialist can carry a whole subagent role. Phase 2 asks how much further the recipe compresses: we decompose coding-agent work into **8 narrow, deterministically-verifiable subroutines** (JSON action repair, action routing, path normalization, search-query generation, search-hit ranking, read-span selection, evidence judging, traceback localization), generate **oracle-labeled data from real repos with no teacher as judge** (train: flask/click/rich; held-out test: httpx/jinja2, plus held-out phrasing templates), and fully fine-tune specialists at **135M / 360M / 0.5B / 1.5B**. Every subroutine also gets a rules-only baseline, and where rules already win we say so.
+
+📄 **Phase-2 paper**: [`paper/phase2/main.pdf`](paper/phase2/main.pdf) · Parameter-floor map, per-cell results, and figures under [`slm_harness/results/subroutines/`](slm_harness/results/subroutines/)
+
+```bash
+# offline: regenerate all Phase-2 datasets deterministically (clones pinned repo tags)
+python -m slm_harness.scripts.gen_subroutine_data --out /tmp/p2 --repos-cache /tmp/repos
+# GPU pod: full pipeline (datagen -> SFT -> 4-size sweep -> eval -> parameter floor)
+bash slm_harness/infra/run_phase2.sh
+# MCP proof of concept (rules backend, no GPU needed)
+python -m slm_harness.mcp.server
+```
+
 ## Repo map
 
 ```

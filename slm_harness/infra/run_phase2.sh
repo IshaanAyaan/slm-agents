@@ -5,6 +5,8 @@
 # No vLLM, no teacher, no API keys: data is oracle-labeled, eval is local HF.
 set -euo pipefail
 
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
 REPO="${REPO:-/root/slm-agents}"
 RES="$REPO/slm_harness/results/subroutines"
 STAGEDIR="$RES/.stages"
@@ -78,6 +80,18 @@ train_one(){
   case "$size" in
     qwen2.5-0.5b) bs=24 ;;
     qwen2.5-1.5b) epochs=2; bs=8; ga=2 ;;
+  esac
+  # Long-window subroutines (~2k tokens/example): the fp32-upcast LM-head logits
+  # dominate memory (seq x bs x vocab x 4B), so shrink bs and keep tokens/step
+  # roughly constant via grad accumulation. Qwen's 152k vocab needs the most care.
+  case "$sub" in
+    read_span_selector)
+      bs=8; ga=4
+      [[ "$size" == "qwen2.5-1.5b" ]] && { bs=2; ga=8; }
+      ;;
+    evidence_judge|json_repair)
+      [[ "$size" == "qwen2.5-1.5b" ]] && { bs=4; ga=4; }
+      ;;
   esac
   log "train $sub/$size (epochs=$epochs bs=$bs ga=$ga)"
   $PY -m slm_harness.training.train_subroutine_sft \
